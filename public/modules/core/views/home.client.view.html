@@ -1,4 +1,16 @@
-<section data-ng-controller="HomeController" class="jumbotron">
+<section data-ng-controller="HomeController" >
+    <div class="jumbotron">
+        <div class="container align-center">
+            <h1>What's up in Waterloo?</h1>
+            <h3>CampusWall is the quickest way to figure out what's going on in the campus.</h3>
+            <a type="button" class="btn btn-primary btn-lg">Take a look</a>
+        </div>
+    </div>
+    <section class="upcoming container">
+        <h3>Upcoming events</h3>
+        <div deckgrid source="events" cardTemplateString="<p>{{card.name}}</p>" class="deckgrid"></div>
 
-    <h1>What's up at Waterloo?</h1>
+    </section>
+
+
 </section>
