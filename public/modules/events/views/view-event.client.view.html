@@ -2,6 +2,13 @@
 	<div class="page-header">
 		<h1 data-ng-bind="event.name"></h1>
 	</div>
+    <!-- Display event information -->
+    <h4 data-ng-bind="event.category"></h1>
+    <h4 data-ng-bind="event.location"></h1>
+    <h4 data-ng-bind="event.datetime_start"></h1>
+    <h4 data-ng-bind="event.datetime_end"></h1>
+    <h4 data-ng-bind="event.description"></h1>
+
 	<div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == event.user._id))">
 		<a class="btn btn-primary" href="/#!/events/{{event._id}}/edit">
 			<i class="glyphicon glyphicon-edit"></i>
