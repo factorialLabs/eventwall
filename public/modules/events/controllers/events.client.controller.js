@@ -9,7 +9,14 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
 		$scope.create = function() {
 			// Create new Event object
 			var event = new Events ({
-				name: this.name
+				name: this.name,
+                location: this.location,
+                category: this.category,
+                datetime_start: this.datetime_start,
+                datetime_end: this.datetime_end,
+                thumbnail: this.thumbnail,
+                description: this.description
+
 			});
 
 			// Redirect after save

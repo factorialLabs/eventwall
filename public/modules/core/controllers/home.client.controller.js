@@ -12,5 +12,6 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
     });
         $scope.events = $scope.Events.query();
         console.log($scope.events);
+        //TODO at one point: bots
 	}
 ]);

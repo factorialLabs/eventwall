@@ -12,6 +12,42 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label class="control-label" for="category">Category</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="category" id="category" class="form-control" placeholder="Uncategorized" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="location">Location</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="location" id="location" class="form-control" placeholder="Nowhere" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="start">Start</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="datetime_start" id="start" class="form-control" placeholder="Now?" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="end">End</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="datetime_end" id="end" class="form-control" placeholder="Now?" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="thumbnail">Image</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="thumbnail" id="thumbnail" class="form-control" placeholder="None" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="description">Description</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="description" id="description" class="form-control" placeholder="Enter a description..." required>
+                    </div>
+                </div>
+                <div class="form-group">
                     <input type="submit" class="btn btn-default">
                 </div>
 				<div data-ng-show="error" class="text-danger">
