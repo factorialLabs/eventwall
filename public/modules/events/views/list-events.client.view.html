@@ -3,7 +3,8 @@
         <h1>Events</h1>
     </div>
     <div class="list-group">
-        <a data-ng-repeat="event in events" data-ng-href="#!/events/{{event._id}}" class="list-group-item">				
+        <!-- Time filter currently not working -->
+        <a data-ng-repeat="event in events | orderBy:datetime_start" data-ng-href="#!/events/{{event._id}}" class="list-group-item">				
 			<h4 class="list-group-item-heading">{{event.name}} |<small> {{event.user.displayName}}</small></h4>
             <small class="list-group-item-text" data-ng-bind-template="{{event.datetime_start | date:'longDate'}} at {{event.datetime_start | date:'shortTime'}}"></small>		
         </a>

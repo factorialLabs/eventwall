@@ -18,9 +18,9 @@ var EventSchema = new Schema({
 	},
     category: {
 		type: String,
-        enum: ['Uncategorized', 'Club Event', 'Sports', 'Academics', 'Engineering Society'],
+        enum: ['Uncategorized', 'Club Event', 'Club Meeting', 'Sports', 'Academics', 'Engineering Society', 'FEDS'],
 		default: 'Uncategorized',
-		required: 'Please enter a category',
+		required: 'Please enter a category.',
 		trim: true
 	},
     datetime_start: {
@@ -53,6 +53,10 @@ var EventSchema = new Schema({
 		type: Date,
 		default: Date.now
 	},
+    edited:{
+        type: Date,
+        default: Date.now
+    },
 	user: {
 		type: Schema.ObjectId,
 		ref: 'User'

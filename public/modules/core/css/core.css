@@ -38,9 +38,17 @@ a:hover{
     text-decoration: none;
 }
 
+.btn {
+    border-radius: 0;
+}
+
+.btn-primary{
+    background-color: #0074d9;
+}
+
 /* Navbar stuff. */
 .navbar{
-    border-radius: 0px;
+    border-radius: 0;
     background-color:#0074d9;
     border: 0;
 }
@@ -49,7 +57,7 @@ a:hover{
 button..navbar .container .navbar-headernavbar-toggle, .navbar .container .navbar-header .navbar-toggle:focus{
     background-color: #0074d9;
     color: #FFFFFF;
-    border-radius: 0px;
+    border-radius: 0;
 }
 .navbar .container .navbar-header .navbar-toggle:hover{
     background-color: #00569e;
@@ -57,7 +65,7 @@ button..navbar .container .navbar-headernavbar-toggle, .navbar .container .navba
 
 .navbar .container .navbar-header .navbar-toggle .icon-bar{
     background-color: #FFFFFF;
-    border-radius: 0px;
+    border-radius: 0;
 }
 
 .navbar .container .navbar-header .navbar-collapse{
@@ -85,7 +93,7 @@ button..navbar .container .navbar-headernavbar-toggle, .navbar .container .navba
 }
 
 /* Links */
-.navbar .container .navbar-collapse .navbar-nav li a{    
+.navbar .container .navbar-collapse .navbar-nav li a{
     background-color: #0074d9; 
     color: #FFFFFF;
     font-size: 1.1em;
