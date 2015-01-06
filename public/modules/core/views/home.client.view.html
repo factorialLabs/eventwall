@@ -8,6 +8,14 @@
     </div>
     <section class="upcoming container">
         <h2>Upcoming events</h2>
-        <div deckgrid source="events" class="deckgrid"><h3><a href = "#!/events/{{card._id}}">{{card.name}}</a></h3></div>
+        <div deckgrid source="events" class="deckgrid">
+            <!--Layout for the cards--->
+            <div class="card">
+                <img class="img" src="http://placehold.it/350x250"/>
+                <h3>
+                    <a href = "#!/events/{{card._id}}">{{card.name}}</a>
+                </h3>
+            </div>
+        </div>
     </section>
 </section>
