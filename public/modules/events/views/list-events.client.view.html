@@ -5,7 +5,7 @@
     <div class="list-group">
         <!-- Time filter currently not working -->
         <a data-ng-repeat="event in events | orderBy:datetime_start" data-ng-href="#!/events/{{event._id}}" class="list-group-item">				
-			<h4 class="list-group-item-heading">{{event.name}} |<small> {{event.user.displayName}}</small></h4>
+			<h4 class="list-group-item-heading">{{event.name}} |<small> {{event.organizer}}</small></h4>
             <small class="list-group-item-text" data-ng-bind-template="{{event.datetime_start | date:'longDate'}} at {{event.datetime_start | date:'shortTime'}}"></small>		
         </a>
     </div>

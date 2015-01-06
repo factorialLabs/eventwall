@@ -15,7 +15,8 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
                 datetime_start: this.datetime_start,
                 datetime_end: this.datetime_end,
                 thumbnail: this.thumbnail,
-                description: this.description
+                description: this.description,
+                organizer: this.organizer
 
 			});
 
@@ -69,5 +70,11 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
 				eventId: $stateParams.eventId
 			});
 		};
+        $scope.open = function($event) {
+            $event.preventDefault();
+            $event.stopPropagation();
+
+            $scope.opened = true;
+        };
 	}
 ]);
