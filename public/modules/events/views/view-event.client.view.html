@@ -2,11 +2,12 @@
 	<div class="page-header">
 		<h1 data-ng-bind="event.name"></h1>
 	</div>
+    
     <!-- Display event information -->
     <h4 data-ng-bind="event.category"></h4>
     <h4 data-ng-bind="event.location"></h4>
-    <h4 data-ng-bind="event.datetime_start"></h4>
-    <h4 data-ng-bind="event.datetime_end"></h4>
+    <h4 data-ng-bind-template="Start: {{event.datetime_start | date:'medium'}}"></h4>
+    <h4 data-ng-bind-template="End: {{event.datetime_end | date:'medium'}}"></h4>
     <h4 data-ng-bind="event.description"></h4>
 
 	<div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == event.user._id))">
@@ -18,11 +19,6 @@
 		</a>
 	</div>
 	<small>
-		<em class="text-muted">
-			Posted on
-			<span data-ng-bind="event.created | date:'mediumDate'"></span>
-			by
-			<span data-ng-bind="event.user.displayName"></span>
-		</em>
+		<em class="text-muted">Listed on {{event.created | date:'mediumDate'}} by {{event.user.displayName}}</em>		
 	</small>
 </section>
