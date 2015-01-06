@@ -4,9 +4,10 @@
 	</div>
     
     <!-- Display event information -->
-    <h4 data-ng-bind="event.location"></h4>
-    <h4 data-ng-bind-template="Start: {{event.datetime_start | date:'medium'}}"></h4>
-    <h4 data-ng-bind-template="End: {{event.datetime_end | date:'medium'}}"></h4>
+    <h4><b>Location:</b> {{event.location}}</h4>
+    <h4><b>Start:</b> {{event.datetime_start | date:'medium'}}</h4>
+    <h4><b>End:</b> {{event.datetime_end | date:'medium'}}</h4>
+    <br>
     <h4 data-ng-bind="event.description"></h4>
 
 	<div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == event.user._id))">
