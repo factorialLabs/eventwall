@@ -1,10 +1,9 @@
 <section data-ng-controller="EventsController" data-ng-init="findOne()" class="container">
 	<div class="page-header">
-		<h1 data-ng-bind="event.name"></h1>
+		<h1>{{event.name}} | <small>{{event.category}}</small></h1>
 	</div>
     
     <!-- Display event information -->
-    <h4 data-ng-bind="event.category"></h4>
     <h4 data-ng-bind="event.location"></h4>
     <h4 data-ng-bind-template="Start: {{event.datetime_start | date:'medium'}}"></h4>
     <h4 data-ng-bind-template="End: {{event.datetime_end | date:'medium'}}"></h4>
