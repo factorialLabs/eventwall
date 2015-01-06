@@ -102,4 +102,8 @@ button..navbar .container .navbar-headernavbar-toggle, .navbar .container .navba
 .navbar .container .navbar-collapse .navbar-nav li a:hover{
     color: #e6e6e6;  
 }
+.dropdown-menu li > a:hover, .dropdown-menu li > a:focus, .dropdown-submenu:hover > a {
+    background-image: none;
+    background-color: #328ddd;
+}
 /* END OF NAVBAR CSS */
