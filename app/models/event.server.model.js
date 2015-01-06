@@ -13,12 +13,12 @@ var EventSchema = new Schema({
 	name: {
 		type: String,
 		default: '',
-		required: 'Please fill Event name',
+		required: 'Please enter a name for your event.',
 		trim: true
 	},
     category: {
 		type: String,
-        enum: ['Uncategorized', 'Club Event'],
+        enum: ['Uncategorized', 'Club Event', 'Sports'],
 		default: 'Uncategorized',
 		required: 'Please enter a category',
 		trim: true
@@ -26,17 +26,17 @@ var EventSchema = new Schema({
     datetime_start: {
 		type: Date,
         default: Date.now,
-		required: 'Please enter a date and time'
+		required: 'Please enter a start date and time.'
 	},
     datetime_end: {
 		type: Date,
         default: Date.now,
-		required: 'Please enter a date and time'
+		required: 'Please enter a end date and time.'
 	},
     location: {
 		type: String,
         default: '',
-		required: 'Please enter a location',
+		required: 'Please enter a location.',
         trim: true
 	},
     description: {

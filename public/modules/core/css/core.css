@@ -17,9 +17,6 @@
 .jumbotron{
     height: 60vh;
 }
-.align-center{
-    text-align: center;
-}
 
 /*Grid setup*/
 .deckgrid[deckgrid]::before {
