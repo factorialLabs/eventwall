@@ -19,6 +19,7 @@
 		</a>
 	</div>
 	<small>
-		<em class="text-muted">Listed on {{event.created | date:'mediumDate'}} by {{event.user.displayName}}</em>		
+		<em class="text-muted">Listed on {{event.created | date:'mediumDate'}} by {{event.user.displayName}}. 
+            <span ng-if = "event.edited !== event.created">Last Edited at {{event.edited | date:'medium'}}</span></em>		
 	</small>
 </section>

@@ -17,7 +17,6 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
                 thumbnail: this.thumbnail,
                 description: this.description,
                 organizer: this.organizer
-
 			});
 
 			// Redirect after save
@@ -51,6 +50,7 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
 		// Update existing Event
 		$scope.update = function() {
 			var event = $scope.event;
+            event.edited = new Date();
 
 			event.$update(function() {
 				$location.path('events/' + event._id);
@@ -61,7 +61,10 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
 
 		// Find a list of Events
 		$scope.find = function() {
-			$scope.events = Events.query();
+			$scope.events = Events.query().$promise.then(function(data){
+               $scope.events = data;
+            });
+            console.log($scope.events);
 		};
 
 		// Find existing Event
