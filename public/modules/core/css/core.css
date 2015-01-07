@@ -54,7 +54,7 @@ a:hover{
 }
 
 /* Navbar button on mobile. */
-button..navbar .container .navbar-headernavbar-toggle, .navbar .container .navbar-header .navbar-toggle:focus{
+button.navbar .container .navbar-headernavbar-toggle, .navbar .container .navbar-header .navbar-toggle:focus{
     background-color: #0074d9;
     color: #FFFFFF;
     border-radius: 0;
@@ -110,7 +110,7 @@ button..navbar .container .navbar-headernavbar-toggle, .navbar .container .navba
 
 /* CARDS */
 .card {
-    padding-top: 0px;
+    padding-top: 0;
     margin: 20px;
     background-color: #ffffff;
     border: 1px solid #d8d8d8;
