@@ -79,5 +79,45 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
 
             $scope.opened = true;
         };
+        //Parses date from a datetime string
+        $scope.parseDate = function(datetime){
+            return new Date(datetime).toDateString();
+        };
 	}
-]);
+   //Filter based off a8m's groupBy filter
+]).filter('groupByDate', [ '$parse', 'filterWatcher', function ( $parse, filterWatcher ) {
+    return function (collection, property) {
+
+      if(!isObject(collection) || isUndefined(property)) {
+        return collection;
+      }
+
+      var getterFn = $parse(property);
+
+      return filterWatcher.isMemoized('groupBy', arguments) ||
+        filterWatcher.memoize('groupBy', arguments, this,
+          _groupByDate(collection, getterFn));
+
+      /**
+       * groupBy function
+       * @param collection
+       * @param getter
+       * @returns {{}}
+       */
+      function _groupByDate(collection, getter) {
+        var result = {};
+        var prop;
+
+        forEach( collection, function( elment ) {
+          var elm = new Date(elment).toDateString;
+          prop = getter(elm);
+
+          if(!result[prop]) {
+            result[prop] = [];
+          }
+          result[prop].push(elm);
+        });
+        return result;
+      }
+    }
+ }]);
