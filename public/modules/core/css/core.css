@@ -47,7 +47,7 @@
     width: 25%;
 }
 
-a:hover{
+a:hover, a:focus, a:active{
     text-decoration: none;
 }
 

@@ -17,8 +17,8 @@
             </div>
             <h4 class="list-group-item-heading" data-ng-hide="isCreator(event)">{{event.name}} |<small> {{event.organizer}}</small></h4> 
             
-            <small class="list-group-item-text" data-ng-hide="dateString(event.datetime_start) === dateString(event.datetime_end)">{{event.datetime_start | date:"MMMM d h:mm a"}} - {{event.datetime_end | date:"MMMM d h:mm a"}}</small>	
-            <small class="list-group-item-text" data-ng-show="dateString(event.datetime_start) === dateString(event.datetime_end)">{{event.datetime_start | date:"h:mm a"}} - {{event.datetime_end | date:"h:mm a"}}</small>
+            <small class="list-group-item-text" data-ng-hide="isOneDayEvent(event)">{{event.datetime_start | date:"MMMM d h:mm a"}} - {{event.datetime_end | date:"MMMM d h:mm a"}}</small>	
+            <small class="list-group-item-text" data-ng-show="isOneDayEvent(event)">{{event.datetime_start | date:"h:mm a"}} - {{event.datetime_end | date:"h:mm a"}}</small>
         </a>
     </div>
 

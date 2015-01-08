@@ -82,10 +82,17 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
             return new Date(datetime).toDateString();
         };
         
-        $scope.dateString = function (date) {
-            return new Date(date).toDateString();  
+        
+        // For an event, checks to see if the start date is the same as the end date.
+        // Returns true/false
+        $scope.isOneDayEvent = function (event){
+            var startDate = new Date(event.datetime_start).toDateString();
+            var endDate = new Date(event.datetime_end).toDateString();
+            return (startDate === endDate);
         };
         
+        //Checks to see if the current user is the creator of the event.
+        //Returns true or false.
         $scope.isCreator = function(event){
             return ($scope.authentication.user && $scope.authentication.user._id === event.user._id);
         };
