@@ -16,9 +16,11 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
         // For an event, checks to see if the start date is the same as the end date.
         // Returns true/false
         $scope.isOneDayEvent = function (event){
-            var startDate = new Date(event.datetime_start).toDateString();
-            var endDate = new Date(event.datetime_end).toDateString();
-            return (startDate === endDate);
+            if (event !== undefined){
+                var startDate = new Date(event.datetime_start).toDateString();
+                var endDate = new Date(event.datetime_end).toDateString();
+                return (startDate === endDate);
+            }
         };
 	}                                                  
 ]);
