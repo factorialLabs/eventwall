@@ -11,7 +11,11 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
         $scope.Events = $resource('events/:eventId', { eventId: '@_id'
     });
         $scope.events = $scope.Events.query();
-        console.log($scope.events);
         //TODO at one point: bots
-	}
+        $scope.dateString = function (date) {
+            console.log(date);
+            console.log(date.toDateString());
+            return date.toDateString();  
+        };
+	}                                                  
 ]);

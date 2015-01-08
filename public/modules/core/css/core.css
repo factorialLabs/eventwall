@@ -15,8 +15,21 @@
 }
 
 .jumbotron{
-    height: 60vh;
+    height: 80vh;
+    /*Temporary image*/
+    background: url(http://i.imgur.com/fWBDzRK.png) no-repeat center center;
+    background-size: 100% 100%;
 }
+
+#jumbotron{
+    margin-top: 12vh;
+    color:black;
+}
+
+#jumbotron h1{
+    font-size: 63px;
+}
+
 
 /*Grid setup*/
 .deckgrid[deckgrid]::before {
@@ -40,6 +53,7 @@ a:hover{
 
 .btn {
     border-radius: 0;
+    
 }
 
 .btn-primary{
@@ -133,3 +147,4 @@ button.navbar .container .navbar-headernavbar-toggle, .navbar .container .navbar
     width: 100%;
     height:auto;
 }
+
