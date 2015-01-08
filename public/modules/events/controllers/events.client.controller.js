@@ -81,6 +81,14 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
         $scope.parseDate = function(datetime){
             return new Date(datetime).toDateString();
         };
+        
+        $scope.dateString = function (date) {
+            return new Date(date).toDateString();  
+        };
+        
+        $scope.isCreator = function(event){
+            return ($scope.authentication.user && $scope.authentication.user._id === event.user._id);
+        };
 	}
    //Filter based off a8m's groupBy filter
 ]).filter('groupByDate', [ '$parse', 'filterWatcher', function ( $parse, filterWatcher ) {

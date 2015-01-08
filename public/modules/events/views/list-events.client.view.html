@@ -7,10 +7,18 @@
             <h3>{{eventgroup[0].datetime_start | date:"EEEE, MMMM dd"}}</h3>
         </div>
         <a data-ng-repeat="event in eventgroup" data-ng-href="#!/events/{{event._id}}"  class="list-group-item">
-			<h4 class="list-group-item-heading">{{event.name}} |<small> {{event.organizer}}</small></h4>
-            <!-- event is a promise, currently not working. -->
-            <span data-ng-show="((authentication.user) && (authentication.user._id == event.$promise.user._id))" class = "text-right">Your Event</span>
-            <small class="list-group-item-text">{{event.datetime_start | date:"MMMM d 'at' h:mm a"}} - {{event.datetime_end | date:"MMMM d 'at' h:mm a"}}</small>		
+            <div class = "row" data-ng-show="isCreator(event)">
+                <div class = "col-xs-9 col-md-11">
+                    <h4 class="list-group-item-heading">{{event.name}} |<small> {{event.organizer}}</small></h4>                    
+                </div>
+                <div class = "col-xs-3 col-md-1">
+                    <p class = "label label-default text-right" class = "text-right">Your Event</p>
+                </div>
+            </div>
+            <h4 class="list-group-item-heading" data-ng-hide="isCreator(event)">{{event.name}} |<small> {{event.organizer}}</small></h4> 
+            
+            <small class="list-group-item-text" data-ng-hide="dateString(event.datetime_start) === dateString(event.datetime_end)">{{event.datetime_start | date:"MMMM d h:mm a"}} - {{event.datetime_end | date:"MMMM d h:mm a"}}</small>	
+            <small class="list-group-item-text" data-ng-show="dateString(event.datetime_start) === dateString(event.datetime_end)">{{event.datetime_start | date:"h:mm a"}} - {{event.datetime_end | date:"h:mm a"}}</small>
         </a>
     </div>
 
