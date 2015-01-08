@@ -13,9 +13,7 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
         $scope.events = $scope.Events.query();
         //TODO at one point: bots
         $scope.dateString = function (date) {
-            console.log(date);
-            console.log(date.toDateString());
-            return date.toDateString();  
+            return new Date(date).toDateString();  
         };
 	}                                                  
 ]);

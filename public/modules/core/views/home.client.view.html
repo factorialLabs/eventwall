@@ -8,15 +8,16 @@
     </div>
     
     <section class="upcoming container">
-        <h2>Upcoming Events</h2>
+        <h2>Upcoming Events</h2>        
         <div deckgrid source="events" class="deckgrid">
             <!--Layout for the cards--->
-            <a href = "#!/events/{{card._id}}">
+            <a href = "#!/events/{{card._id}}" class = "deckgrid-box">
             <div class="card">
                 <img class="img" src="http://placehold.it/350x250"/>
                 <div class="infobox text-center">
                     <h3>{{card.name}}</h3>                        
-                    <h4>{{card.datetime_start | date:"MMMM d"}} - {{card.datetime_end | date:"MMMM d"}}</h4>
+                    <h4 ng-hide="mother.dateString(card.datetime_start) == mother.dateString(card.datetime_end)">{{card.datetime_start | date:"MMMM d"}} - {{card.datetime_end | date:"MMMM d"}}</h4>
+                    <h4 ng-show="mother.dateString(card.datetime_start) == mother.dateString(card.datetime_end)">{{card.datetime_start | date:"MMMM d"}}</h4>
                 </div>
             </div>
             </a>
