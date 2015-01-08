@@ -61,9 +61,7 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
 
 		// Find a list of Events
 		$scope.find = function() {
-			$scope.events = Events.query().$promise.then(function(data){
-               $scope.events = data;
-            });
+			$scope.events = Events.query();
             console.log($scope.events);
 		};
 

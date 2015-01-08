@@ -4,13 +4,13 @@
     </div>
     <div data-ng-repeat="(key, eventgroup) in events | groupBy: 'datetime_start'" data-ng-href="#!/events/{{event._id}}" class="list-group">
         <div>
-            <h3>{{parseDate(eventgroup[0].datetime_start)}}</h3>
+            <h3>{{eventgroup[0].datetime_start | date:"EEEE, MMMM dd"}}</h3>
         </div>
         <a data-ng-repeat="event in eventgroup" data-ng-href="#!/events/{{event._id}}"  class="list-group-item">
 			<h4 class="list-group-item-heading">{{event.name}} |<small> {{event.organizer}}</small></h4>
             <!-- event is a promise, currently not working. -->
             <span data-ng-show="((authentication.user) && (authentication.user._id == event.$promise.user._id))" class = "text-right">Your Event</span>
-            <small class="list-group-item-text">{{event.datetime_start | date:'longDate'}} at {{event.datetime_start | date:'shortTime'}} - {{event.datetime_end | date:'longDate'}} at {{event.datetime_end | date:'shortTime'}}</small>		
+            <small class="list-group-item-text">{{event.datetime_start | date:"MMMM d 'at' h:mm a"}} - {{event.datetime_end | date:"MMMM d 'at' h:mm a"}}</small>		
         </a>
     </div>
 
