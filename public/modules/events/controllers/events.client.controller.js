@@ -1,8 +1,8 @@
 'use strict';
 
 // Events controller
-angular.module('events').controller('EventsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Events',
-	function($scope, $stateParams, $location, Authentication, Events) {
+angular.module('events').controller('EventsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Events','$filter',
+	function($scope, $stateParams, $location, Authentication, Events,$filter) {
 		$scope.authentication = Authentication;
 
 		// Create new Event
@@ -62,7 +62,7 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
 		// Find a list of Events
 		$scope.find = function() {
 			$scope.events = Events.query();
-            console.log($scope.events);
+            //console.log($scope.events);
 		};
 
 		// Find existing Event
@@ -81,6 +81,11 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
         $scope.parseDate = function(datetime){
             return new Date(datetime).toDateString();
         };
+        $scope.filterDatetime = function(str){
+            var filter = $filter('date')(str, 'shortDate');
+            console.log(filter);
+            return filter;
+        }
         
         
         // For an event, checks to see if the start date is the same as the end date.
@@ -101,11 +106,11 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
 ]).filter('groupByDate', [ '$parse', 'filterWatcher', function ( $parse, filterWatcher ) {
     return function (collection, property) {
 
-      if(!isObject(collection) || isUndefined(property)) {
+      if(!angular.isObject(collection) || angular.isUndefined(property)) {
         return collection;
       }
-
-      var getterFn = $parse(property);
+        //console.log(property);
+      var getterFn = $parse('date');
 
       return filterWatcher.isMemoized('groupBy', arguments) ||
         filterWatcher.memoize('groupBy', arguments, this,
@@ -121,14 +126,15 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
         var result = {};
         var prop;
 
-        forEach( collection, function( elment ) {
-          var elm = new Date(elment).toDateString;
-          prop = getter(elm);
+        angular.forEach( collection, function( element ) {
+          //console.log(element.datetime_start);
+          element.date = new Date(element.datetime_start).toDateString();
+          prop = getter(element);
 
           if(!result[prop]) {
             result[prop] = [];
           }
-          result[prop].push(elm);
+          result[prop].push(element);
         });
         return result;
       }
