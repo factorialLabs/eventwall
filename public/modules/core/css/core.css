@@ -153,3 +153,6 @@ button.navbar .container .navbar-headernavbar-toggle, .navbar .container .navbar
     color: grey;
 }
 
+.category-label{
+    margin-right: 5px;
+}

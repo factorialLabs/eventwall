@@ -112,3 +112,35 @@ exports.hasAuthorization = function(req, res, next) {
 exports.getCategories = function(req, res, next) {
 	res.json(Event.schema.path('category').enumValues);
 };
+
+/**
+ * Events in a certain category
+ */
+exports.getEventsInCategory = function (req, res, next){
+    var categoryRequested = req;
+    Event.find().where('category').equals(categoryRequested).sort('datetime_start').populate('user', 'displayName').exec(function (err, events){
+        if (err) {
+            return res.status(400).send({
+                message: errorHandler.getErrorMessage(err)
+            });
+        } else {
+            res.json(events);
+        }
+    });
+};
+
+/**
+ * Events by a certain user.
+ */
+
+exports.getEventsByUser = function (req, res, next){
+    Event.find().where('user').equals(req).sort('datetime_start').populate('user', 'displayName').exec(function (err, events){
+        if (err) {
+            return res.status(400).send({
+                message: errorHandler.getErrorMessage(err)
+            });
+        } else {
+            res.json(events);
+        }
+    });
+};
