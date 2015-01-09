@@ -25,7 +25,7 @@ exports.signup = function(req, res) {
     user.navName = user.firstName + ' ' + user.lastName;
     if (!user.displayName){
 	   user.displayName = user.navName;
-    };
+    }
         
 
 	// Then save the user 

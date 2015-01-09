@@ -105,3 +105,10 @@ exports.hasAuthorization = function(req, res, next) {
 	}
 	next();
 };
+
+/**
+ * Event authorization middleware
+ */
+exports.getCategories = function(req, res, next) {
+	res.json(Event.schema.path('category').enumValues);
+};

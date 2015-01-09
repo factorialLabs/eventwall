@@ -1,8 +1,8 @@
 'use strict';
 
 // Events controller
-angular.module('events').controller('EventsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Events','$filter',
-	function($scope, $stateParams, $location, Authentication, Events,$filter) {
+angular.module('events').controller('EventsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Events','$filter','$http',
+	function($scope, $stateParams, $location, Authentication, Events,$filter,$http) {
 		$scope.authentication = Authentication;
 
 		// Create new Event
@@ -77,16 +77,19 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
 
             $scope.opened = true;
         };
+
+        //Get list of category enums
+        $http.get('/categories').
+          success(function(data, status, headers, config) {
+            $scope.categoriesList = data;
+          }).
+          error(function(data, status, headers, config) {
+        });
+
         //Parses date from a datetime string
         $scope.parseDate = function(datetime){
             return new Date(datetime).toDateString();
         };
-        $scope.filterDatetime = function(str){
-            var filter = $filter('date')(str, 'shortDate');
-            console.log(filter);
-            return filter;
-        }
-        
         
         // For an event, checks to see if the start date is the same as the end date.
         // Returns true/false
@@ -105,17 +108,6 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
    //Filter based off a8m's groupBy filter
 ]).filter('groupByDate', [ '$parse', 'filterWatcher', function ( $parse, filterWatcher ) {
     return function (collection, property) {
-
-      if(!angular.isObject(collection) || angular.isUndefined(property)) {
-        return collection;
-      }
-        //console.log(property);
-      var getterFn = $parse('date');
-
-      return filterWatcher.isMemoized('groupBy', arguments) ||
-        filterWatcher.memoize('groupBy', arguments, this,
-          _groupByDate(collection, getterFn));
-
       /**
        * groupBy function
        * @param collection
@@ -138,5 +130,14 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
         });
         return result;
       }
-    }
+      if(!angular.isObject(collection) || angular.isUndefined(property)) {
+        return collection;
+      }
+        //console.log(property);
+      var getterFn = $parse('date');
+
+      return filterWatcher.isMemoized('groupBy', arguments) ||
+        filterWatcher.memoize('groupBy', arguments, this,
+          _groupByDate(collection, getterFn));
+    };
  }]);
