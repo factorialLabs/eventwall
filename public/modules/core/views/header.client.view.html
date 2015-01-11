@@ -45,6 +45,9 @@
 					<span data-ng-bind="authentication.user.navName"></span> <b class="caret"></b>
 				</a>
 				<ul class="dropdown-menu">
+                    <li>
+                        <a ng-href="/#!/events/user/{{authentication.user._id}}">My Events</a>
+                    </li>
 					<li>
 						<a href="/#!/settings/profile">Edit Profile</a>
 					</li>

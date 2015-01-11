@@ -19,7 +19,7 @@
 		</a>
 	</div>
 	<small>
-		<em class="text-muted">Listed on {{event.created | date:'mediumDate'}} by {{event.user.displayName}}. 
+		<em class="text-muted">Listed on {{event.created | date:'mediumDate'}} by <a ng-href = "#!/events/user/{{event.user._id}}">{{event.user.displayName}}</a> . 
             <span ng-show = "event.edited !== event.created">Last Edited at {{event.edited | date:'medium'}}</span></em>		
 	</small>
 </section>

@@ -18,11 +18,11 @@ module.exports = function(app) {
 		.get(events.getCategories);
     
     //get events of a certain category
-    app.route('/events/:categoryName')
+    app.route('/events/category/:categoryName')
         .get(events.getEventsInCategory);
     
     //get events from a certain user
-    app.route('/events/:userId')
+    app.route('/events/user/:userId')
         .get(events.getEventsByUser);
 
 	// Finish by binding the Event middleware
