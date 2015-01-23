@@ -20,6 +20,10 @@ angular.module('events').config(['$stateProvider',
 		state('editEvent', {
 			url: '/events/:eventId/edit',
 			templateUrl: 'modules/events/views/edit-event.client.view.html'
-		});
+		}). 
+        state('listEventsByUser', {
+            url: '/events/user/:userId',
+            templateUrl: 'modules/events/views/list-events-by-user.client.view.html'
+        });
 	}
 ]);

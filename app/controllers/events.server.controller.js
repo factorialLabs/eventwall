@@ -96,6 +96,15 @@ exports.eventByID = function(req, res, next, id) {
 	});
 };
 
+exports.userByID = function (req, res, next, id) {
+    Event.find().where('userId').equals(id).populate('userId').exec(function(err, event) {
+        if (err) return next(err);
+        if (!event) return next(new Error('This user has no events'));
+        console.log(event);
+        req = event;
+        next();
+    });
+};
 /**
  * Event authorization middleware
  */
@@ -114,27 +123,10 @@ exports.getCategories = function(req, res, next) {
 };
 
 /**
- * Events in a certain category
- */
-exports.getEventsInCategory = function (req, res, next){
-    var categoryRequested = req;
-    Event.find().where('category').equals(categoryRequested).sort('datetime_start').populate('user', 'displayName').exec(function (err, events){
-        if (err) {
-            return res.status(400).send({
-                message: errorHandler.getErrorMessage(err)
-            });
-        } else {
-            res.json(events);
-        }
-    });
-};
-
-/**
  * Events by a certain user.
  */
-
-exports.getEventsByUser = function (req, res, next){
-    Event.find().where('user').equals(req).sort('datetime_start').populate('user', 'displayName').exec(function (err, events){
+exports.getEventsByUser = function (req, res){
+    Event.find().where('userId').equals(req).sort('datetime_start').populate('user', 'displayName').exec(function (err, events){
         if (err) {
             return res.status(400).send({
                 message: errorHandler.getErrorMessage(err)

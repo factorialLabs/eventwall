@@ -1,0 +1,30 @@
+<section data-ng-controller="EventsController" data-ng-init="findEventsByUser()" class="container">
+    <div class="page-header">
+        <h1>Events</h1>
+        <h4>Categories: <a ng-href = "#!/events/category/{{category}}" class = "label label-default category-label" ng-repeat = "category in categoriesList">{{category}}</a></h4>
+    </div>
+    <div data-ng-repeat="(key, eventgroup) in userEvents | groupByDate: 'datetime_start'" data-ng-href="#!/events/{{event._id}}" class="list-group">
+        <div>
+            <h3>{{eventgroup[0].datetime_start | date:"EEEE, MMMM dd"}}</h3>
+        </div>
+        <a data-ng-repeat="event in eventgroup" data-ng-href="#!/events/{{event._id}}"  class="list-group-item">
+            <div class = "row" data-ng-show="isCreator(event)">
+                <div class = "col-xs-9 col-md-11">
+                    <h4 class="list-group-item-heading">{{event.name}} |<small> {{event.organizer}}</small></h4>                    
+                </div>
+                <div class = "col-xs-3 col-md-1">
+                    <p class = "label label-default text-right" class = "text-right">Your Event</p>
+                </div>
+            </div>
+            <h4 class="list-group-item-heading" data-ng-hide="isCreator(event)">{{event.name}} |<small> {{event.organizer}}</small></h4> 
+            
+            <small class="list-group-item-text" data-ng-hide="isOneDayEvent(event)">{{event.datetime_start | date:"MMMM d h:mm a"}} - {{event.datetime_end | date:"MMMM d h:mm a"}}</small>	
+            <small class="list-group-item-text" data-ng-show="isOneDayEvent(event)">{{event.datetime_start | date:"h:mm a"}} - {{event.datetime_end | date:"h:mm a"}}</small>
+        </a>
+    </div>
+
+
+    <div class="alert alert-warning text-center" data-ng-hide="!events.$resolved || events.length">
+    	This user hasn't made any events!
+    </div>
+</section>

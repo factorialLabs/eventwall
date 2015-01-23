@@ -61,6 +61,11 @@ var EventSchema = new Schema({
 		type: Schema.ObjectId,
 		ref: 'User'
 	},
+    userId: {
+        type: String,
+        default: '',
+        trim: true
+    },
     organizer: {
         type: String,
         default: ''
@@ -72,6 +77,7 @@ EventSchema.pre('save', function(next){
     if (!event.organizer){
         event.organizer = event.user.displayName;
     }
+    event.userId = event.user._id;
     next();
 });
 mongoose.model('Event', EventSchema);

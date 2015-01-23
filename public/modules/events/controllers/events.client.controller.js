@@ -64,6 +64,13 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
 			$scope.events = Events.query();
             //console.log($scope.events);
 		};
+        
+        $scope.findEventsByUser = function() {
+            $scope.userEvents = Events.get({
+                userId: $stateParams.userId
+            });
+            console.log($scope.userEvents);
+        };
 
 		// Find existing Event
 		$scope.findOne = function() {

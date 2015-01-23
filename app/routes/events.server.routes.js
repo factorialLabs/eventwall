@@ -17,14 +17,11 @@ module.exports = function(app) {
     app.route('/categories')
 		.get(events.getCategories);
     
-    //get events of a certain category
-    app.route('/events/category/:categoryName')
-        .get(events.getEventsInCategory);
-    
     //get events from a certain user
     app.route('/events/user/:userId')
         .get(events.getEventsByUser);
 
 	// Finish by binding the Event middleware
 	app.param('eventId', events.eventByID);
+    app.param('userId', events.userByID);
 };
