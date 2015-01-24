@@ -32,25 +32,15 @@
                 </div>
                 <div class="form-group">
                     <label class="control-label" for="start">Start</label>        
-                    
-                    <div class="row">
-                        <div class="col-md-4">
-                            <p class="input-group">
-                              <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="datetime_start" is-open="opened" min-date="" max-date="'2020-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" required>
-                              <span class="input-group-btn">
-                                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-                              </span>
-                            </p>
-                        </div>
-                        <div class = "col-md-2">
-                            <timepicker ng-model="mytime" show-meridian="true"></timepicker>        
-                        </div>
-                    </div>                    
+                    <div class="controls">
+                        <input type="text" data-ng-model="datetime_start" id="start" class="form-control" placeholder="YYYY-MM-DD HH:MM" required>
+                    </div>
+              
                 </div>
                 <div class="form-group">
                     <label class="control-label" for="end">End</label>
                     <div class="controls">
-                        <input type="text" data-ng-model="datetime_end" id="end" class="form-control" placeholder="Now?" required>
+                        <input type="text" data-ng-model="datetime_end" id="end" class="form-control" placeholder="YYYY-MM-DD HH:MM" required>
                     </div>
                 </div>
                 <div class="form-group">
