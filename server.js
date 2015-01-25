@@ -4,6 +4,7 @@
  */
 var init = require('./config/init')(),
 	config = require('./config/config'),
+    cron_tasks = require('./app/cron_tasks'),
 	mongoose = require('mongoose'),
 	chalk = require('chalk');
 
@@ -28,6 +29,7 @@ require('./config/passport')();
 
 // Start the app by listening on <port>
 app.listen(config.port);
+cron_tasks.run(mongoose);
 
 // Expose app
 exports = module.exports = app;
