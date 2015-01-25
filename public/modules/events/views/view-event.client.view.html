@@ -8,7 +8,7 @@
     <h4><b>Start:</b> {{event.datetime_start | date:"EEEE, MMMM d, yyyy 'at' hh:mm a"}}</h4>
     <h4><b>End:</b> {{event.datetime_end | date:"EEEE, MMMM d, yyyy 'at' hh:mm a"}}</h4>
     <br>
-    <h4 data-ng-bind="event.description"></h4>
+    <p class="description" ng-bind-html="event.description"></p>
 
 	<div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == event.user._id))">
 		<a class="btn btn-primary" href="/#!/events/{{event._id}}/edit">

@@ -1,7 +1,7 @@
 'use strict';
 
 // Events controller
-angular.module('events').controller('EventsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Events','$filter','$http', 
+angular.module('events').controller('EventsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Events','$filter','$http',
 	function($scope, $stateParams, $location, Authentication, Events,$filter,$http) {
 		$scope.authentication = Authentication;
 

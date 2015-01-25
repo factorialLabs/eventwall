@@ -160,3 +160,7 @@ button.navbar .container .navbar-headernavbar-toggle, .navbar .container .navbar
 label{
     padding-bottom: 5px;
 }
+
+.description{
+    white-space:pre-wrap;
+}
