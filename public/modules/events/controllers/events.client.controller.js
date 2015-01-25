@@ -66,12 +66,14 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
 		};
         
         $scope.findEventsByUser = function() {
+            $scope.user = $stateParams.userId;
             $scope.userEvents = Events.query({
                 userId: $stateParams.userId
             });
         };
 
         $scope.findEventsByCategory = function() {
+            $scope.category = $stateParams.category;
             $scope.categoryEvents = Events.query({
                 category: $stateParams.category
             });
