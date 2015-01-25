@@ -72,6 +72,7 @@ EventSchema.pre('save', function(next){
     if (!event.organizer){
         event.organizer = event.user.displayName;
     }
+    event.userId = event.user._id;
     next();
 });
 mongoose.model('Event', EventSchema);

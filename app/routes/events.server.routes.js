@@ -17,10 +17,6 @@ module.exports = function(app) {
     app.route('/categories')
 		.get(events.getCategories);
     
-    //get events of a certain category
-    app.route('/events/category/:categoryName')
-        .get(events.getEventsInCategory);
-    
     //get events from a certain user
     app.route('/events/user/:userId')
         .get(events.getEventsByUser);

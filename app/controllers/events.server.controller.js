@@ -68,22 +68,6 @@ exports.delete = function(req, res) {
 		}
 	});
 };
-
-/**
- * List of Events
- */
-exports.list = function(req, res) { 
-	Event.find().where('datetime_end').gt(new Date()).sort('datetime_start').populate('user', 'displayName').exec(function(err, events) {
-		if (err) {
-			return res.status(400).send({
-				message: errorHandler.getErrorMessage(err)
-			});
-		} else {
-			res.jsonp(events);
-		}
-	});
-};
-
 /**
  * Event middleware
  */
@@ -114,11 +98,10 @@ exports.getCategories = function(req, res, next) {
 };
 
 /**
- * Events in a certain category
+ * Events by a certain user.
  */
-exports.getEventsInCategory = function (req, res, next){
-    var categoryRequested = req;
-    Event.find().where('category').equals(categoryRequested).sort('datetime_start').populate('user', 'displayName').exec(function (err, events){
+exports.getEventsByUser = function (req, res){
+    Event.find().where('user').equals(req.query.userId).sort('datetime_start').populate('user', 'displayName').exec(function (err, events){
         if (err) {
             return res.status(400).send({
                 message: errorHandler.getErrorMessage(err)
@@ -129,18 +112,27 @@ exports.getEventsInCategory = function (req, res, next){
     });
 };
 
-/**
- * Events by a certain user.
- */
 
-exports.getEventsByUser = function (req, res, next){
-    Event.find().where('user').equals(req).sort('datetime_start').populate('user', 'displayName').exec(function (err, events){
-        if (err) {
-            return res.status(400).send({
-                message: errorHandler.getErrorMessage(err)
-            });
-        } else {
-            res.json(events);
-        }
-    });
+/**
+ * List of Events
+ */
+exports.list = function(req, res) {
+    //If the query specifies a userID, call getEventsByUser()
+    if (Object.keys(req.query).length !== 0){
+        exports.getEventsByUser(req, res);   
+    }
+    //Returns list of all events.
+    else{
+        Event.find().where('datetime_end').gt(new Date()).sort('datetime_start').populate('user', 'displayName').exec(function(err, events) {
+		if (err) {
+			return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
+			});
+		} else {
+			res.jsonp(events);
+		}
+	});
+    }
+    
+	
 };

@@ -1,7 +1,7 @@
 'use strict';
 
 // Events controller
-angular.module('events').controller('EventsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Events','$filter','$http',
+angular.module('events').controller('EventsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Events','$filter','$http', 
 	function($scope, $stateParams, $location, Authentication, Events,$filter,$http) {
 		$scope.authentication = Authentication;
 
@@ -64,6 +64,12 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
 			$scope.events = Events.query();
             //console.log($scope.events);
 		};
+        
+        $scope.findEventsByUser = function() {
+            $scope.userEvents = Events.query({
+                userId: $stateParams.userId
+            });
+        };
 
 		// Find existing Event
 		$scope.findOne = function() {
