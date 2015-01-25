@@ -112,14 +112,35 @@ exports.getEventsByUser = function (req, res){
     });
 };
 
+/**
+ * Events by a certain user.
+ */
+exports.getEventsByCategory = function (req, res){
+    Event.find().where('category').equals(req.query.category).sort('datetime_start').populate('user', 'displayName').exec(function (err, events){
+        if (err) {
+            return res.status(400).send({
+                message: errorHandler.getErrorMessage(err)
+            });
+        } else {
+            res.json(events);
+        }
+    });
+};
+
 
 /**
  * List of Events
  */
 exports.list = function(req, res) {
     //If the query specifies a userID, call getEventsByUser()
-    if (Object.keys(req.query).length !== 0){
+    if (req.query.userId != null){
+        //console.log("found ", userId);
         exports.getEventsByUser(req, res);   
+    }
+    //If the query specifies a category, call getEventsByUser()
+    else if (req.query.category != null){
+        //console.log("found ", category);
+        exports.getEventsByCategory(req, res);
     }
     //Returns list of all events.
     else{

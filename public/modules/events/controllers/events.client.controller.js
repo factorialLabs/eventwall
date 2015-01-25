@@ -71,6 +71,12 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
             });
         };
 
+        $scope.findEventsByCategory = function() {
+            $scope.categoryEvents = Events.query({
+                category: $stateParams.category
+            });
+        };
+
 		// Find existing Event
 		$scope.findOne = function() {
 			$scope.event = Events.get({ 

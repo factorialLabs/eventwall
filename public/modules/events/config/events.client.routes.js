@@ -24,6 +24,10 @@ angular.module('events').config(['$stateProvider',
         state('listEventsByUser', {
             url: '/events/user/:userId',
             templateUrl: 'modules/events/views/list-events-by-user.client.view.html'
+        }).
+        state('listEventsByCategory', {
+            url: '/events/category/:category',
+            templateUrl: 'modules/events/views/list-events-by-category.client.view.html'
         });
 	}
 ]);
