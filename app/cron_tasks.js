@@ -3,6 +3,8 @@
 var CronJob = require('cron').CronJob;
 var ical = require('ical');
 var async = require('async');
+var uwAPIKey = "47d9f4f9a60af7d7042865726c5c09ec";
+var uwapi = require('uwapi')(uwAPIKey);
 
 module.exports.schedule = function(mongoose){
     new CronJob('* * * * * *', function(){
@@ -125,12 +127,108 @@ module.exports.run = function(mongoose){
                     }
                 });
             });
+            callback(null);
         },
+        //Find CECA User
+        function (callback){
+            User.findOne({_id: "54c45c5a91b223c41dc407a3"})
+            .populate('postedBy')
+            .exec(function(err, user) {
+                callback(null,user);
+            });
+        },
+        //Remove all old CECA events
+        function(fUser, callback){
+            Event.find({user: fUser}).remove().exec(function(err,events){
+                callback(null, fUser);
+            });
+        },
+        function (user, callback) {
+            uwapi.termsInfosessions({term_id:1155}).then(function (session) {
+                console.log(session);
+                var events = [];
+
+                for (var k in session){
+                    if (session.hasOwnProperty(k)) {
+                        var ev = session[k];
+                        if (ev.description == "" || ev.description == null) ev.description == ev.programs;
+                        events.push(new Event({
+                            name: ev.employer + " Info Session",
+                            category: 'Employer Info Session',
+                            datetime_start: ev.date,
+                            datetime_end: ev.date,
+                            location: ev.location,
+                            description: ev.description,
+                            //thumbnail: ,
+                            //created: ev.created,
+                            //edited:,
+                            user: user,
+                            organizer: ev.employer
+                        }));
+                    }
+                }
+                console.log(events);
+                //var event = new Event(req.body);
+                Event.create(events, function (err) {
+                    if (err) // ...
+                    {
+                        console.log(err);
+                    }
+                });
+            });
+            callback(null);
+        },
+        // UW Events
+        //Find UW User
+        function (callback){
+            User.findOne({_id: "54c460c1bd9b8cec2ccbe348"})
+            .populate('postedBy')
+            .exec(function(err, user) {
+                callback(null,user);
+            });
+        },
+        //Remove all old UW events
+        function(fUser, callback){
+            Event.find({user: fUser}).remove().exec(function(err,events){
+                callback(null, fUser);
+            });
+        },
+        function (user, callback) {
+            uwapi.events().then(function (session) {
+                console.log(session);
+                var events = [];
+
+                for (var k in session){
+                    if (session.hasOwnProperty(k)) {
+                        var ev = session[k];
+                        if (ev.description == "" || ev.description == null) ev.description == ev.programs;
+                        events.push(new Event({
+                            name: ev.title,
+                            category: 'University Events',
+                            datetime_start: ev.times[0].start,
+                            datetime_end: ev.times[0].end,
+                            location: "None provided.",
+                            description: ev.link,
+                            //thumbnail: ,
+                            //created: ev.created,
+                            //edited:,
+                            user: user,
+                            organizer: ev.site_name
+                        }));
+                    }
+                }
+                console.log(events);
+                //var event = new Event(req.body);
+                Event.create(events, function (err) {
+                    if (err) // ...
+                    {
+                        console.log(err);
+                    }
+                });
+            });
+        }
 
     ], function (err, result){
         console.log(err);
     });
-
-
-
 }
