@@ -61,11 +61,6 @@ var EventSchema = new Schema({
 		type: Schema.ObjectId,
 		ref: 'User'
 	},
-    userId: {
-        type: String,
-        default: '',
-        trim: true
-    },
     organizer: {
         type: String,
         default: ''

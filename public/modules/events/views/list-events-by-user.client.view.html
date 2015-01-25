@@ -1,6 +1,6 @@
 <section data-ng-controller="EventsController" data-ng-init="findEventsByUser()" class="container">
     <div class="page-header">
-        <h1>Events</h1>
+        <h1>{{userEvents[0].user.displayName}}'s Events</h1>
         <h4>Categories: <a ng-href = "#!/events/category/{{category}}" class = "label label-default category-label" ng-repeat = "category in categoriesList">{{category}}</a></h4>
     </div>
     <div data-ng-repeat="(key, eventgroup) in userEvents | groupByDate: 'datetime_start'" data-ng-href="#!/events/{{event._id}}" class="list-group">

@@ -68,22 +68,6 @@ exports.delete = function(req, res) {
 		}
 	});
 };
-
-/**
- * List of Events
- */
-exports.list = function(req, res) { 
-	Event.find().where('datetime_end').gt(new Date()).sort('datetime_start').populate('user', 'displayName').exec(function(err, events) {
-		if (err) {
-			return res.status(400).send({
-				message: errorHandler.getErrorMessage(err)
-			});
-		} else {
-			res.jsonp(events);
-		}
-	});
-};
-
 /**
  * Event middleware
  */
@@ -96,15 +80,6 @@ exports.eventByID = function(req, res, next, id) {
 	});
 };
 
-exports.userByID = function (req, res, next, id) {
-    Event.find().where('userId').equals(id).populate('userId').exec(function(err, event) {
-        if (err) return next(err);
-        if (!event) return next(new Error('This user has no events'));
-        console.log(event);
-        req = event;
-        next();
-    });
-};
 /**
  * Event authorization middleware
  */
@@ -126,7 +101,7 @@ exports.getCategories = function(req, res, next) {
  * Events by a certain user.
  */
 exports.getEventsByUser = function (req, res){
-    Event.find().where('userId').equals(req).sort('datetime_start').populate('user', 'displayName').exec(function (err, events){
+    Event.find().where('user').equals(req.query.userId).sort('datetime_start').populate('user', 'displayName').exec(function (err, events){
         if (err) {
             return res.status(400).send({
                 message: errorHandler.getErrorMessage(err)
@@ -135,4 +110,29 @@ exports.getEventsByUser = function (req, res){
             res.json(events);
         }
     });
+};
+
+
+/**
+ * List of Events
+ */
+exports.list = function(req, res) {
+    //If the query specifies a userID, call getEventsByUser()
+    if (Object.keys(req.query).length !== 0){
+        exports.getEventsByUser(req, res);   
+    }
+    //Returns list of all events.
+    else{
+        Event.find().where('datetime_end').gt(new Date()).sort('datetime_start').populate('user', 'displayName').exec(function(err, events) {
+		if (err) {
+			return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
+			});
+		} else {
+			res.jsonp(events);
+		}
+	});
+    }
+    
+	
 };
