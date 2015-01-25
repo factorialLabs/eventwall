@@ -37,7 +37,13 @@ module.exports.run = function(mongoose){
                 for (var k in data){
                     if (data.hasOwnProperty(k)) {
                         var ev = data[k];
-                        if(ev.location == null) ev.location = "";
+                        if(ev.location == null) ev.location = "Undeclared.";
+                        if(ev.organizer == null){
+                            ev.organizer = "FEDS";
+                        }
+                        else{
+                            ev.organizer = ev.organizer.params[0].slice(3);
+                        }
                         events.push(new Event({
                             name: ev.summary,
                             category: "FEDS",
@@ -49,7 +55,7 @@ module.exports.run = function(mongoose){
                             created: ev.created,
                             //edited:,
                             user: user,
-                            organizer: "FEDS"
+                            organizer: ev.organizer
                         }));
                     }
                 }
