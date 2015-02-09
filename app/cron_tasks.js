@@ -9,7 +9,10 @@ var uwapi = require('uwapi')(uwAPIKey);
 module.exports.schedule = function(mongoose){
     new CronJob('0 0 12 1/1 * ? *', function(){
         module.exports.run(mongoose);
-    }, null, true, "America/Los_Angeles");
+    }, function(){
+        //executed when the job stops
+        console.log("Successfully imported events!");
+    }, true, "America/Los_Angeles");
 };
 module.exports.run = function(mongoose){
     //Import FEDS events
