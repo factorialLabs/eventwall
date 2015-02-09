@@ -29,7 +29,7 @@ require('./config/passport')();
 
 // Start the app by listening on <port>
 app.listen(config.port);
-cron_tasks.run(mongoose);
+cron_tasks.schedule(mongoose);
 
 // Expose app
 exports = module.exports = app;

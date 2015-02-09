@@ -132,6 +132,14 @@ exports.getEventsByCategory = function (req, res){
  * List of Events
  */
 exports.list = function(req, res) {
+    var num = 0;
+    var limit = 20;
+    //Pagination support
+    if (req.query.num != null){
+        //console.log("found ", userId);
+        page = req.query.num;
+    }
+
     //If the query specifies a userID, call getEventsByUser()
     if (req.query.userId != null){
         //console.log("found ", userId);

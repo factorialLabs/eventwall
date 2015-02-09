@@ -7,8 +7,8 @@ var uwAPIKey = "47d9f4f9a60af7d7042865726c5c09ec";
 var uwapi = require('uwapi')(uwAPIKey);
 
 module.exports.schedule = function(mongoose){
-    new CronJob('* * * * * *', function(){
-        console.log('You will see this message every second');
+    new CronJob('0 0 12 1/1 * ? *', function(){
+        module.exports.run(mongoose);
     }, null, true, "America/Los_Angeles");
 };
 module.exports.run = function(mongoose){
