@@ -7,7 +7,7 @@ var uwAPIKey = "47d9f4f9a60af7d7042865726c5c09ec";
 var uwapi = require('uwapi')(uwAPIKey);
 
 module.exports.schedule = function(mongoose){
-    new CronJob('0 0 12 1/1 * ? *', function(){
+    new CronJob('00 00 11 * * *', function(){
         module.exports.run(mongoose);
     }, function(){
         //executed when the job stops
