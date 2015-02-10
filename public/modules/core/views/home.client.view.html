@@ -16,7 +16,7 @@
             <div class="card">
                 <img class="img" src="http://placehold.it/350x250"/>
                 <div class="infobox text-center">
-                    <h3>{{card.name}}</h3>                        
+                    <h3 ng-bind-html="card.name"></h3>                        
                     <h4 ng-hide="mother.isOneDayEvent(card)">{{card.datetime_start | date:"MMMM d"}} - {{card.datetime_end | date:"MMMM d"}}</h4>
                     <h4 ng-show="mother.isOneDayEvent(card)">{{card.datetime_start | date:"MMMM d"}}</h4>
                 </div>
