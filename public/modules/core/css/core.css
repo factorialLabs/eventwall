@@ -130,14 +130,8 @@ button.navbar .container .navbar-headernavbar-toggle, .navbar .container .navbar
     border: 1px solid #d8d8d8;
     border-top-width: 0;
     border-bottom-width: 2px;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
     border-radius: 3px;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
     box-shadow: none;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
 .card .infobox{
@@ -164,3 +158,4 @@ label{
 .description{
     white-space:pre-wrap;
 }
+
