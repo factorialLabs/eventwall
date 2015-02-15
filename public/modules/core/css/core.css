@@ -1,3 +1,21 @@
+/*General Stuff */
+body {
+    font-family: "Raleway","Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif;
+     font-weight: 400;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Raleway","Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 400;
+
+}
+yellow{
+    color:fcd446;
+}
 .content {
     margin-top: 50px;
 }
@@ -17,8 +35,11 @@
 .jumbotron{
     height: 80vh;
     /*Temporary image*/
-    background: url(http://i.imgur.com/fWBDzRK.png) no-repeat center center;
-    background-size: 100% 100%;
+    background: url("../img/waterloo-campus.jpg") no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
 }
 
 #jumbotron{
@@ -57,24 +78,24 @@ a:hover, a:focus, a:active{
 }
 
 .btn-primary{
-    background-color: #0074d9;
+    background-color: #212121;
 }
 
 /* Navbar stuff. */
 .navbar{
     border-radius: 0;
-    background-color:#0074d9;
+    background-color:#212121;
     border: 0;
 }
 
 /* Navbar button on mobile. */
 button.navbar .container .navbar-headernavbar-toggle, .navbar .container .navbar-header .navbar-toggle:focus{
-    background-color: #0074d9;
+    background-color: #212121;
     color: #FFFFFF;
     border-radius: 0;
 }
 .navbar .container .navbar-header .navbar-toggle:hover{
-    background-color: #00569e;
+    background-color: #212121;
 }
 
 .navbar .container .navbar-header .navbar-toggle .icon-bar{
@@ -88,12 +109,12 @@ button.navbar .container .navbar-headernavbar-toggle, .navbar .container .navbar
 
 /*Dropdown*/
 .nav .open > a:hover, .nav .open > a:focus {
-    background-color: #0074d9;  
+    background-color: #212121;  
     color: #FFFFFF;
 }  
 
 .dropdown-menu{
-    background-color: #0074d9;  
+    background-color: #212121;  
     border: 0;
 }
 
@@ -103,24 +124,35 @@ button.navbar .container .navbar-headernavbar-toggle, .navbar .container .navbar
     font-size: 1.4em;
 }
 .navbar .container .navbar-header .navbar-brand:hover{
-    color: #e6e6e6;
+    color: #fcd446;
 }
 
 /* Links */
 .navbar .container .navbar-collapse .navbar-nav li a{
-    background-color: #0074d9; 
+    background-color: #212121; 
     color: #FFFFFF;
     font-size: 1.1em;
 }
 
 .navbar .container .navbar-collapse .navbar-nav li a:hover{
-    color: #e6e6e6;  
+    color: #fcd446;  
 }
 .dropdown-menu li > a:hover, .dropdown-menu li > a:focus, .dropdown-submenu:hover > a {
     background-image: none;
-    background-color: #328ddd;
+    background-color: #fcd446;
 }
 /* END OF NAVBAR CSS */
+
+/* header */
+
+.header h1{
+    color: #FFFFFF;
+}
+.header h3{
+    color: #FFFFFF;
+}
+
+/* upcoming */
 
 /* CARDS */
 .card {
