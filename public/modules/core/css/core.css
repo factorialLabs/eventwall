@@ -36,12 +36,21 @@ yellow{
     height: 80vh;
     /*Temporary image*/
     background: url("../img/waterloo-campus.jpg") no-repeat center center;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
     background-size: cover;
     -o-background-size: cover;
 }
 
+.jumbotron a.btn{
+    background-color: #fafafa;
+    color: black;
+    border: 1px solid black;
+}
+
+.jumbotron a.btn:hover{
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+}
 #jumbotron{
     margin-top: 12vh;
     color:black;
