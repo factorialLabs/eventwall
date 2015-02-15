@@ -64,7 +64,9 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
 		$scope.find = function(page) {
 			$scope.events = Events.query({
                 limit:20,
-                page:page
+                page:page,
+                userId: $stateParams.userId,
+                category: $stateParams.category
             });
             //console.log($scope.events);
 		};
@@ -89,7 +91,6 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
             $scope.category = $stateParams.category;
             $scope.categoryEvents = Events.query({
                 limit:20,
-                page:currentPage,
                 category: $stateParams.category
             });
         };
