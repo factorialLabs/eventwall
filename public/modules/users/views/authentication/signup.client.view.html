@@ -1,7 +1,8 @@
 <section class="container-fluid row" data-ng-controller="AuthenticationController">
-    <div class = "original-landing">
-        <h1>Welcome to CampusWall!</h1>
-        <h2>We're glad you decided to join us.</h2>
+    <h1>Welcome to CampusWall!</h1>
+    <h2>We're glad you decided to join us.</h2>
+    <div class = "original-landing" ng-hide="uwEmailForm.uwEmail.$valid && uwEmailForm.uwEmail.$dirty">
+
         <h3>First off, we'll need your @uwaterloo.ca email!</h3>
         <form name = "uwEmailForm" data-ng-submit="" class = "signin form horizontal" autocomplete="off">
             <div class = "row">
@@ -11,16 +12,18 @@
                         <input type="email" id="email" name="uwEmail" class="form-control" data-ng-model="credentials.email" 
                                data-ng-model-options="{updateOn: 'blur'}" data-ng-pattern="/^[A-Za-z0-9._%+-]+@uwaterloo.ca$/" 
                                placeholder="UW Email">
-                        <p ng-show="uwEmailForm.uwEmail.$error.pattern">That isn't a valid UW email address!</p>
+                        <p class = "invalid-email-warning" ng-show="uwEmailForm.uwEmail.$error.pattern">That isn't a valid UW email address!</p>
+                        <div class="text-center form-group">
+                            <button type="submit" class="btn btn-large btn-primary">Onwards!</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </form>
     </div>
     <div class = "continue" ng-show="uwEmailForm.uwEmail.$valid && uwEmailForm.uwEmail.$dirty">
-        <br>
         <h3>Awesome, now let's continue onwards!</h3>
-        <p>Choose an social account below, or continue with a username and password!</p>
+        <h4>Choose an social account below, or continue with a username and password!</h4>
         <div class="col-md-12 text-center">
             <a href="/auth/facebook" class="undecorated-link">
                 <img src="/modules/users/img/buttons/facebook.png">
@@ -57,7 +60,7 @@
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" id="email" name="email" class="form-control" data-ng-model="credentials.email" placeholder="UW Email">
+                        <input type="email" id="email" name="email" class="form-control" data-ng-model="credentials.email" placeholder="UW Email" disabled>
                     </div>
                     <div class="form-group">
                         <label for="username">Username</label>
@@ -65,7 +68,7 @@
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input type="password" id="password" name="password" class="form-control" data-ng-model="credentials.password" placeholder="Password">
+                        <input type="password" id="password" name="password" class="form-control" data-ng-model="credentials.password" placeholder="8 character mininum.">
                     </div>
                     <div class="text-center form-group">
                         <button type="submit" class="btn btn-large btn-primary">Sign up</button>
