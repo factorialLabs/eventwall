@@ -12,3 +12,11 @@
 	right: 10px;
 	position: absolute;
 }
+
+.original-landing, .continue{
+    text-align: center;
+}
+
+.original-landing h1{
+    font-size: 5rem;
+}
