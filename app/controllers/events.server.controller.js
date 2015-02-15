@@ -113,18 +113,24 @@ exports.getEventsByUser = function (req, res){
 };
 
 /**
- * Events by a certain user.
+ * Events by category
  */
 exports.getEventsByCategory = function (req, res){
-    Event.find().where('category').equals(req.query.category).sort('datetime_start').populate('user', 'displayName').exec(function (err, events){
-        if (err) {
-            return res.status(400).send({
-                message: errorHandler.getErrorMessage(err)
-            });
-        } else {
-            res.json(events);
-        }
-    });
+    Event.find()
+    .where('category').equals(req.query.category)
+    .skip(req.query.page*req.query.limit) //current page
+    .limit(req.query.limit)
+    .sort('datetime_start')
+    .populate('user', 'displayName')
+    .exec(function (err, events){
+            if (err) {
+                return res.status(400).send({
+                    message: errorHandler.getErrorMessage(err)
+                });
+            } else {
+                res.json(events);
+            }
+        });
 };
 
 
@@ -152,7 +158,11 @@ exports.list = function(req, res) {
     }
     //Returns list of all events.
     else{
-        Event.find().where('datetime_end').gt(new Date()).sort('datetime_start').populate('user', 'displayName').exec(function(err, events) {
+        Event.find().where('datetime_end')
+        .gt(new Date()).sort('datetime_start')
+        .skip(req.query.page*req.query.limit) //current page
+        .limit(req.query.limit)
+        .populate('user', 'displayName').exec(function(err, events) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
