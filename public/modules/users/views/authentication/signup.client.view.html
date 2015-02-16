@@ -1,83 +1,60 @@
 <section class="container-fluid row" data-ng-controller="AuthenticationController">
     <h1>Welcome to CampusWall!</h1>
-    <h2>We're glad you decided to join us.</h2>
-    <div class = "original-landing" ng-hide="uwEmailForm.uwEmail.$valid && uwEmailForm.uwEmail.$dirty">
 
-        <h3>First off, we'll need your @uwaterloo.ca email!</h3>
-        <form name = "uwEmailForm" data-ng-submit="" class = "signin form horizontal" autocomplete="off">
-            <div class = "row">
-                <div class="col-xs-offset-2 col-xs-8 col-md-offset-5 col-md-2">
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="uwEmail" class="form-control" data-ng-model="credentials.email" 
-                               data-ng-model-options="{updateOn: 'blur'}" data-ng-pattern="/^[A-Za-z0-9._%+-]+@uwaterloo.ca$/" 
-                               placeholder="UW Email">
-                        <p class = "invalid-email-warning" ng-show="uwEmailForm.uwEmail.$error.pattern">That isn't a valid UW email address!</p>
-                        <div class="text-center form-group">
-                            <button type="submit" class="btn btn-large btn-primary">Onwards!</button>
-                        </div>
-                    </div>
+    <h2>We're glad you decided to join us.</h2>
+
+    <h4>Choose an social account below, or continue with a username and password!</h4>
+    <div class="col-md-12 text-center">
+        <a href="/auth/facebook" class="undecorated-link">
+            <img src="/modules/users/img/buttons/facebook.png">
+        </a>
+        <a href="/auth/twitter" class="undecorated-link">
+            <img src="/modules/users/img/buttons/twitter.png">
+        </a>
+        <a href="/auth/google" class="undecorated-link">
+            <img src="/modules/users/img/buttons/google.png">
+        </a>
+        <a href="/auth/linkedin" class="undecorated-link">
+            <img src="/modules/users/img/buttons/linkedin.png">
+        </a>
+        <a href="/auth/github" class="undecorated-link">
+            <img src="/modules/users/img/buttons/github.png">
+        </a>
+    </div>
+    <div class="col-xs-offset-2 col-xs-8 col-md-offset-5 col-md-2">
+        <form name="userForm" data-ng-submit="signup()" class="signin form-horizontal" novalidate autocomplete="off">
+            <fieldset>
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input type="text" required id="firstName" name="firstName" class="form-control" data-ng-model="credentials.firstName" placeholder="First Name">
                 </div>
-            </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" id="lastName" name="lastName" class="form-control" data-ng-model="credentials.lastName" placeholder="Last Name">
+                </div>
+                <div class="form-group">
+                    <label for="displayName">Display Name (optional)</label>
+                    <input type="text" id="displayName" name="displayName" class="form-control" data-ng-model="credentials.displayName" placeholder="By default, your full name.">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" class="form-control" data-ng-model="credentials.email" placeholder="UW Email">
+                </div>
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" class="form-control" data-ng-model="credentials.username" placeholder="Username">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" class="form-control" data-ng-model="credentials.password" placeholder="8 character mininum.">
+                </div>
+                <div class="text-center form-group">
+                    <button type="submit" class="btn btn-large btn-primary">Sign up</button>
+                </div>
+                <div data-ng-show="error" class="text-center text-danger">
+                    <strong data-ng-bind="error"></strong>
+                </div>
+            </fieldset>
         </form>
-    </div>
-    <div class = "continue" ng-show="uwEmailForm.uwEmail.$valid && uwEmailForm.uwEmail.$dirty">
-        <h3>Awesome, now let's continue onwards!</h3>
-        <h4>Choose an social account below, or continue with a username and password!</h4>
-        <div class="col-md-12 text-center">
-            <a href="/auth/facebook" class="undecorated-link">
-                <img src="/modules/users/img/buttons/facebook.png">
-            </a>
-            <a href="/auth/twitter" class="undecorated-link">
-                <img src="/modules/users/img/buttons/twitter.png">
-            </a>
-            <a href="/auth/google" class="undecorated-link">
-                <img src="/modules/users/img/buttons/google.png">
-            </a>
-            <a href="/auth/linkedin" class="undecorated-link">
-                <img src="/modules/users/img/buttons/linkedin.png">
-            </a>
-            <a href="/auth/github" class="undecorated-link">
-                <img src="/modules/users/img/buttons/github.png">
-            </a>
-        </div>
-    </div>
-    <div class = "local-auth" ng-show="uwEmailForm.uwEmail.$valid && uwEmailForm.uwEmail.$dirty">
-        <div class="col-xs-offset-2 col-xs-8 col-md-offset-5 col-md-2">
-            <form name="userForm" data-ng-submit="signup()" class="signin form-horizontal" novalidate autocomplete="off">
-                <fieldset>
-                    <div class="form-group">
-                        <label for="firstName">First Name</label>
-                        <input type="text" required id="firstName" name="firstName" class="form-control" data-ng-model="credentials.firstName" placeholder="First Name">
-                    </div>
-                    <div class="form-group">
-                        <label for="lastName">Last Name</label>
-                        <input type="text" id="lastName" name="lastName" class="form-control" data-ng-model="credentials.lastName" placeholder="Last Name">
-                    </div>
-                    <div class="form-group">
-                        <label for="displayName">Display Name (optional)</label>
-                        <input type="text" id="displayName" name="displayName" class="form-control" data-ng-model="credentials.displayName" placeholder="By default, your full name.">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" class="form-control" data-ng-model="credentials.email" placeholder="UW Email" disabled>
-                    </div>
-                    <div class="form-group">
-                        <label for="username">Username</label>
-                        <input type="text" id="username" name="username" class="form-control" data-ng-model="credentials.username" placeholder="Username">
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" id="password" name="password" class="form-control" data-ng-model="credentials.password" placeholder="8 character mininum.">
-                    </div>
-                    <div class="text-center form-group">
-                        <button type="submit" class="btn btn-large btn-primary">Sign up</button>
-                    </div>
-                    <div data-ng-show="error" class="text-center text-danger">
-                        <strong data-ng-bind="error"></strong>
-                    </div>
-                </fieldset>
-            </form>
-        </div>
     </div>
 </section>

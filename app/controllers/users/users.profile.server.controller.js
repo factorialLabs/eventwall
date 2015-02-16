@@ -28,6 +28,14 @@ exports.update = function(req, res) {
         if (!user.displayName){
 		  user.displayName = user.navName;
         }
+        
+        
+        var emailRegExp = new RegExp("[A-Za-z0-9._%+-]+@uwaterloo.ca$");
+        if (emailRegExp.test(user.email)){
+            user.verified = true;
+        }
+        console.log(user.email);
+        console.log(user.verified);
 
 		user.save(function(err) {
 			if (err) {

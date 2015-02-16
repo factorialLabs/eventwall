@@ -22,9 +22,11 @@ module.exports = function() {
 			var providerData = profile._json;
 			providerData.token = token;
 			providerData.tokenSecret = tokenSecret;
-
+            
 			// Create the user OAuth profile
 			var providerUserProfile = {
+                firstName: profile.displayName.slice(0, profile.displayName.indexOf(" ")),
+                lastName: profile.displayName.slice(profile.displayName.lastIndexOf(" ")+1),
 				displayName: profile.displayName,
 				username: profile.username,
 				provider: 'twitter',

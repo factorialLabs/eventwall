@@ -1,4 +1,5 @@
 'use strict';
+var oauth = require('./oauth');
 
 module.exports = {
 	db: 'mongodb://localhost/campuswall-dev',
@@ -6,13 +7,13 @@ module.exports = {
 		title: 'CampusWall - Development Environment'
 	},
 	facebook: {
-		clientID: process.env.FACEBOOK_ID || 'APP_ID',
-		clientSecret: process.env.FACEBOOK_SECRET || 'APP_SECRET',
+		clientID: process.env.FACEBOOK_ID || oauth.fbTestId,
+		clientSecret: process.env.FACEBOOK_SECRET || oauth.fbTestSecret,
 		callbackURL: '/auth/facebook/callback'
 	},
 	twitter: {
-		clientID: process.env.TWITTER_KEY || 'CONSUMER_KEY',
-		clientSecret: process.env.TWITTER_SECRET || 'CONSUMER_SECRET',
+		clientID: process.env.TWITTER_KEY || oauth.twitterId,
+		clientSecret: process.env.TWITTER_SECRET || oauth.twitterSecret,
 		callbackURL: '/auth/twitter/callback'
 	},
 	google: {

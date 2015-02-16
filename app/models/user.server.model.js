@@ -63,6 +63,10 @@ var UserSchema = new Schema({
 		default: '',
 		validate: [validateLocalStrategyPassword, 'At least 8 characters please!']
 	},
+    verified: {
+        type: Boolean,
+        default: false
+    },
 	salt: {
 		type: String
 	},
