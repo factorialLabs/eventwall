@@ -28,4 +28,25 @@ Ensure `mongod` is running on port 27017 (default)
 $ grunt
 ```
 
+To enable social network login:
+Please create /config/env/oauth.js and put:
+```
+module.exports = {
+    fbId: '',
+    fbSecret: '',
+    fbTestId: '',
+    fbTestSecret: '',
+    twitterId: '',
+    twitterSecret: '',
+    googleId: '',
+    googleSecret: '',    
+    linkedInId: '',
+    linkedInSecret: '',
+    gitId: '',
+    gitSecret: ''
+};
+```
+
+and fill in the respective API keys for each website.
+
 Navigate to http://localhost:3000 in your browser.
