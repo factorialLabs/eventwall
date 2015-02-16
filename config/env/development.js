@@ -17,18 +17,18 @@ module.exports = {
 		callbackURL: '/auth/twitter/callback'
 	},
 	google: {
-		clientID: process.env.GOOGLE_ID || 'APP_ID',
-		clientSecret: process.env.GOOGLE_SECRET || 'APP_SECRET',
+		clientID: process.env.GOOGLE_ID || oauth.googleId,
+		clientSecret: process.env.GOOGLE_SECRET || oauth.googleSecret,
 		callbackURL: '/auth/google/callback'
 	},
 	linkedin: {
-		clientID: process.env.LINKEDIN_ID || 'APP_ID',
-		clientSecret: process.env.LINKEDIN_SECRET || 'APP_SECRET',
+		clientID: process.env.LINKEDIN_ID || oauth.linkedInId,
+		clientSecret: process.env.LINKEDIN_SECRET || oauth.linkedInSecret,
 		callbackURL: '/auth/linkedin/callback'
 	},
 	github: {
-		clientID: process.env.GITHUB_ID || 'APP_ID',
-		clientSecret: process.env.GITHUB_SECRET || 'APP_SECRET',
+		clientID: process.env.GITHUB_ID || oauth.gitId,
+		clientSecret: process.env.GITHUB_SECRET || oauth.gitSecret,
 		callbackURL: '/auth/github/callback'
 	},
 	mailer: {

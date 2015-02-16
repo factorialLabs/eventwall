@@ -147,6 +147,15 @@ exports.saveOAuthUserProfile = function(req, providerUserProfile, done) {
                             provider: providerUserProfile.provider,
                             providerData: providerUserProfile.providerData
                         });
+                        console.log(user);
+                        if (!user.firstName){
+                            user.firstName= user.displayName.slice(0, user.displayName.indexOf(" "));
+
+                        }
+                        if (!user.lastName){
+                            user.lastName = user.displayName.slice(user.displayName.lastIndexOf(" ")+1);
+                        }
+                        console.log(user);
                         // If email matches UW, then account is verified.
                         var emailRegExp = new RegExp("[A-Za-z0-9._%+-]+@uwaterloo.ca$");
                         if (user.email && emailRegExp.test(user.email)){
