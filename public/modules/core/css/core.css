@@ -51,14 +51,13 @@ yellow{
     color: white;
     border: 1px solid white;
 }
-#jumbotron{
-    margin-top: 12vh;
-    color:black;
+
+.jumbotron h1{
+    color: white;
+    font-size: 63px;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
-#jumbotron h1{
-    font-size: 63px;
-}
 
 
 /*Grid setup*/
