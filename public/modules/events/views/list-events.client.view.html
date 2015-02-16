@@ -1,4 +1,4 @@
-<section data-ng-controller="EventsController" data-ng-init="find()" class="container">
+<section data-ng-controller="EventsController" data-ng-init="find(currentPage)" class="container">
     <div class="page-header">
         <h1>Upcoming Events</h1>
         <h4>Categories: <a ng-href = "#!/events/category/{{category}}" class = "label label-default category-label" ng-repeat = "category in categoriesList">{{category}}</a></h4>
@@ -27,4 +27,6 @@
     <div class="alert alert-warning text-center" data-ng-hide="!events.$resolved || events.length">
     	No events yet, why don't you <a href="/#!/events/create">create one</a>?
     </div>
+    <button ng-click="prevPage()">Previous Page</button>
+    <button ng-click="nextPage()">Next Page</button>
 </section>

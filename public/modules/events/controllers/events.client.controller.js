@@ -4,7 +4,8 @@
 angular.module('events').controller('EventsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Events','$filter','$http',
 	function($scope, $stateParams, $location, Authentication, Events,$filter,$http) {
 		$scope.authentication = Authentication;
-
+        $scope.currentPage = 0;
+        
 		// Create new Event
 		$scope.create = function() {
 			// Create new Event object
@@ -60,10 +61,24 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
 		};
 
 		// Find a list of Events
-		$scope.find = function() {
-			$scope.events = Events.query();
+		$scope.find = function(page) {
+			$scope.events = Events.query({
+                limit:20,
+                page:page,
+                userId: $stateParams.userId,
+                category: $stateParams.category
+            });
             //console.log($scope.events);
 		};
+        $scope.nextPage = function(){
+            $scope.find($scope.currentPage++);
+        }
+        $scope.prevPage = function(){
+            if(--$scope.currentPage >= 0)
+                $scope.find($scope.currentPage);
+            else
+                $scope.currentPage = 0;
+        }
         
         $scope.findEventsByUser = function() {
             $scope.user = $stateParams.userId;
@@ -75,6 +90,7 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
         $scope.findEventsByCategory = function() {
             $scope.category = $stateParams.category;
             $scope.categoryEvents = Events.query({
+                limit:20,
                 category: $stateParams.category
             });
         };
