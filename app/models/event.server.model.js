@@ -18,7 +18,7 @@ var EventSchema = new Schema({
 	},
     category: {
 		type: String,
-        enum: ['Uncategorized', 'Clubs', 'Sports', 'Academics', 'Employer Info Session', 'FEDS', 'EngSoc', 'University Events'],
+        enum: ['Uncategorized', 'Clubs', 'Sports', 'Academics', 'Employer Info Session', 'FEDS', 'EngSoc', 'University'],
 		default: 'Uncategorized',
 		required: 'Please enter a category.',
 		trim: true
