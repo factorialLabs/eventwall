@@ -147,27 +147,32 @@ module.exports.run = function(mongoose){
             });
         },
         function (user, callback) {
-            uwapi.termsInfosessions({term_id:1155}).then(function (session) {
+            uwapi.termsInfosessions({term_id:1151}).then(function (session) { // 1151 - Winter 2015; 1155 - Spring 2015
                 console.log(session);
                 var events = [];
 
                 for (var k in session){
                     if (session.hasOwnProperty(k)) {
                         var ev = session[k];
-                        if (ev.description == "" || ev.description == null) ev.description == ev.programs;
-                        events.push(new Event({
-                            name: ev.employer + " Info Session",
-                            category: 'Employer Info Session',
-                            datetime_start: ev.date,
-                            datetime_end: ev.date,
-                            location: ev.location,
-                            description: ev.description,
-                            //thumbnail: ,
-                            //created: ev.created,
-                            //edited:,
-                            user: user,
-                            organizer: ev.employer
-                        }));
+                        // If description isn't provided, put the relevant programs in place.
+                        if (ev.description === ''|| ev.description === null) ev.description = ev.employer + " is looking for students from: " + ev.programs;
+                        if (ev.location == ''|| ev.location == null || ev.location == undefined) ev.location = "TBD";
+                        if (ev.employer !== "Closed info session"){
+                            events.push(new Event({
+                                name: ev.employer + " Info Session",
+                                category: 'Employer Info Session',
+                                datetime_start: new Date(ev.date + ' ' + ev.start_time),
+                                datetime_end: new Date(ev.date + ' ' + ev.end_time),
+                                location: ev.location,
+                                description: ev.description,
+                                //thumbnail: ,
+                                //created: ev.created,
+                                //edited:,
+                                user: user,
+                                organizer: ev.employer
+                            }));
+                            console.log(new Date(ev.date + ' ' + ev.start_time));
+                        }
                     }
                 }
                 console.log(events);
@@ -198,7 +203,6 @@ module.exports.run = function(mongoose){
         },
         function (user, callback) {
             uwapi.events().then(function (session) {
-                console.log(session);
                 var events = [];
 
                 for (var k in session){
@@ -220,7 +224,6 @@ module.exports.run = function(mongoose){
                         }));
                     }
                 }
-                console.log(events);
                 //var event = new Event(req.body);
                 Event.create(events, function (err) {
                     if (err) // ...
