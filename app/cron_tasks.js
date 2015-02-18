@@ -45,14 +45,15 @@ module.exports.run = function(mongoose){
                 for (var k in data){
                     if (data.hasOwnProperty(k)) {
                         var ev = data[k];
-                        if(ev.location == null) ev.location = "Undeclared.";
+                        if(ev.location == null) ev.location = "TBD";
                         if(ev.organizer == null){
                             ev.organizer = "FEDS";
                         }
                         else{
                             ev.organizer = ev.organizer.params[0].slice(3);
                         }
-                        events.push(new Event({
+                        if (new Date(ev.end) > new Date()){
+                            events.push(new Event({
                             name: ev.summary,
                             category: "FEDS",
                             datetime_start: ev.start,
@@ -65,6 +66,8 @@ module.exports.run = function(mongoose){
                             user: user,
                             organizer: ev.organizer
                         }));
+                        }
+
                     }
                 }
 
@@ -101,24 +104,25 @@ module.exports.run = function(mongoose){
                 for (var k in data){
                     if (data.hasOwnProperty(k)) {
                         var ev = data[k];
-                        if(ev.location == null) ev.location = "Undeclared.";
-                        if(ev.summary == null) ev.summary = "No Name";
-                        if(ev.start == null) ev.start = "01-01-2015";
-                        if(ev.end == null) ev.end = "01-01-2015";
+                        if(ev.location == null) ev.location = "TBD";
+                        if(ev.summary == null) ev.summary = "TBD";
                         if(ev.organizer == null) ev.organizer = "EngSoc";
-                        events.push(new Event({
-                            name: ev.summary,
-                            category: "EngSoc",
-                            datetime_start: ev.start,
-                            datetime_end: ev.end,
-                            location: ev.location,
-                            description: ev.description,
-                            //thumbnail: ,
-                            created: ev.created,
-                            //edited:,
-                            user: user,
-                            organizer: ev.organizer
-                        }));
+
+                        if (new Date(ev.end) > new Date()){
+                            events.push(new Event({
+                                name: ev.summary,
+                                category: "EngSoc",
+                                datetime_start: ev.start,
+                                datetime_end: ev.end,
+                                location: ev.location,
+                                description: ev.description,
+                                //thumbnail: ,
+                                created: ev.created,
+                                //edited:,
+                                user: user,
+                                organizer: ev.organizer
+                            }));
+                        }
                     }
                 }
 
@@ -147,30 +151,37 @@ module.exports.run = function(mongoose){
             });
         },
         function (user, callback) {
-            uwapi.termsInfosessions({term_id:1155}).then(function (session) {
-                console.log(session);
+            uwapi.termsInfosessions({term_id:1151}).then(function (session) { // 1151 - Winter 2015; 1155 - Spring 2015
+                //console.log(session);
                 var events = [];
 
                 for (var k in session){
                     if (session.hasOwnProperty(k)) {
                         var ev = session[k];
-                        if (ev.description == "" || ev.description == null) ev.description == ev.programs;
-                        events.push(new Event({
-                            name: ev.employer + " Info Session",
-                            category: 'Employer Info Session',
-                            datetime_start: ev.date,
-                            datetime_end: ev.date,
-                            location: ev.location,
-                            description: ev.description,
-                            //thumbnail: ,
-                            //created: ev.created,
-                            //edited:,
-                            user: user,
-                            organizer: ev.employer
-                        }));
+                        // If description isn't provided, put the relevant programs in place.
+                        if (ev.description === ''|| ev.description === null) ev.description = ev.employer + " is looking for students from: " + ev.programs;
+                        if (ev.location == ''|| ev.location == null || ev.location == undefined) ev.location = "TBD";
+                        ev.startTime = new Date(ev.date + ' ' + ev.start_time);
+                        ev.endTime = new Date(ev.date + ' ' + ev.end_time);
+                        if (ev.employer !== "Closed info session" && ev.endTime > new Date()){
+
+                            events.push(new Event({
+                                name: ev.employer + " Info Session",
+                                category: 'Employer Info Session',
+                                datetime_start: ev.startTime,
+                                datetime_end: ev.endTime,
+                                location: ev.location,
+                                description: ev.description,
+                                //thumbnail: ,
+                                //created: ev.created,
+                                //edited:,
+                                user: user,
+                                organizer: ev.employer
+                            }));
+                        }
                     }
                 }
-                console.log(events);
+                //console.log(events);
                 //var event = new Event(req.body);
                 Event.create(events, function (err) {
                     if (err) // ...
@@ -198,29 +209,31 @@ module.exports.run = function(mongoose){
         },
         function (user, callback) {
             uwapi.events().then(function (session) {
-                console.log(session);
                 var events = [];
 
                 for (var k in session){
                     if (session.hasOwnProperty(k)) {
                         var ev = session[k];
-                        if (ev.description == "" || ev.description == null) ev.description == ev.programs;
-                        events.push(new Event({
-                            name: ev.title,
-                            category: 'University Events',
-                            datetime_start: ev.times[0].start,
-                            datetime_end: ev.times[0].end,
-                            location: "None provided.",
-                            description: ev.link,
-                            //thumbnail: ,
-                            //created: ev.created,
-                            //edited:,
-                            user: user,
-                            organizer: ev.site_name
-                        }));
+                        if (ev.description == "" || ev.description == null) ev.description = ev.programs;
+                        if (new Date(ev.times[0].end) > new Date()){
+                            events.push(new Event({
+                                name: ev.title,
+                                category: 'University',
+                                datetime_start: ev.times[0].start,
+                                datetime_end: ev.times[0].end,
+                                location: "None provided.",
+                                description: ev.link,
+                                //thumbnail: ,
+                                //created: ev.created,
+                                //edited:,
+                                user: user,
+                                organizer: ev.site_name
+                            }));
+                        }
+
                     }
                 }
-                console.log(events);
+                //console.log(events);
                 //var event = new Event(req.body);
                 Event.create(events, function (err) {
                     if (err) // ...

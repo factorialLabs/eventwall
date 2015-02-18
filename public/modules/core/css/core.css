@@ -96,6 +96,11 @@ a:hover, a:focus, a:active{
     border: 0;
 }
 
+/* Events Dropdown */
+nav ul.nav{
+    cursor: pointer;
+}
+
 /* Navbar button on mobile. */
 button.navbar .container .navbar-headernavbar-toggle, .navbar .container .navbar-header .navbar-toggle:focus{
     background-color: #212121;
