@@ -1,6 +1,7 @@
 CampusWall Alpha
 ==========
 [![Build Status](https://travis-ci.org/icechen1/campuswall.svg?branch=master)](https://travis-ci.org/icechen1/campuswall)
+
 Note that CampusWall is currently in the Alpha stage and that it can be buggy at times.
 
 ## What's CampusWall?

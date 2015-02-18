@@ -97,7 +97,13 @@ exports.oauthCallback = function(strategy) {
                     return res.redirect('/#!/signin');
                 }
 
-                return res.redirect(redirectURL || '/');
+                //If they haven't entered an UW email address, redirects to their profile.
+                if (!user.verified){
+                    return res.redirect(redirectURL || '/#!/settings/profile');
+                }
+                else{
+                    return res.redirect(redirectURL || '/');
+                }
             });
         })(req, res, next);
     };
@@ -142,7 +148,6 @@ exports.saveOAuthUserProfile = function(req, providerUserProfile, done) {
                             username: availableUsername,
                             displayName: providerUserProfile.displayName,
                             navName: providerUserProfile.firstName + " " + providerUserProfile.lastName,
-                            email: providerUserProfile.email,
                             verified: false,
                             provider: providerUserProfile.provider,
                             providerData: providerUserProfile.providerData
@@ -155,15 +160,7 @@ exports.saveOAuthUserProfile = function(req, providerUserProfile, done) {
                         if (!user.lastName){
                             user.lastName = user.displayName.slice(user.displayName.lastIndexOf(" ")+1);
                         }
-                        console.log(user);
-                        // If email matches UW, then account is verified.
-                        var emailRegExp = new RegExp("[A-Za-z0-9._%+-]+@uwaterloo.ca$");
-                        if (user.email && emailRegExp.test(user.email)){
-                            user.verified = true;
-                        }
-                        else{
-                            user.email = '';
-                        }
+
                         // And save the user
                         user.save(function(err) {
                             return done(err, user);
