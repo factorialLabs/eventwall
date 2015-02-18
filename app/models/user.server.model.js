@@ -49,6 +49,7 @@ var UserSchema = new Schema({
 		type: String,
 		trim: true,
 		default: '',
+        unique: true,
 		validate: [validateLocalStrategyProperty, 'Please fill a valid @uwaterloo.ca email address.'],
 		match: [/.+\@uwaterloo.ca+/, 'Please use a valid @uwaterloo.ca email address.']
 	},
