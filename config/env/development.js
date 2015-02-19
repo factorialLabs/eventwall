@@ -4,7 +4,7 @@ var oauth = require('./oauth');
 module.exports = {
 	db: 'mongodb://localhost/campuswall-dev',
 	app: {
-		title: 'CampusWall - Development Environment'
+		title: 'EventWall - Development Environment'
 	},
 	facebook: {
 		clientID: process.env.FACEBOOK_ID || oauth.fbTestId,

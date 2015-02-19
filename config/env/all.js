@@ -2,7 +2,7 @@
 
 module.exports = {
 	app: {
-		title: 'CampusWall',
+		title: 'EventWall',
 		description: 'Collaborative event calendar',
 		keywords: 'MongoDB, Express, AngularJS, Node.js'
 	},
