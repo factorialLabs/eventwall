@@ -1,4 +1,4 @@
-CampusWall Alpha
+EventWall Alpha
 ==========
 [![Build Status](https://travis-ci.org/icechen1/campuswall.svg?branch=master)](https://travis-ci.org/icechen1/campuswall)
 
