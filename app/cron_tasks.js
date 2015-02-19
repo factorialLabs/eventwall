@@ -191,57 +191,6 @@ module.exports.run = function(mongoose){
                 });
             });
             callback(null);
-        },
-        // UW Events
-        //Find UW User
-        function (callback){
-            User.findOne({_id: "54c460c1bd9b8cec2ccbe348"})
-            .populate('postedBy')
-            .exec(function(err, user) {
-                callback(null,user);
-            });
-        },
-        //Remove all old UW events
-        function(fUser, callback){
-            Event.find({user: fUser}).remove().exec(function(err,events){
-                callback(null, fUser);
-            });
-        },
-        function (user, callback) {
-            uwapi.events().then(function (session) {
-                var events = [];
-
-                for (var k in session){
-                    if (session.hasOwnProperty(k)) {
-                        var ev = session[k];
-                        if (ev.description == "" || ev.description == null) ev.description = ev.programs;
-                        if (new Date(ev.times[0].end) > new Date()){
-                            events.push(new Event({
-                                name: ev.title,
-                                category: 'University',
-                                datetime_start: ev.times[0].start,
-                                datetime_end: ev.times[0].end,
-                                location: "None provided.",
-                                description: ev.link,
-                                //thumbnail: ,
-                                //created: ev.created,
-                                //edited:,
-                                user: user,
-                                organizer: ev.site_name
-                            }));
-                        }
-
-                    }
-                }
-                //console.log(events);
-                //var event = new Event(req.body);
-                Event.create(events, function (err) {
-                    if (err) // ...
-                    {
-                        console.log(err);
-                    }
-                });
-            });
         }
 
     ], function (err, result){
