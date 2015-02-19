@@ -139,35 +139,75 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
 ]).filter('groupByDate', [ '$parse', 'filterWatcher', function ( $parse, filterWatcher ) {
     return function (collection, property) {
       /**
-       * groupBy function
-       * @param collection
-       * @param getter
+       * groupByDate function
+       * @param collection - promise containing an array of unordered events
+       * @param getter - a function that returns the date property of an event.
        * @returns {{}}
        */
+
+        //console.log(collection);
       function _groupByDate(collection, getter) {
         var result = {};
         var prop;
 
         angular.forEach( collection, function( element ) {
-          //console.log(element.datetime_start);
-          element.date = new Date(element.datetime_start).toDateString();
-          prop = getter(element);
 
+          element.date = new Date(element.datetime_start).toLocaleDateString();
+
+            // Pad 0 before month
+            if (element.date.indexOf('/') === 1){
+                element.date = '0' + element.date;
+            }
+            // Pad 0 before date
+            if (element.date.lastIndexOf('/') - element.date.indexOf('/') < 3){
+                element.date = element.date.slice(0, element.date.indexOf('/')+1) + '0' +
+                    element.date.charAt(element.date.lastIndexOf('/')-1) + element.date.slice(element.date.lastIndexOf('/'));
+            }
+          prop = getter(element); // Gets Date in String format.
+
+            //Creates an array for the date if it doesn't already exist.
           if(!result[prop]) {
             result[prop] = [];
           }
+
+            //Pushes the current event onto the correct date in the array.
           result[prop].push(element);
         });
+          result = sortObjectByKey(result);
+
+
         return result;
+
       }
+
+        // Invalid collection or property, returns the collection.
       if(!angular.isObject(collection) || angular.isUndefined(property)) {
         return collection;
       }
-        //console.log(property);
+
       var getterFn = $parse('date');
 
-      return filterWatcher.isMemoized('groupBy', arguments) ||
-        filterWatcher.memoize('groupBy', arguments, this,
+      return filterWatcher.isMemoized('groupByDate', arguments) ||
+        filterWatcher.memoize('groupByDate', arguments, this,
           _groupByDate(collection, getterFn));
     };
  }]);
+
+var sortObjectByKey = function(object){
+    var keys = [];
+    var sorted = {};
+
+    for(var key in object){
+        if(object.hasOwnProperty(key)){
+            keys.push(key);
+        }
+    }
+
+    keys.sort();
+
+    angular.forEach(keys, function(key){
+        sorted[key] = object[key];
+    });
+
+    return sorted;
+};
