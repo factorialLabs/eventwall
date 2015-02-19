@@ -21,7 +21,7 @@ describe('User Model Unit Tests:', function() {
 			firstName: 'Full',
 			lastName: 'Name',
 			displayName: 'Full Name',
-			email: 'test@test.com',
+			email: 'test@uwaterloo.ca',
 			username: 'username',
 			password: 'password',
 			provider: 'local'
@@ -30,7 +30,7 @@ describe('User Model Unit Tests:', function() {
 			firstName: 'Full',
 			lastName: 'Name',
 			displayName: 'Full Name',
-			email: 'test@test.com',
+			email: 'test@uwaterloo.ca',
 			username: 'username',
 			password: 'password',
 			provider: 'local'

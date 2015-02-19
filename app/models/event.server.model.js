@@ -25,12 +25,10 @@ var EventSchema = new Schema({
 	},
     datetime_start: {
 		type: Date,
-        default: Date.now,
 		required: 'Please enter a start date and time.'
 	},
     datetime_end: {
 		type: Date,
-        default: Date.now,
 		required: 'Please enter a end date and time.'
 	},
     location: {

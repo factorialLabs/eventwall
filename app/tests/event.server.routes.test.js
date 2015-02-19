@@ -29,17 +29,22 @@ describe('Event CRUD tests', function() {
 			firstName: 'Full',
 			lastName: 'Name',
 			displayName: 'Full Name',
-			email: 'test@test.com',
+			email: 'test@uwaterloo.ca',
 			username: credentials.username,
 			password: credentials.password,
-			provider: 'local'
+			provider: 'local',
+            verified: true
 		});
 
 		// Save a user to the test db and create new Event
 		user.save(function() {
-			event = {
-				name: 'Event Name'
-			};
+			event = new Event ({
+				name: 'Event Name',
+				user: user,
+                location: 'TBD',
+                datetime_start: '2016-02-03',
+                datetime_end: '2016-02-04'
+			});
 
 			done();
 		});
@@ -75,7 +80,7 @@ describe('Event CRUD tests', function() {
 
 								// Set assertions
 								(events[0].user._id).should.equal(userId);
-								(events[0].name).should.match('Event Name');
+								(events[0].name).should.equal('Event Name');
 
 								// Call the assertion callback
 								done();
@@ -114,7 +119,7 @@ describe('Event CRUD tests', function() {
 					.expect(400)
 					.end(function(eventSaveErr, eventSaveRes) {
 						// Set message assertion
-						(eventSaveRes.body.message).should.match('Please fill Event name');
+						(eventSaveRes.body.message).should.match('Please enter a name for your event.');
 						
 						// Handle Event save error
 						done(eventSaveErr);
@@ -170,9 +175,10 @@ describe('Event CRUD tests', function() {
 		// Save the Event
 		eventObj.save(function() {
 			// Request Events
-			request(app).get('/events')
+			request(app).get('/events/')
 				.end(function(req, res) {
 					// Set assertion
+                //console.log(res);
 					res.body.should.be.an.Array.with.lengthOf(1);
 
 					// Call the assertion callback

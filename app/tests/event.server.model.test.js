@@ -22,15 +22,19 @@ describe('Event Model Unit Tests:', function() {
 			firstName: 'Full',
 			lastName: 'Name',
 			displayName: 'Full Name',
-			email: 'test@test.com',
+			email: 'test@uwaterloo.ca',
 			username: 'username',
-			password: 'password'
+			password: 'password',
+            verified: true
 		});
 
 		user.save(function() { 
 			event = new Event({
 				name: 'Event Name',
-				user: user
+				user: user,
+                location: 'TBD',
+                datetime_start: '2016-02-03',
+                datetime_end: '2016-02-04'
 			});
 
 			done();
