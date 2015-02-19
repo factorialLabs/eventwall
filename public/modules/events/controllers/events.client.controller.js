@@ -1,8 +1,8 @@
 'use strict';
 
 // Events controller
-angular.module('events').controller('EventsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Events','$filter','$http',
-	function($scope, $stateParams, $location, Authentication, Events,$filter,$http) {
+angular.module('events').controller('EventsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Events', 'Users', '$filter', '$http',
+	function($scope, $stateParams, $location, Authentication, Events, Users, $filter, $http) {
 		$scope.authentication = Authentication;
         $scope.currentPage = 0;
         
@@ -22,7 +22,7 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
                 description: this.description,
                 organizer: this.organizer
 			});
-            console.log(event);
+
 			// Redirect after save
 			event.$save(function(response) {
 				$location.path('events/' + response._id);
@@ -84,7 +84,7 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
         }
         
         $scope.findEventsByUser = function() {
-            $scope.user = $stateParams.userId;
+
             $scope.userEvents = Events.query({
                 userId: $stateParams.userId
             });

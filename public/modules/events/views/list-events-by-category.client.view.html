@@ -24,8 +24,8 @@
     </div>
 
 
-    <div class="alert alert-warning text-center" data-ng-hide="!events.$resolved || events.length">
-    	This user hasn't made any events!
+    <div class="alert alert-warning text-center" data-ng-hide="categoryEvents.length">
+    	There are no events in this category!
     </div>
     <button ng-click="prevPage()">Previous Page</button>
     <button ng-click="nextPage()">Next Page</button>

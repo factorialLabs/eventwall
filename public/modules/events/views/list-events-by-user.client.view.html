@@ -1,5 +1,5 @@
 <section data-ng-controller="EventsController" data-ng-init="findEventsByUser()" class="container">
-    <div class="page-header">
+    <div class="page-header" data-ng-show="userEvents.length">
         <h1>{{userEvents[0].user.displayName}}'s Events</h1>
     </div>
     <div data-ng-repeat="(key, eventgroup) in userEvents | groupByDate: 'datetime_start'" data-ng-href="#!/events/{{event._id}}" class="list-group">
@@ -16,16 +16,18 @@
                 </div>
             </div>
             <h4 class="list-group-item-heading" data-ng-hide="isCreator(event)"><span ng-bind-html="event.name"></span> |<small> {{event.organizer}}</small></h4> 
-            
+
             <small class="list-group-item-text" data-ng-hide="isOneDayEvent(event)">{{event.datetime_start | date:"MMMM d h:mm a"}} - {{event.datetime_end | date:"MMMM d h:mm a"}}</small>	
             <small class="list-group-item-text" data-ng-show="isOneDayEvent(event)">{{event.datetime_start | date:"h:mm a"}} - {{event.datetime_end | date:"h:mm a"}}</small>
         </a>
     </div>
 
 
-    <div class="alert alert-warning text-center" data-ng-hide="!events.$resolved || events.length">
-    	This user hasn't made any events!
+    <div class="alert alert-warning text-center" data-ng-hide="userEvents.length">
+        This user hasn't made any events!
     </div>
-    <button ng-click="prevPage()">Previous Page</button>
-    <button ng-click="nextPage()">Next Page</button>
+    <div class = "pagination" data-ng-show="userEvents.length">
+        <button ng-click="prevPage()">Previous Page</button>
+        <button ng-click="nextPage()">Next Page</button>
+    </div>
 </section>
