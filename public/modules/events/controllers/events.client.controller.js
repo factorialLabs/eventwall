@@ -9,6 +9,9 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
 		// Create new Event
 		$scope.create = function() {
 			// Create new Event object
+            if (this.organizer == '' || this.organizer == null){
+                this.organizer = $scope.authentication.user.displayName;
+            }
 			var event = new Events ({
 				name: this.name,
                 location: this.location,
@@ -19,7 +22,7 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
                 description: this.description,
                 organizer: this.organizer
 			});
-
+            console.log(event);
 			// Redirect after save
 			event.$save(function(response) {
 				$location.path('events/' + response._id);
