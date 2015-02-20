@@ -1,3 +1,4 @@
-.alert{
-    margin-top: 20px;
+.alert.user-no-events{
+    margin-top: 60px;
+    text-align: center;
 }

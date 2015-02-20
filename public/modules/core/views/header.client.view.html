@@ -45,6 +45,11 @@
 		</ul>
         
         <!--Unauthenticated Users -->
+        <ul class="nav navbar-nav navbar-left" data-ng-hide="authentication.user">
+			<li ui-route="/events" ng-class="{active: $uiRoute}">
+				<a href="/#!/events">Upcoming Events</a>
+			</li>
+		</ul>
 		<ul class="nav navbar-nav navbar-right" data-ng-hide="authentication.user">
 			<li ui-route="/signup" ng-class="{active: $uiRoute}">
 				<a href="/#!/signup">Sign Up</a>

@@ -49,8 +49,44 @@ describe('Event Model Unit Tests:', function() {
 			});
 		});
 
-		it('should be able to show an error when try to save without name', function(done) { 
+		it('should show an error when trying to save without a name', function(done) {
 			event.name = '';
+
+			return event.save(function(err) {
+				should.exist(err);
+				done();
+			});
+		});
+
+        it('should show an error when trying to save without a location', function(done) {
+			event.location = '';
+
+			return event.save(function(err) {
+				should.exist(err);
+				done();
+			});
+		});
+
+        it('should show an error when trying to save without a start-time', function(done) {
+			event.datetime_start = '';
+
+			return event.save(function(err) {
+				should.exist(err);
+				done();
+			});
+		});
+
+        it('should show an error when trying to save without a end-time', function(done) {
+			event.datetime_end = '';
+
+			return event.save(function(err) {
+				should.exist(err);
+				done();
+			});
+		});
+
+        it('should show an error when trying to save when user is unverified', function(done) {
+            user.verified = false;
 
 			return event.save(function(err) {
 				should.exist(err);
