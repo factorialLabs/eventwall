@@ -24,7 +24,7 @@
     </div>
 
 
-    <div class="alert alert-warning text-center" data-ng-hide="events.length || currentPage">
+    <div class="alert alert-warning no-events" data-ng-hide="!events.$resolved || events.length || currentPage">
         There are no events in this category!
     </div>
     <div class="pagination">

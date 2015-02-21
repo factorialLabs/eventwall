@@ -21,6 +21,15 @@ exports.create = function(req, res) {
         });
     }
 
+    if (event.thumbnail == null){
+        if (event.category == 'FEDS'){
+            event.thumbnail = 'http://www.feds.ca/wp-content/themes/waterloofeds/images/logo.png';
+        }
+        else{
+            event.thumbnail = 'http://placehold.it/350x250';
+        }
+    }
+
 	event.save(function(err) {
 		if (err) {
 			return res.status(400).send({

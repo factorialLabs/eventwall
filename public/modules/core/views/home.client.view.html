@@ -15,7 +15,7 @@
             <!--Layout for the cards--->
             <a href = "#!/events/{{card._id}}" class = "deckgrid-box">
             <div class="card">
-                <img class="img" src="http://placehold.it/350x250"/>
+                <img class="img" ng-src='{{card.thumbnail}}'/>
                 <div class="infobox text-center">
                     <h3 ng-bind-html="card.name"></h3>                        
                     <h4 ng-hide="mother.isOneDayEvent(card)">{{card.datetime_start | date:"MMMM d"}} - {{card.datetime_end | date:"MMMM d"}}</h4>

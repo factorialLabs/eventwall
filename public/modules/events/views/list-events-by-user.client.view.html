@@ -23,7 +23,7 @@
     </div>
 
 
-    <div class="alert alert-warning text-center" data-ng-hide="events.length || currentPage">
+    <div class="alert alert-warning no-events" data-ng-hide="!events.$resolved || events.length || currentPage">
         This user hasn't made any events!
     </div>
     <div class="pagination">
