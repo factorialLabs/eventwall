@@ -5,7 +5,7 @@
     </div>
     <div data-ng-repeat="(key, eventgroup) in categoryEvents | groupByDate: 'datetime_start'" data-ng-href="#!/events/{{event._id}}" class="list-group">
         <div>
-            <h3>{{eventgroup[0].datetime_start | date:"EEEE, MMMM dd"}}</h3>
+            <h3>{{eventgroup[0].displayDate| date:"EEEE, MMMM dd"}}</h3>
         </div>
         <a data-ng-repeat="event in eventgroup" data-ng-href="#!/events/{{event._id}}"  class="list-group-item">
             <div class = "row" data-ng-show="isCreator(event)">
