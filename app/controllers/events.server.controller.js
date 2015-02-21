@@ -15,6 +15,12 @@ exports.create = function(req, res) {
 	var event = new Event(req.body);
 	event.user = req.user;
 
+    if (!req.user.verified){
+        return res.status(401).send({
+            message: "You need to be verified to create events!"
+        });
+    }
+
 	event.save(function(err) {
 		if (err) {
 			return res.status(400).send({
