@@ -163,7 +163,7 @@ module.exports.run = function(mongoose){
                         if (ev.location == ''|| ev.location == null || ev.location == undefined) ev.location = "TBD";
                         ev.startTime = new Date(ev.date + ' ' + ev.start_time);
                         ev.endTime = new Date(ev.date + ' ' + ev.end_time);
-                        if (ev.employer !== "Closed info session" && ev.endTime > new Date()){
+                        if (ev.employer !== "Closed info session" && ev.endTime > new Date() && ev.employer.indexOf('CANCELLED') == -1){
 
                             events.push(new Event({
                                 name: ev.employer + " Info Session",
