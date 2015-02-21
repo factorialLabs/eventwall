@@ -155,7 +155,15 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
 
         angular.forEach( collection, function( element ) {
 
-          element.date = new Date(element.datetime_start).toLocaleDateString();
+            //Grouping
+            if (new Date(element.datetime_start) < new Date()){
+                element.date = new Date().toLocaleDateString();
+                element.displayDate = new Date();
+            }
+            else{
+                element.date = new Date(element.datetime_start).toLocaleDateString();
+                element.displayDate = new Date(element.datetime_start);
+            }
 
             // Pad 0 before month
             if (element.date.indexOf('/') === 1){
