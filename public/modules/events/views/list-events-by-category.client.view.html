@@ -25,8 +25,10 @@
 
 
     <div class="alert alert-warning text-center" data-ng-hide="categoryEvents.length">
-    	There are no events in this category!
+        There are no events in this category!
     </div>
-    <button ng-click="prevPage()">Previous Page</button>
-    <button ng-click="nextPage()">Next Page</button>
+    <div class = "pagination" data-ng-show="categoryEvents.length">
+        <button ng-click="prevPage()">Previous Page</button>
+        <button ng-click="nextPage()">Next Page</button>
+    </div>
 </section>

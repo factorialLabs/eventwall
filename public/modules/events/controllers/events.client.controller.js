@@ -74,7 +74,7 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
             //console.log($scope.events);
 		};
         $scope.nextPage = function(){
-            $scope.find($scope.currentPage++);
+            $scope.find(++$scope.currentPage);
         }
         $scope.prevPage = function(){
             if(--$scope.currentPage >= 0)

@@ -17,7 +17,7 @@
                 </div>
             </div>
             <h4 class="list-group-item-heading" data-ng-hide="isCreator(event)"><span ng-bind-html="event.name"></span> | <small ng-bind-html="event.organizer"></small></h4>
-            
+
             <small class="list-group-item-text" data-ng-hide="isOneDayEvent(event)">{{event.datetime_start | date:"MMMM d h:mm a"}} - {{event.datetime_end | date:"MMMM d h:mm a"}}</small>	
             <small class="list-group-item-text" data-ng-show="isOneDayEvent(event)">{{event.datetime_start | date:"h:mm a"}} - {{event.datetime_end | date:"h:mm a"}}</small>
         </a>
@@ -25,9 +25,12 @@
 
 
     <div class="alert alert-warning text-center" data-ng-hide="!events.$resolved || events.length">
-    	No events yet, why don't you <a href="/#!/events/create">create one</a>?
+        No events yet, why don't you <a href="/#!/events/create">create one</a>?
     </div>
-    <button ng-click="prevPage()">Previous Page</button>
-    <span>Page {{currentPage + 1}}</span>
-    <button ng-click="nextPage()">Next Page</button>
+    <div class="pagination" data-ng-show="events.length">
+        <button ng-click="prevPage()">Previous Page</button>
+        <span>Page {{currentPage + 1}}</span>
+        <button ng-click="nextPage()">Next Page</button>
+    </div>
+
 </section>
