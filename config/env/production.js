@@ -5,20 +5,20 @@ module.exports = {
 	assets: {
 		lib: {
 			css: [
-				'public/lib/bootstrap/dist/css/bootstrap.min.css'
+				'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css'
 			],
 			js: [
-				'public/lib/angular/angular.min.js',
-				'public/lib/angular-resource/angular-resource.js', 
-				'public/lib/angular-cookies/angular-cookies.js', 
-				'public/lib/angular-animate/angular-animate.js', 
-				'public/lib/angular-touch/angular-touch.js', 
-				'public/lib/angular-sanitize/angular-sanitize.js', 
-				'public/lib/angular-ui-router/release/angular-ui-router.min.js',
-				'public/lib/angular-ui-utils/ui-utils.min.js',
-				'public/lib/angular-bootstrap/ui-bootstrap-tpls.min.js',
+				'https://ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular.min.js',
+				'https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.13/angular-resource.min.js',
+				'https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.13/angular-cookies.min.js',
+				'https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.13/angular-animate.min.js',
+				'https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.13/angular-touch.min.js',
+				'https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.13/angular-sanitize.min.js',
+				'https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.13/angular-ui-router.min.js',
+				'https://cdnjs.cloudflare.com/ajax/libs/angular-ui-utils/0.1.1/angular-ui-utils.min.js',
+				'https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.0/ui-bootstrap-tpls.min.js',
 				'public/lib/angular-deckgrid/angular-deckgrid.js',
-				'public/lib/angular-filter/dist/angular-filter.min.js'
+				'https://cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.4/angular-filter.min.js'
 			]
 		},
 		css: 'public/dist/application.min.css',
