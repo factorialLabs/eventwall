@@ -65,9 +65,16 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
 
 		// Find a list of Events
 		$scope.find = function(page) {
+
 			$scope.events = Events.query({
-                limit:20,
-                page:page,
+                limit: 20,
+                page: page,
+                userId: $stateParams.userId,
+                category: $stateParams.category
+            });
+            $scope.eventsNextPage = Events.query({
+                limit: 20,
+                page: page+1,
                 userId: $stateParams.userId,
                 category: $stateParams.category
             });
@@ -82,21 +89,6 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
             else
                 $scope.currentPage = 0;
         }
-        
-        $scope.findEventsByUser = function() {
-
-            $scope.userEvents = Events.query({
-                userId: $stateParams.userId
-            });
-        };
-
-        $scope.findEventsByCategory = function() {
-            $scope.category = $stateParams.category;
-            $scope.categoryEvents = Events.query({
-                limit:20,
-                category: $stateParams.category
-            });
-        };
 
 		// Find existing Event
 		$scope.findOne = function() {

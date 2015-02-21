@@ -1,9 +1,9 @@
-<section data-ng-controller="EventsController" data-ng-init="findEventsByCategory()" class="container">
+<section data-ng-controller="EventsController" data-ng-init="find(currentPage)" class="container">
     <div class="page-header">
         <h1>{{category}} Events</h1>
         <h4>Categories: <a ng-href = "#!/events/category/{{category}}" class = "label label-default category-label" ng-repeat = "category in categoriesList">{{category}}</a></h4>
     </div>
-    <div data-ng-repeat="(key, eventgroup) in categoryEvents | groupByDate: 'datetime_start'" data-ng-href="#!/events/{{event._id}}" class="list-group">
+    <div data-ng-repeat="(key, eventgroup) in events | groupByDate: 'datetime_start'" data-ng-href="#!/events/{{event._id}}" class="list-group">
         <div>
             <h3>{{eventgroup[0].displayDate| date:"EEEE, MMMM dd"}}</h3>
         </div>
@@ -24,11 +24,12 @@
     </div>
 
 
-    <div class="alert alert-warning text-center" data-ng-hide="categoryEvents.length">
+    <div class="alert alert-warning text-center" data-ng-hide="events.length || currentPage">
         There are no events in this category!
     </div>
-    <div class = "pagination" data-ng-show="categoryEvents.length">
-        <button ng-click="prevPage()">Previous Page</button>
-        <button ng-click="nextPage()">Next Page</button>
+    <div class="pagination">
+        <button ng-click="prevPage()" data-ng-show="currentPage">Previous Page</button>
+        <span data-ng-show="currentPage || eventsNextPage.length">Page {{currentPage + 1}}</span>
+        <button ng-click="nextPage()" data-ng-show="eventsNextPage.length">Next Page</button>
     </div>
 </section>

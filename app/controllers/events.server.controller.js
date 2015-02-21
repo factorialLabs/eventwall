@@ -107,7 +107,12 @@ exports.getCategories = function(req, res, next) {
  * Events by a certain user.
  */
 exports.getEventsByUser = function (req, res){
-    Event.find().where('user').equals(req.query.userId).sort('datetime_start').populate('user', 'displayName').exec(function (err, events){
+    Event.find().where('user').equals(req.query.userId)
+    .skip(req.query.page*req.query.limit) //current page
+    .limit(req.query.limit)
+    .sort('datetime_start')
+    .populate('user', 'displayName')
+    .exec(function (err, events){
         if (err) {
             return res.status(400).send({
                 message: errorHandler.getErrorMessage(err)
@@ -129,6 +134,8 @@ exports.getEventsByCategory = function (req, res){
     .sort('datetime_start')
     .populate('user', 'displayName')
     .exec(function (err, events){
+        console.log(err);
+        console.log(events);
             if (err) {
                 return res.status(400).send({
                     message: errorHandler.getErrorMessage(err)
@@ -151,15 +158,15 @@ exports.list = function(req, res) {
         //console.log("found ", userId);
         page = req.query.num;
     }
-
+    //console.log(req.query);
     //If the query specifies a userID, call getEventsByUser()
     if (req.query.userId != null){
-        //console.log("found ", userId);
+        //console.log("found ", req.query.userId);
         exports.getEventsByUser(req, res);   
     }
     //If the query specifies a category, call getEventsByUser()
     else if (req.query.category != null){
-        //console.log("found ", category);
+        //console.log("found ", req.query.category);
         exports.getEventsByCategory(req, res);
     }
     //Returns list of all events.

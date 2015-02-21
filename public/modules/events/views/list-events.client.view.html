@@ -24,13 +24,13 @@
     </div>
 
 
-    <div class="alert alert-warning text-center" data-ng-hide="!events.$resolved || events.length">
+    <div class="alert alert-warning text-center" data-ng-hide="events.length || currentPage">
         No events yet, why don't you <a href="/#!/events/create">create one</a>?
     </div>
-    <div class="pagination" data-ng-show="events.length">
-        <button ng-click="prevPage()">Previous Page</button>
-        <span>Page {{currentPage + 1}}</span>
-        <button ng-click="nextPage()">Next Page</button>
+    <div class="pagination">
+        <button ng-click="prevPage()" data-ng-show="currentPage">Previous Page</button>
+        <span data-ng-show="currentPage || eventsNextPage.length">Page {{currentPage + 1}}</span>
+        <button ng-click="nextPage()" data-ng-show="eventsNextPage.length">Next Page</button>
     </div>
 
 </section>

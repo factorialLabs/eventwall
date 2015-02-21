@@ -1,8 +1,8 @@
-<section data-ng-controller="EventsController" data-ng-init="findEventsByUser()" class="container">
-    <div class="page-header" data-ng-show="userEvents.length">
-        <h1>{{userEvents[0].user.displayName}}'s Events</h1>
+<section data-ng-controller="EventsController" data-ng-init="find(currentPage)" class="container">
+    <div class="page-header" data-ng-show="events.length">
+        <h1>{{events[0].user.displayName}}'s Events</h1>
     </div>
-    <div data-ng-repeat="(key, eventgroup) in userEvents | groupByDate: 'datetime_start'" data-ng-href="#!/events/{{event._id}}" class="list-group">
+    <div data-ng-repeat="(key, eventgroup) in events | groupByDate: 'datetime_start'" data-ng-href="#!/events/{{event._id}}" class="list-group">
         <div>
             <h3>{{eventgroup[0].displayDate | date:"EEEE, MMMM dd"}}</h3>
         </div>
@@ -23,11 +23,12 @@
     </div>
 
 
-    <div class="alert alert-warning user-no-events" data-ng-hide="userEvents.length">
+    <div class="alert alert-warning text-center" data-ng-hide="events.length || currentPage">
         This user hasn't made any events!
     </div>
-    <div class = "pagination" data-ng-show="userEvents.length">
-        <button ng-click="prevPage()">Previous Page</button>
-        <button ng-click="nextPage()">Next Page</button>
+    <div class="pagination">
+        <button ng-click="prevPage()" data-ng-show="currentPage">Previous Page</button>
+        <span data-ng-show="currentPage || eventsNextPage.length">Page {{currentPage + 1}}</span>
+        <button ng-click="nextPage()" data-ng-show="eventsNextPage.length">Next Page</button>
     </div>
 </section>
