@@ -30,7 +30,7 @@ exports.update = function(req, res) {
         }
         
         
-        var emailRegExp = new RegExp("[A-Za-z0-9._%+-]+@uwaterloo.ca$");
+        var emailRegExp = new RegExp('[A-Za-z0-9._%+-]+@uwaterloo.ca$');
         if (emailRegExp.test(user.email)){
             user.verified = true;
         }

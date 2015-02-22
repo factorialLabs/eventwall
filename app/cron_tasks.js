@@ -15,25 +15,25 @@ module.exports.schedule = function(mongoose){
     }, true, "America/Los_Angeles");
 };
 module.exports.run = function(mongoose){
-    //Import FEDS events
-    var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+
     var Event = mongoose.model('Event');
     var User = mongoose.model('User');
 
 
     async.waterfall([
+        //Import FEDS events
         //Find FEDS user
         function (callback){
             User.findOne({_id: "54c43cd2b882706028fb8b13"})
             .populate('postedBy')
             .exec(function(err, user) {
-                callback(null,user);
+                callback(null, user);
             });
         },
         //Remove all old FEDS events
-        function(fUser, callback){
-            Event.find({user: fUser}).remove().exec(function(err,events){
-                callback(null, fUser);
+        function(fedsUser, callback){
+            Event.find({user: fedsUser}).remove().exec(function(err,events){
+                callback(null, fedsUser);
             });
         },
         //Add events from FEDS ical
@@ -45,8 +45,9 @@ module.exports.run = function(mongoose){
                 for (var k in data){
                     if (data.hasOwnProperty(k)) {
                         var ev = data[k];
-                        if(ev.location == null) ev.location = "TBD";
-                        if(ev.organizer == null){
+                        if (ev.location === ''|| ev.location === null || ev.location === undefined) ev.location = "TBD";
+
+                        if(ev.organizer === null || ev.organizer === undefined || ev.organizer === ''){
                             ev.organizer = "FEDS";
                         }
                         else{
@@ -67,13 +68,11 @@ module.exports.run = function(mongoose){
                             organizer: ev.organizer
                         }));
                         }
-
                     }
                 }
 
-                //var event = new Event(req.body);
                 Event.create(events, function (err) {
-                    if (err) // ...
+                    if (err)
                     {
                         console.log(err);
                     }
@@ -86,29 +85,29 @@ module.exports.run = function(mongoose){
             User.findOne({_id: "54c4216768e34fd41d38fba2"})
             .populate('postedBy')
             .exec(function(err, user) {
-                callback(null,user);
+                callback(null, user);
             });
         },
-        //Remove all old FEDS events
-        function(fUser, callback){
-            Event.find({user: fUser}).remove().exec(function(err,events){
-                callback(null, fUser);
+        //Remove all old EngSoc events
+        function(engsocUser, callback){
+            Event.find({user: engsocUser}).remove().exec(function(err,events){
+                callback(null, engsocUser);
             });
         },
         //Add events from EngSoc
-        function (user,callback){
+        function (user, callback){
             ical.fromURL("https://www.google.com/calendar/ical/um08n4cml235750sucn1vmgqd0%40group.calendar.google.com/public/basic.ics", {}, function(err, data) {
-                //console.log(data);
+
                 var events = [];
 
                 for (var k in data){
                     if (data.hasOwnProperty(k)) {
                         var ev = data[k];
-                        if(ev.location == null) ev.location = "TBD";
-                        if(ev.summary == null) ev.summary = "TBD";
-                        if(ev.organizer == null) ev.organizer = "EngSoc";
+                        if (ev.location === ''|| ev.location === null || ev.location === undefined) ev.location = "TBD";
+                        if(ev.summary === null) ev.summary = "TBD";
+                        if(ev.organizer === null || ev.organizer === undefined || ev.organizer === '') ev.organizer = "EngSoc";
 
-                        if (new Date(ev.end) > new Date()){
+                        if (new Date(ev.end) > new Date() && ev.summary.indexOf('Hell Week') === -1){
                             events.push(new Event({
                                 name: ev.summary,
                                 category: "EngSoc",
@@ -126,9 +125,8 @@ module.exports.run = function(mongoose){
                     }
                 }
 
-                //var event = new Event(req.body);
                 Event.create(events, function (err) {
-                    if (err) // ...
+                    if (err)
                     {
                         console.log(err);
                     }
@@ -145,25 +143,27 @@ module.exports.run = function(mongoose){
             });
         },
         //Remove all old CECA events
-        function(fUser, callback){
-            Event.find({user: fUser}).remove().exec(function(err,events){
-                callback(null, fUser);
+        function(cecaUser, callback){
+            Event.find({user: cecaUser}).remove().exec(function(err,events){
+                callback(null, cecaUser);
             });
         },
         function (user, callback) {
             uwapi.termsInfosessions({term_id:1151}).then(function (session) { // 1151 - Winter 2015; 1155 - Spring 2015
-                //console.log(session);
+
                 var events = [];
 
                 for (var k in session){
                     if (session.hasOwnProperty(k)) {
+
                         var ev = session[k];
-                        // If description isn't provided, put the relevant programs in place.
-                        if (ev.description === ''|| ev.description === null) ev.description = ev.employer + " is looking for students from: " + ev.programs;
-                        if (ev.location == ''|| ev.location == null || ev.location == undefined) ev.location = "TBD";
                         ev.startTime = new Date(ev.date + ' ' + ev.start_time);
                         ev.endTime = new Date(ev.date + ' ' + ev.end_time);
-                        if (ev.employer !== "Closed info session" && ev.endTime > new Date() && ev.employer.indexOf('CANCELLED') == -1){
+
+                        // If description isn't provided, put the relevant programs in place.
+                        if (ev.description === ''|| ev.description === null) ev.description = ev.employer + " is looking for students from: " + ev.programs;
+                        if (ev.location === ''|| ev.location === null || ev.location === undefined) ev.location = "TBD";
+                        if (ev.employer !== "Closed info session" && ev.endTime > new Date() && ev.employer.indexOf('CANCELLED') === -1){
 
                             events.push(new Event({
                                 name: ev.employer + " Info Session",
@@ -181,10 +181,9 @@ module.exports.run = function(mongoose){
                         }
                     }
                 }
-                //console.log(events);
-                //var event = new Event(req.body);
+
                 Event.create(events, function (err) {
-                    if (err) // ...
+                    if (err)
                     {
                         console.log(err);
                     }

@@ -15,12 +15,14 @@ exports.create = function(req, res) {
 	var event = new Event(req.body);
 	event.user = req.user;
 
+    // Returns 401 error if the user is unverified.
     if (!req.user.verified){
         return res.status(401).send({
             message: "You need to be verified to create events!"
         });
     }
 
+    // Sets default thumbnail for the homepage if one isn't provided.
     if (event.thumbnail == null){
         if (event.category == 'FEDS'){
             event.thumbnail = 'http://www.feds.ca/wp-content/themes/waterloofeds/images/logo.png';
@@ -30,6 +32,12 @@ exports.create = function(req, res) {
         }
     }
 
+    // If no organizer's entered, set the organizer to the user's display name.
+    if (event.organizer === '' || event.organizer === null){
+        event.organizer = req.user.displayName;
+    }
+
+    // And let's save the event!
 	event.save(function(err) {
 		if (err) {
 			return res.status(400).send({
@@ -160,22 +168,12 @@ exports.getEventsByCategory = function (req, res){
  * List of Events
  */
 exports.list = function(req, res) {
-    var num = 0;
-    var limit = 20;
-    //Pagination support
-    if (req.query.num != null){
-        //console.log("found ", userId);
-        page = req.query.num;
-    }
-    //console.log(req.query);
     //If the query specifies a userID, call getEventsByUser()
     if (req.query.userId != null){
-        //console.log("found ", req.query.userId);
         exports.getEventsByUser(req, res);   
     }
-    //If the query specifies a category, call getEventsByUser()
+    //If the query specifies a category, call getEventsByCategory()
     else if (req.query.category != null){
-        //console.log("found ", req.query.category);
         exports.getEventsByCategory(req, res);
     }
     //Returns list of all events.
@@ -194,6 +192,4 @@ exports.list = function(req, res) {
 		}
 	});
     }
-    
-	
 };

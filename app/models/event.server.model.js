@@ -65,11 +65,4 @@ var EventSchema = new Schema({
     }
 });
 
-EventSchema.pre('save', function(next){
-    var event = this;
-    if (!event.organizer){
-        event.organizer = event.user.displayName;
-    }
-    next();
-});
 mongoose.model('Event', EventSchema);

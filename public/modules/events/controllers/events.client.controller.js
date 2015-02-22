@@ -6,12 +6,18 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
 		$scope.authentication = Authentication;
         $scope.currentPage = 0;
         
+        //Get list of category enums
+        $http.get('/categories').
+          success(function(data, status, headers, config) {
+            $scope.categoriesList = data;
+          }).
+          error(function(data, status, headers, config) {
+        });
+
+
 		// Create new Event
 		$scope.create = function() {
-			// Create new Event object
-            if (this.organizer == '' || this.organizer == null){
-                this.organizer = $scope.authentication.user.displayName;
-            }
+
 			var event = new Events ({
 				name: this.name,
                 location: this.location,
@@ -23,7 +29,7 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
                 organizer: this.organizer
 			});
 
-			// Redirect after save
+			// Redirect to the created event after save
 			event.$save(function(response) {
 				$location.path('events/' + response._id);
 
@@ -54,8 +60,11 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
 		// Update existing Event
 		$scope.update = function() {
 			var event = $scope.event;
+
+            // Set the edited time to now.
             event.edited = new Date();
 
+            //Redirect to updated event.
 			event.$update(function() {
 				$location.path('events/' + event._id);
 			}, function(errorResponse) {
@@ -65,30 +74,42 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
 
 		// Find a list of Events
 		$scope.find = function(page) {
+            $scope.category = $stateParams.category;
 
-			$scope.events = Events.query({
-                limit: 20,
-                page: page,
-                userId: $stateParams.userId,
-                category: $stateParams.category
-            });
+            // If first page, fetch data.
+            if (page === 0){
+                $scope.events = Events.query({
+                    limit: 20,
+                    page: page,
+                    userId: $stateParams.userId,
+                    category: $stateParams.category
+                });
+            }
+            // If not first page, use prefetched data.
+            else{
+                $scope.events = $scope.eventsNextPage;
+            }
+
+            //Prefetches events on the next page, for pagination.
             $scope.eventsNextPage = Events.query({
                 limit: 20,
                 page: page+1,
                 userId: $stateParams.userId,
                 category: $stateParams.category
             });
-            //console.log($scope.events);
 		};
+
+        //Helper methods for pagination
         $scope.nextPage = function(){
             $scope.find(++$scope.currentPage);
-        }
+        };
+
         $scope.prevPage = function(){
             if(--$scope.currentPage >= 0)
                 $scope.find($scope.currentPage);
             else
                 $scope.currentPage = 0;
-        }
+        };
 
 		// Find existing Event
 		$scope.findOne = function() {
@@ -96,20 +117,13 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
 				eventId: $stateParams.eventId
 			});
 		};
+
         $scope.open = function($event) {
             $event.preventDefault();
             $event.stopPropagation();
 
             $scope.opened = true;
         };
-
-        //Get list of category enums
-        $http.get('/categories').
-          success(function(data, status, headers, config) {
-            $scope.categoriesList = data;
-          }).
-          error(function(data, status, headers, config) {
-        });
 
         //Parses date from a datetime string
         $scope.parseDate = function(datetime){
@@ -137,25 +151,30 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
        * groupByDate function
        * @param collection - promise containing an array of unordered events
        * @param getter - a function that returns the date property of an event.
-       * @returns {{}}
+       * @returns sorted by datetime_start: {{date1:[event1, event2], date2:[event3, event4], ...}}
        */
 
-        //console.log(collection);
       function _groupByDate(collection, getter) {
         var result = {};
         var prop;
 
+        // Puts each event into a JSON object with:
+        // keys - Dates
+        // values - array of events that occurs on the day as indicated in the key.
         angular.forEach( collection, function( element ) {
 
-            //Grouping
+            //If the event is multi-day and the start date is earlier than today, set the date/displayDate as today for grouping.
             if (new Date(element.datetime_start) < new Date()){
                 element.date = new Date().toLocaleDateString();
                 element.displayDate = new Date();
             }
+            //Otherwise we'll set date/displayDate as the event's start date.
             else{
                 element.date = new Date(element.datetime_start).toLocaleDateString();
                 element.displayDate = new Date(element.datetime_start);
             }
+
+            // In order to get the date format into MM/DD/YYYY, we pad extra 0s.
 
             // Pad 0 before month
             if (element.date.indexOf('/') === 1){
@@ -176,11 +195,9 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
             //Pushes the current event onto the correct date in the array.
           result[prop].push(element);
         });
-          result = sortObjectByKey(result);
 
-
-        return result;
-
+          // Sort the object chronologically by keyand return
+          return sortObjectByKey(result);
       }
 
         // Invalid collection or property, returns the collection.
@@ -196,6 +213,7 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
     };
  }]);
 
+// Sorts the object by key.
 var sortObjectByKey = function(object){
     var keys = [];
     var sorted = {};
