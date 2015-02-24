@@ -1,206 +1,161 @@
 /*General Stuff */
-body {
-    font-family: "Raleway","Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif;
-     font-weight: 400;
-}
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-family: "Raleway","Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-weight: 400;
+body, h1, h2, h3, h4, h5, h6 {
+  font-family: "Raleway", "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 400; }
 
-}
-yellow{
-    color:fcd446;
-}
+yellow {
+  color: #fcd446; }
+
 .content {
-    margin-top: 50px;
-}
+  margin-top: 50px; }
+
 .undecorated-link:hover {
-    text-decoration: none;
-}
+  text-decoration: none; }
+
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
-    display: none !important;
-}
+  display: none !important; }
+
 .ng-invalid.ng-dirty {
-    border-color: #FA787E;
-}
+  border-color: #FA787E; }
+
 .ng-valid.ng-dirty {
-    border-color: #78FA89;
-}
+  border-color: #78FA89; }
 
-.jumbotron{
-    height: 80vh;
-    /*Temporary image*/
-    background: url("../img/waterloo-campus.jpg") no-repeat center center;
-    background-size: cover;
-    -o-background-size: cover;
-}
+.jumbotron {
+  height: 80vh;
+  /*Temporary image*/
+  background: url("../img/waterloo-campus.jpg") no-repeat center center;
+  background-size: cover;
+  -o-background-size: cover; }
 
-.jumbotron a.btn{
-    background-color: #fafafa;
-    color: black;
-    border: 1px solid black;
-}
+.jumbotron a.btn {
+  background-color: #fafafa;
+  color: black;
+  border: 1px solid black; }
 
-.jumbotron a.btn:hover{
-    background-color: black;
-    color: white;
-    border: 1px solid white;
-}
+.jumbotron a.btn:hover {
+  background-color: black;
+  color: white;
+  border: 1px solid white; }
 
-.jumbotron h1{
-    color: white;
-    font-size: 63px;
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-}
-
-
+.jumbotron h1 {
+  color: white;
+  font-size: 63px;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; }
 
 /*Grid setup*/
 .deckgrid[deckgrid]::before {
-    /* Specifies that the grid should have a maximum of 4 columns. Each column will have the classes 'column' and 'column-1-4' */
-    content: '4 .column.column-1-4';
-    font-size: 0; /* See https://github.com/akoenig/angular-deckgrid/issues/14#issuecomment-35728861 */
-    visibility: hidden;
-}
+  /* Specifies that the grid should have a maximum of 4 columns. Each column will have the classes 'column' and 'column-1-4' */
+  content: '4 .column.column-1-4';
+  font-size: 0;
+  /* See https://github.com/akoenig/angular-deckgrid/issues/14#issuecomment-35728861 */
+  visibility: hidden; }
 
 .deckgrid .column {
-    float: left;
-}
+  float: left; }
 
 .deckgrid .column-1-4 {
-    width: 25%;
-}
+  width: 25%; }
 
-a:hover, a:focus, a:active{
-    text-decoration: none;
-}
+a:hover, a:focus, a:active {
+  text-decoration: none; }
 
 .btn {
-    border-radius: 0;
-    
-}
-
-.btn-primary{
-    background-color: #212121;
-}
+  border-radius: 0; }
+  .btn.btn-primary {
+    background-color: #212121; }
 
 /* Navbar stuff. */
-.navbar{
-    border-radius: 0;
-    background-color:#212121;
-    border: 0;
-}
+.navbar {
+  border-radius: 0;
+  background-color: #212121;
+  border: 0; }
 
 /* Events Dropdown */
-nav ul.nav{
-    cursor: pointer;
-}
+nav ul.nav {
+  cursor: pointer; }
 
 /* Navbar button on mobile. */
-button.navbar .container .navbar-headernavbar-toggle, .navbar .container .navbar-header .navbar-toggle:focus{
-    background-color: #212121;
-    color: #FFFFFF;
-    border-radius: 0;
-}
-.navbar .container .navbar-header .navbar-toggle:hover{
-    background-color: #212121;
-}
+button.navbar .container .navbar-headernavbar-toggle, .navbar .container .navbar-header .navbar-toggle:focus {
+  background-color: #212121;
+  color: #FFFFFF;
+  border-radius: 0; }
 
-.navbar .container .navbar-header .navbar-toggle .icon-bar{
-    background-color: #FFFFFF;
-    border-radius: 0;
-}
+.navbar .container .navbar-header .navbar-toggle:hover {
+  background-color: #212121; }
 
-.navbar .container .navbar-header .navbar-collapse{
-    border: none;
-}
+.navbar .container .navbar-header .navbar-toggle .icon-bar {
+  background-color: #FFFFFF;
+  border-radius: 0; }
+
+.navbar .container .navbar-header .navbar-collapse {
+  border: none; }
 
 /*Dropdown*/
 .nav .open > a:hover, .nav .open > a:focus {
-    background-color: #212121;  
-    color: #FFFFFF;
-}  
+  background-color: #212121;
+  color: #FFFFFF; }
 
-.dropdown-menu{
-    background-color: #212121;  
-    border: 0;
-}
+.dropdown-menu {
+  background-color: #212121;
+  border: 0; }
 
 /*Branding */
-.navbar .container .navbar-header .navbar-brand{
-    color: #FFFFFF;
-    font-size: 1.4em;
-}
-.navbar .container .navbar-header .navbar-brand:hover{
-    color: #fcd446;
-}
+.navbar .container .navbar-header .navbar-brand {
+  color: #FFFFFF;
+  font-size: 1.4em; }
+
+.navbar .container .navbar-header .navbar-brand:hover {
+  color: #fcd446; }
 
 /* Links */
-.navbar .container .navbar-collapse .navbar-nav li a{
-    background-color: #212121; 
-    color: #FFFFFF;
-    font-size: 1.1em;
-}
+.navbar .container .navbar-collapse .navbar-nav li a {
+  background-color: #212121;
+  color: #FFFFFF;
+  font-size: 1.1em; }
 
-.navbar .container .navbar-collapse .navbar-nav li a:hover{
-    color: #fcd446;  
-}
+.navbar .container .navbar-collapse .navbar-nav li a:hover {
+  color: #fcd446; }
+
 .dropdown-menu li > a:hover, .dropdown-menu li > a:focus, .dropdown-submenu:hover > a {
-    background-image: none;
-    background-color: #fcd446;
-}
+  background-image: none;
+  background-color: #fcd446; }
+
 /* END OF NAVBAR CSS */
-
 /* header */
-
-.header h1{
-    color: #FFFFFF;
-}
-.header h3{
-    color: #FFFFFF;
-}
+.header h1, .header h3 {
+  color: #FFFFFF; }
 
 /* upcoming */
-
 /* CARDS */
 .card {
-    padding-top: 0;
-    margin: 20px;
-    background-color: #ffffff;
-    border: 1px solid #d8d8d8;
-    border-top-width: 0;
-    border-bottom-width: 2px;
-    border-radius: 3px;
-    box-shadow: none;
-    box-sizing: border-box;
-}
-.card .infobox{
-    padding:10px;
-}
-.img{
-    width: 100%;
-    height:auto;
-}
+  padding-top: 0;
+  margin: 20px;
+  background-color: #ffffff;
+  border: 1px solid #d8d8d8;
+  border-top-width: 0;
+  border-bottom-width: 2px;
+  border-radius: 3px;
+  box-shadow: none;
+  box-sizing: border-box; }
+  .card .infobox {
+    padding: 10px; }
 
-.love{
-    text-align: center;
-    color: grey;
-}
+.img {
+  width: 100%;
+  height: auto; }
 
-.category-label{
-    margin-right: 5px;
-}
+.love {
+  text-align: center;
+  color: grey; }
 
-label{
-    padding-bottom: 5px;
-}
+.category-label {
+  margin-right: 5px; }
 
-.description{
-    white-space:pre-wrap;
-}
+label {
+  padding-bottom: 5px; }
 
+.description {
+  white-space: pre-wrap; }
+
+/*# sourceMappingURL=core.css.map */

@@ -1,0 +1,30 @@
+@media (min-width: 992px) {
+	.nav-users {
+		position: fixed;
+	}
+}
+.remove-account-container {
+	display: inline-block;
+	position: relative;
+}
+
+.container-fluid{
+    text-align: center;
+}
+.btn-remove-account {
+	top: 10px;
+	right: 10px;
+	position: absolute;
+}
+
+.original-landing, .continue{
+    text-align: center;
+}
+
+.original-landing h1{
+    font-size: 5rem;
+}
+
+.invalid-email-warning{
+    padding: 10px;
+}

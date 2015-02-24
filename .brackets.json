@@ -1,0 +1,35 @@
+{
+    "sass.enabled": false,
+    "path": {
+        "public/modules/core/scss/core.scss": {
+            "sass.enabled": true,
+            "sass.options": {
+                "outputDir": "../css/",
+                "sourceComments": false,
+                "outputStyle": "nested"
+            },
+            "linting.collapsed": false,
+            "fonts.fontSize": "16px"
+        },
+        "public/modules/events/scss/event.scss": {
+            "sass.enabled": true,
+            "sass.options": {
+                "outputDir": "../css/",
+                "sourceComments": false,
+                "outputStyle": "nested"
+            },
+            "linting.collapsed": false,
+            "fonts.fontSize": "16px"
+        },
+        "public/modules/users/scss/users.scss": {
+            "sass.enabled": true,
+            "sass.options": {
+                "outputDir": "../css/",
+                "sourceComments": false,
+                "outputStyle": "nested"
+            },
+            "linting.collapsed": false,
+            "fonts.fontSize": "16px"
+        }
+    }
+}

@@ -19,6 +19,7 @@ After cloning this repo, you need:
 * MongoDB
 * Bower, using `$ npm install -g bower`
 * Grunt, install using `$ sudo npm install -g grunt-cli`
+* Brackets with Brackets SASS for SCSS.
 
 When all that is setup, install node.js dependencies:
 ``` $ npm install ```
