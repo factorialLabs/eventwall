@@ -1,6 +1,7 @@
 EventWall Alpha
 ==========
 [![Build Status](https://travis-ci.org/icechen1/campuswall.svg?branch=master)](https://travis-ci.org/icechen1/campuswall)
+[![Dependencies](https://david-dm.org/icechen1/campuswall.svg)](https://david-dm.org/icechen1/campuswall)
 
 Note that EventWall is currently in the Alpha stage and that it can be buggy at times.
 

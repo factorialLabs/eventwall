@@ -1,0 +1,73 @@
+/* Homepage Content - 'home.client.view.html' */
+.jumbotron{
+    height: 80vh;
+    /*Temporary image*/
+    background: url("../img/waterloo-campus.jpg") no-repeat center center;
+    background-size: cover;
+    -o-background-size: cover;
+
+    a.btn{
+        background-color: #fafafa;
+        color: black;
+        border: 1px solid black;
+
+        &:hover{
+            background-color: black;
+            color: white;
+            border: 1px solid white;
+        }
+    }
+
+    h1{
+        color: #FFFFFF;
+        font-size: 63px;
+        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    }
+    h3{
+        color: #FFFFFF;
+    }
+    yellow{
+        color: #fcd446;
+    }
+}
+
+/*Grid setup*/
+.deckgrid[deckgrid]::before {
+    /* Specifies that the grid should have a maximum of 4 columns. Each column will have the classes 'column' and 'column-1-4' */
+    content: '4 .column.column-1-4';
+    font-size: 0; /* See https://github.com/akoenig/angular-deckgrid/issues/14#issuecomment-35728861 */
+    visibility: hidden;
+}
+
+.deckgrid{
+    .column{
+        float: left;
+    }
+
+    .column-1-4{
+        width: 25%;
+    }
+}
+
+/* CARDS */
+.card {
+    padding-top: 0;
+    margin: 20px;
+    background-color: #ffffff;
+    border: 1px solid #d8d8d8;
+    border-top-width: 0;
+    border-bottom-width: 2px;
+    border-radius: 3px;
+    box-shadow: none;
+    box-sizing: border-box;
+
+    .infobox{
+        padding: 10px;
+        text-align: center;
+    }
+
+    img{
+        width: 100%;
+        height:auto;
+    }
+}

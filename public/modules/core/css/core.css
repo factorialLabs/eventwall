@@ -1,47 +1,49 @@
-/*General Stuff */
+/* General Content */
 body, h1, h2, h3, h4, h5, h6 {
   font-family: "Raleway", "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 400; }
 
-yellow {
-  color: #fcd446; }
-
-.content {
-  margin-top: 50px; }
-
-.undecorated-link:hover {
+a:hover, a:focus, a:active {
   text-decoration: none; }
 
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important; }
 
-.ng-invalid.ng-dirty {
+.ng-dirty.ng-invalid {
   border-color: #FA787E; }
-
-.ng-valid.ng-dirty {
+.ng-dirty.ng-valid {
   border-color: #78FA89; }
 
+.love {
+  text-align: center;
+  color: grey; }
+
+.content {
+  margin-top: 50px; }
+
+/* Homepage Content - 'home.client.view.html' */
 .jumbotron {
   height: 80vh;
   /*Temporary image*/
   background: url("../img/waterloo-campus.jpg") no-repeat center center;
   background-size: cover;
   -o-background-size: cover; }
-
-.jumbotron a.btn {
-  background-color: #fafafa;
-  color: black;
-  border: 1px solid black; }
-
-.jumbotron a.btn:hover {
-  background-color: black;
-  color: white;
-  border: 1px solid white; }
-
-.jumbotron h1 {
-  color: white;
-  font-size: 63px;
-  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; }
+  .jumbotron a.btn {
+    background-color: #fafafa;
+    color: black;
+    border: 1px solid black; }
+    .jumbotron a.btn:hover {
+      background-color: black;
+      color: white;
+      border: 1px solid white; }
+  .jumbotron h1 {
+    color: #FFFFFF;
+    font-size: 63px;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; }
+  .jumbotron h3 {
+    color: #FFFFFF; }
+  .jumbotron yellow {
+    color: #fcd446; }
 
 /*Grid setup*/
 .deckgrid[deckgrid]::before {
@@ -53,19 +55,28 @@ yellow {
 
 .deckgrid .column {
   float: left; }
-
 .deckgrid .column-1-4 {
   width: 25%; }
 
-a:hover, a:focus, a:active {
-  text-decoration: none; }
+/* CARDS */
+.card {
+  padding-top: 0;
+  margin: 20px;
+  background-color: #ffffff;
+  border: 1px solid #d8d8d8;
+  border-top-width: 0;
+  border-bottom-width: 2px;
+  border-radius: 3px;
+  box-shadow: none;
+  box-sizing: border-box; }
+  .card .infobox {
+    padding: 10px;
+    text-align: center; }
+  .card img {
+    width: 100%;
+    height: auto; }
 
-.btn {
-  border-radius: 0; }
-  .btn.btn-primary {
-    background-color: #212121; }
-
-/* Navbar stuff. */
+/* Navbar Content - 'header.client.view.html' */
 .navbar {
   border-radius: 0;
   background-color: #212121;
@@ -122,40 +133,4 @@ button.navbar .container .navbar-headernavbar-toggle, .navbar .container .navbar
   background-color: #fcd446; }
 
 /* END OF NAVBAR CSS */
-/* header */
-.header h1, .header h3 {
-  color: #FFFFFF; }
-
-/* upcoming */
-/* CARDS */
-.card {
-  padding-top: 0;
-  margin: 20px;
-  background-color: #ffffff;
-  border: 1px solid #d8d8d8;
-  border-top-width: 0;
-  border-bottom-width: 2px;
-  border-radius: 3px;
-  box-shadow: none;
-  box-sizing: border-box; }
-  .card .infobox {
-    padding: 10px; }
-
-.img {
-  width: 100%;
-  height: auto; }
-
-.love {
-  text-align: center;
-  color: grey; }
-
-.category-label {
-  margin-right: 5px; }
-
-label {
-  padding-bottom: 5px; }
-
-.description {
-  white-space: pre-wrap; }
-
 /*# sourceMappingURL=core.css.map */

@@ -2,4 +2,18 @@
   margin-top: 60px;
   text-align: center; }
 
+.category-label {
+  margin-right: 5px; }
+
+label.category-label {
+  padding-bottom: 5px; }
+
+.btn {
+  border-radius: 0; }
+  .btn.btn-primary {
+    background-color: #212121; }
+
+p.description {
+  white-space: pre-wrap; }
+
 /*# sourceMappingURL=event.css.map */

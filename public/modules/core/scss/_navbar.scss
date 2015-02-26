@@ -1,0 +1,75 @@
+/* Navbar Content - 'header.client.view.html' */
+
+.navbar{
+    border-radius: 0;
+    background-color:#212121;
+    border: 0;
+}
+
+/* Events Dropdown */
+nav{
+    ul.nav{
+        cursor: pointer;
+    }
+}
+
+.navbar-header{
+
+}
+/* Navbar button on mobile. */
+button.navbar .container .navbar-headernavbar-toggle, .navbar .container .navbar-header .navbar-toggle:focus{
+    background-color: #212121;
+    color: #FFFFFF;
+    border-radius: 0;
+}
+
+.navbar .container .navbar-header .navbar-toggle:hover{
+    background-color: #212121;
+}
+
+.navbar .container .navbar-header .navbar-toggle .icon-bar{
+    background-color: #FFFFFF;
+    border-radius: 0;
+}
+
+.navbar .container .navbar-header .navbar-collapse{
+    border: none;
+}
+
+/*Dropdown*/
+.nav .open > a:hover, .nav .open > a:focus {
+    background-color: #212121;
+    color: #FFFFFF;
+}
+
+.dropdown-menu{
+    background-color: #212121;
+    border: 0;
+}
+
+/*Branding */
+.navbar .container .navbar-header .navbar-brand{
+    color: #FFFFFF;
+    font-size: 1.4em;
+}
+
+.navbar .container .navbar-header .navbar-brand:hover{
+    color: #fcd446;
+}
+
+/* Links */
+.navbar .container .navbar-collapse .navbar-nav li a{
+    background-color: #212121;
+    color: #FFFFFF;
+    font-size: 1.1em;
+}
+
+.navbar .container .navbar-collapse .navbar-nav li a:hover{
+    color: #fcd446;
+}
+
+.dropdown-menu li > a:hover, .dropdown-menu li > a:focus, .dropdown-submenu:hover > a {
+    background-image: none;
+    background-color: #fcd446;
+}
+/* END OF NAVBAR CSS */

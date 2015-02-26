@@ -1,0 +1,38 @@
+/* General Content */
+@mixin Raleway (){
+    font: {
+        family: "Raleway", "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        weight: 400;
+    }
+}
+
+body, h1, h2, h3, h4, h5, h6 {
+    @include Raleway;
+}
+
+
+a:hover, a:focus, a:active{
+    text-decoration: none;
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none !important;
+}
+
+.ng-dirty{
+    &.ng-invalid{
+        border-color: #FA787E;
+    }
+    &.ng-valid{
+        border-color: #78FA89;
+    }
+}
+
+.love{
+    text-align: center;
+    color: grey;
+}
+
+.content {
+    margin-top: 50px;
+}
