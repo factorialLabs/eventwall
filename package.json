@@ -1,7 +1,7 @@
 {
-  "name": "campuswall",
-  "description": "Collaborative event calendar",
-  "version": "0.0.1",
+  "name": "EventWall",
+  "description": "An collaborative event hub for students to discover and share events!",
+  "version": "0.1.0",
   "author": "CampusWall Team",
   "engines": {
     "node": "0.10.x",

@@ -1,7 +1,7 @@
 {
-  "name": "campuswall",
-  "version": "0.0.1",
-  "description": "Collaborative event calendar",
+  "name": "EventWall",
+  "version": "0.1.0",
+  "description": "An collaborative event hub for students to discover and share events!",
   "dependencies": {
     "bootstrap": "~3",
     "angular": "~1.3",

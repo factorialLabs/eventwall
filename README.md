@@ -22,7 +22,9 @@ After cloning this repo, you need:
 * Brackets with Brackets SASS for SCSS.
 
 When all that is setup, install node.js dependencies:
-``` $ npm install ```
+```
+$ npm install
+```
 
 To run EventWall:
 Ensure `mongod` is running on port 27017 (default)
@@ -52,3 +54,7 @@ module.exports = {
 and fill in the respective API keys for each website.
 
 Navigate to http://localhost:3000 in your browser.
+
+### SemVer
+
+Please use [Semantic Versioning](http://semver.org/) and update package.json and bower.json as required.
