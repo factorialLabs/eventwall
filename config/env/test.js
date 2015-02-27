@@ -7,28 +7,28 @@ module.exports = {
 		title: 'CampusWall - Test Environment'
 	},
 	facebook: {
-		clientID: process.env.FACEBOOK_ID || 'APP_ID',
-		clientSecret: process.env.FACEBOOK_SECRET || 'APP_SECRET',
+		clientID: process.env.FACEBOOK_ID || oauth.fbDevId,
+		clientSecret: process.env.FACEBOOK_SECRET || oauth.fbDevSecret,
 		callbackURL: '/auth/facebook/callback'
 	},
 	twitter: {
-		clientID: process.env.TWITTER_KEY || 'CONSUMER_KEY',
-		clientSecret: process.env.TWITTER_SECRET || 'CONSUMER_SECRET',
+		clientID: process.env.TWITTER_KEY || oauth.twitterDevId,
+		clientSecret: process.env.TWITTER_SECRET || oauth.twitterDevSecret,
 		callbackURL: '/auth/twitter/callback'
 	},
 	google: {
-		clientID: process.env.GOOGLE_ID || 'APP_ID',
-		clientSecret: process.env.GOOGLE_SECRET || 'APP_SECRET',
+		clientID: process.env.GOOGLE_ID || oauth.googleDevId,
+		clientSecret: process.env.GOOGLE_SECRET || oauth.googleDevSecret,
 		callbackURL: '/auth/google/callback'
 	},
 	linkedin: {
-		clientID: process.env.LINKEDIN_ID || 'APP_ID',
-		clientSecret: process.env.LINKEDIN_SECRET || 'APP_SECRET',
+		clientID: process.env.LINKEDIN_ID || oauth.linkedInDevId,
+		clientSecret: process.env.LINKEDIN_SECRET || oauth.linkedInDevSecret,
 		callbackURL: '/auth/linkedin/callback'
 	},
 	github: {
-		clientID: process.env.GITHUB_ID || 'APP_ID',
-		clientSecret: process.env.GITHUB_SECRET || 'APP_SECRET',
+		clientID: process.env.GITHUB_ID || oauth.gitDevId,
+		clientSecret: process.env.GITHUB_SECRET || oauth.gitDevSecret,
 		callbackURL: '/auth/github/callback'
 	},
 	mailer: {

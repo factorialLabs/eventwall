@@ -27,7 +27,6 @@ exports.signup = function(req, res) {
         user.displayName = user.navName;
     }
 
-
     // Then save the user 
     user.save(function(err) {
         if (err) {
@@ -89,6 +88,8 @@ exports.oauthCallback = function(strategy) {
         passport.authenticate(strategy, function(err, user, redirectURL) {
             console.log(err);
             console.log(user);
+
+            // If we get an error, or the user wasn't created, redirect to the sign in page.
             if (err || !user) {
                 return res.redirect('/#!/signin');
             }
@@ -113,6 +114,7 @@ exports.oauthCallback = function(strategy) {
  * Helper function to save or update a OAuth user profile
  */
 exports.saveOAuthUserProfile = function(req, providerUserProfile, done) {
+    // User is creating a new account.
     if (!req.user) {
 
         // Define a search query fields
@@ -153,10 +155,13 @@ exports.saveOAuthUserProfile = function(req, providerUserProfile, done) {
                             providerData: providerUserProfile.providerData
                         });
                         console.log(user);
+
+                        // Create first name from display name if it doesn't exist.
                         if (!user.firstName){
                             user.firstName= user.displayName.slice(0, user.displayName.indexOf(" "));
 
                         }
+                        // Create last name from display name if it doesn't exist.
                         if (!user.lastName){
                             user.lastName = user.displayName.slice(user.displayName.lastIndexOf(" ")+1);
                         }

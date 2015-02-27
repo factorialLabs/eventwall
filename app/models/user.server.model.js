@@ -11,7 +11,9 @@ var mongoose = require('mongoose'),
  * A Validation function for local strategy properties
  */
 var validateLocalStrategyProperty = function(property) {
-	return ((this.provider !== 'local' && !this.updated) || property.length);
+    if (property){
+        return ((this.provider !== 'local' && !this.updated) || property.length);
+    }
 };
 
 /**
@@ -48,8 +50,8 @@ var UserSchema = new Schema({
 	email: {
 		type: String,
 		trim: true,
-		default: '',
         unique: true,
+        sparse: true,
 		validate: [validateLocalStrategyProperty, 'Please fill a valid @uwaterloo.ca email address.'],
 		match: [/.+\@uwaterloo.ca+/, 'Please use a valid @uwaterloo.ca email address.']
 	},

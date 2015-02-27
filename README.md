@@ -39,8 +39,6 @@ Please create /config/env/oauth.js and put:
 module.exports = {
     fbId: '',
     fbSecret: '',
-    fbTestId: '',
-    fbTestSecret: '',
     twitterId: '',
     twitterSecret: '',
     googleId: '',
@@ -48,7 +46,17 @@ module.exports = {
     linkedInId: '',
     linkedInSecret: '',
     gitId: '',
-    gitSecret: ''
+    gitSecret: '',
+    fbDevId: '',
+    fbDevSecret: '',
+    twitterDevId: '',
+    twitterDevSecret: '',
+    googleDevId: '',
+    googleDevSecret: '',
+    linkedInDevId: '',
+    linkedInDevSecret: '',
+    gitDevId: '',
+    gitDevSecret: ''
 };
 ```
 
