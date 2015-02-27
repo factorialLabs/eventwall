@@ -14,6 +14,8 @@ var validateLocalStrategyProperty = function(property) {
     if (property){
         return ((this.provider !== 'local' && !this.updated) || property.length);
     }
+    // Property is null/undefined, return false.
+    return false;
 };
 
 /**

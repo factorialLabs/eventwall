@@ -70,13 +70,38 @@ describe('User Model Unit Tests:', function() {
 			});
 		});
 
-		it('should be able to show an error when try to save without first name', function(done) {
+		it('should show an error when saving without a first name', function(done) {
 			user.firstName = '';
 			return user.save(function(err) {
 				should.exist(err);
 				done();
 			});
 		});
+
+        it('should show an error when saving without a last name', function(done) {
+			user.lastName = '';
+			return user.save(function(err) {
+				should.exist(err);
+				done();
+			});
+		});
+
+        it('should show an error when saving without an username', function(done) {
+			user.username = '';
+			return user.save(function(err) {
+				should.exist(err);
+				done();
+			});
+		});
+
+        it('should show an error when saving without a password', function(done) {
+			user.password = '';
+			return user.save(function(err) {
+				should.exist(err);
+				done();
+			});
+		});
+
 
         it('should fail to save a user without an UW email', function(done) {
 			return user3.save(function(err) {

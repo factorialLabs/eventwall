@@ -11,7 +11,7 @@ var should = require('should'),
 /**
  * Globals
  */
-var credentials, user, event;
+var credentials, credentials2, user, unverifiedUser, event, event2;
 
 /**
  * Event routes tests
@@ -22,6 +22,10 @@ describe('Event CRUD tests', function() {
 		credentials = {
 			username: 'username',
 			password: 'password'
+		};
+        credentials2 = {
+			username: 'username2',
+			password: 'password2'
 		};
 
 		// Create a new user
@@ -36,7 +40,29 @@ describe('Event CRUD tests', function() {
             verified: true
 		});
 
+        unverifiedUser = new User({
+			firstName: 'Full',
+			lastName: 'Name',
+			displayName: 'Full Name',
+			email: 'test2@uwaterloo.ca',
+			username: credentials2.username,
+			password: credentials2.password,
+			provider: 'local',
+            verified: false
+		});
+
+
 		// Save a user to the test db and create new Event
+        unverifiedUser.save(function() {
+			event2 = new Event ({
+				name: 'Event Name',
+				user: unverifiedUser,
+                location: 'TBD',
+                datetime_start: '2016-02-03',
+                datetime_end: '2016-02-04'
+			});
+		});
+
 		user.save(function() {
 			event = new Event ({
 				name: 'Event Name',
@@ -89,6 +115,24 @@ describe('Event CRUD tests', function() {
 			});
 	});
 
+     it('should show an error when trying to save when user is unverified', function(done) {
+        agent.post('/auth/signin')
+			.send(credentials2)
+			.expect(200)
+			.end(function(signinErr, signinRes) {
+				// Handle signin error
+				if (signinErr) done(signinErr);
+
+				// Save a new Event
+				agent.post('/events')
+					.send(event2)
+					.expect(401)
+					.end(function(eventSaveErr, eventSaveRes) {
+						done(eventSaveErr);
+					});
+			});
+	});
+
 	it('should not be able to save Event instance if not logged in', function(done) {
 		agent.post('/events')
 			.send(event)
@@ -98,6 +142,9 @@ describe('Event CRUD tests', function() {
 				done(eventSaveErr);
 			});
 	});
+
+
+
 
 	it('should not be able to save Event instance if no name is provided', function(done) {
 		// Invalidate name field

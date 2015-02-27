@@ -1,5 +1,7 @@
 'use strict';
 
+var oauth = require('./oauth');
+
 module.exports = {
 	db: 'mongodb://localhost/campuswall-test',
 	port: 3001,

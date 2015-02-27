@@ -85,14 +85,7 @@ describe('Event Model Unit Tests:', function() {
 			});
 		});
 
-        it('should show an error when trying to save when user is unverified', function(done) {
-            user.verified = false;
 
-			return event.save(function(err) {
-				should.exist(err);
-				done();
-			});
-		});
 	});
 
 	afterEach(function(done) { 
