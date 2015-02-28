@@ -1,75 +1,66 @@
 /* Navbar Content - 'header.client.view.html' */
 
+$gold: #FCD450;
+$navbarBackground: #212121;
+
 .navbar{
     border-radius: 0;
-    background-color:#212121;
+    background-color:$navbarBackground;
     border: 0;
 }
 
 /* Events Dropdown */
+
+// Mobile & Branding
+.navbar-header{
+    // Branding
+    .navbar-toggle .icon-bar{
+        background-color: $gold;
+    }
+    .navbar-brand{
+        color: #FFFFFF;
+        font-size: 1.4em;
+        &:hover{
+            color: $gold;
+        }
+    }
+
+}
+
 nav{
     ul.nav{
         cursor: pointer;
+        li a{
+            color: white;
+            background-color: $navbarBackground;
+            &:focus{
+                color: $gold;
+                background-color: $navbarBackground;
+            }
+            &:hover{
+                background-color: $navbarBackground;
+                color: $gold;
+            }
+            &:active{
+                background-color: $navbarBackground;
+                color: white;
+            }
+        }
+        /*Dropdown*/
+
+        .open>a{
+            background-color: $navbarBackground;
+            color: white;
+            &:hover, &:focus{
+                background-color: $navbarBackground;
+                color: $gold;
+            }
+        }
+    }
+
+    .dropdown-menu{
+        background-color: $navbarBackground;
+        border: 0;
     }
 }
 
-.navbar-header{
-
-}
-/* Navbar button on mobile. */
-button.navbar .container .navbar-headernavbar-toggle, .navbar .container .navbar-header .navbar-toggle:focus{
-    background-color: #212121;
-    color: #FFFFFF;
-    border-radius: 0;
-}
-
-.navbar .container .navbar-header .navbar-toggle:hover{
-    background-color: #212121;
-}
-
-.navbar .container .navbar-header .navbar-toggle .icon-bar{
-    background-color: #FFFFFF;
-    border-radius: 0;
-}
-
-.navbar .container .navbar-header .navbar-collapse{
-    border: none;
-}
-
-/*Dropdown*/
-.nav .open > a:hover, .nav .open > a:focus {
-    background-color: #212121;
-    color: #FFFFFF;
-}
-
-.dropdown-menu{
-    background-color: #212121;
-    border: 0;
-}
-
-/*Branding */
-.navbar .container .navbar-header .navbar-brand{
-    color: #FFFFFF;
-    font-size: 1.4em;
-}
-
-.navbar .container .navbar-header .navbar-brand:hover{
-    color: #fcd446;
-}
-
-/* Links */
-.navbar .container .navbar-collapse .navbar-nav li a{
-    background-color: #212121;
-    color: #FFFFFF;
-    font-size: 1.1em;
-}
-
-.navbar .container .navbar-collapse .navbar-nav li a:hover{
-    color: #fcd446;
-}
-
-.dropdown-menu li > a:hover, .dropdown-menu li > a:focus, .dropdown-submenu:hover > a {
-    background-image: none;
-    background-color: #fcd446;
-}
-/* END OF NAVBAR CSS */

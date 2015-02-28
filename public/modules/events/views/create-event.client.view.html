@@ -1,9 +1,9 @@
 <section data-ng-controller="EventsController" class="container">
-    <div class="col-md-6 col-xs-12 col-md-offset-3">
+    <div class="col-md-8 col-xs-12 col-md-offset-2">
         <div class="page-header">
             <h1>Create an Event</h1>
         </div>
-        <div class = "text-center" ng-hide="authentication.user.verified">
+        <div class = "create-event-unverified" ng-hide="authentication.user.verified">
             <h2>Hey there! It looks like you're unverified.</h2>
             <p>Head over to <a href = "#!/settings/profile">your profile</a>, and put down an UW email address first!</p>
         </div>
@@ -57,7 +57,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <input type="submit" class="btn btn-default">
+                    <input type="submit" value="Create Event!" class="btn btn-default">
                 </div>
 				<div data-ng-show="error" class="text-danger">
 					<strong data-ng-bind="error"></strong>

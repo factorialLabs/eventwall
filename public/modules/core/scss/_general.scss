@@ -10,7 +10,6 @@ body, h1, h2, h3, h4, h5, h6 {
     @include Raleway;
 }
 
-
 a:hover, a:focus, a:active{
     text-decoration: none;
 }
@@ -19,6 +18,7 @@ a:hover, a:focus, a:active{
     display: none !important;
 }
 
+// Border highlighting for form fields.
 .ng-dirty{
     &.ng-invalid{
         border-color: #FA787E;
@@ -28,11 +28,13 @@ a:hover, a:focus, a:active{
     }
 }
 
+// Made with love.
 .love{
     text-align: center;
     color: grey;
 }
 
+// section.content is each individual page view.
 .content {
     margin-top: 50px;
 }

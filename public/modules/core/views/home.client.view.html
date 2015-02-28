@@ -2,26 +2,26 @@
 <section class = "home" data-ng-controller="HomeController">
     <div class="jumbotron">   
         <div class="container text-center header" id="jumbotron">
-            <h1>What's up in <yellow>Waterloo?</yellow></h1>
+            <h1>What's up in <gold>Waterloo?</gold></h1>
             <h3>EventWall is the quickest way to figure out what's happening on campus.</h3>
             <a href = "#!/events" type="button" class="btn btn-primary btn-lg yellow">Take a Look!</a>
             <a href = "#!/events/create" type = "button" class = "btn btn-primary btn-lg">Create an Event</a>
         </div>
     </div>
-    
+
     <section class="upcoming container">
         <h2>Upcoming Events</h2>        
         <div deckgrid source="events" class="deckgrid">
             <!--Layout for the cards--->
             <a href = "#!/events/{{card._id}}" class = "deckgrid-box">
-            <div class="card">
-                <img class="img" ng-src='{{card.thumbnail}}'/>
-                <div class="infobox">
-                    <h3 ng-bind-html="card.name"></h3>                        
-                    <h4 ng-hide="mother.isOneDayEvent(card)">{{card.datetime_start | date:"MMMM d"}} - {{card.datetime_end | date:"MMMM d"}}</h4>
-                    <h4 ng-show="mother.isOneDayEvent(card)">{{card.datetime_start | date:"MMMM d"}}</h4>
+                <div class="card">
+                    <img class="img" ng-src='{{card.thumbnail}}'/>
+                    <div class="infobox">
+                        <h3 ng-bind-html="card.name"></h3>
+                        <h4 ng-hide="mother.isOneDayEvent(card)">{{card.datetime_start | date:"MMMM d"}} - {{card.datetime_end | date:"MMMM d"}}</h4>
+                        <h4 ng-show="mother.isOneDayEvent(card)">{{card.datetime_start | date:"MMMM d"}}</h4>
+                    </div>
                 </div>
-            </div>
             </a>
         </div>
     </section>

@@ -4,11 +4,8 @@
 }
 
 .category-label{
+    margin-bottom: 10px;
     margin-right: 5px;
-}
-
-label.category-label{
-    padding-bottom: 5px;
 }
 
 .btn {
@@ -20,4 +17,8 @@ label.category-label{
 
 p.description{
     white-space:pre-wrap;
+}
+
+.create-event-unverified{
+    text-align: center;
 }
