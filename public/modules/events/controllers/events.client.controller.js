@@ -78,12 +78,19 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
 
             // If first page, fetch data.
             if (page === 0){
-                $scope.events = Events.query({
+                $scope.results = Events.get({
                     limit: 20,
                     page: page,
                     userId: $stateParams.userId,
                     category: $stateParams.category
+                },function(event){
+                    $scope.events = event.results;
+                    $scope.maxPages = event.maxPages;
+                    //console.log($scope.results);
+                    //console.log($scope.maxPages);
+                    //console.log($scope.events);
                 });
+
             }
             // If not first page, use prefetched data.
             else{
@@ -91,12 +98,15 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
             }
 
             //Prefetches events on the next page, for pagination.
-            $scope.eventsNextPage = Events.query({
+            $scope.eventsNextPage = Events.get({
                 limit: 20,
                 page: page+1,
                 userId: $stateParams.userId,
                 category: $stateParams.category
-            });
+            },function(event){
+                    $scope.maxPages = event.maxPages;
+                    $scope.events = event.results;
+            }); ;
 		};
 
         //Helper methods for pagination
