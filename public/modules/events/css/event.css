@@ -9,12 +9,32 @@
 .btn {
   border-radius: 0; }
   .btn.btn-primary {
-    background-color: #212121; }
+    background-color: #212121;
+    color: #FCD450;
+    border: 1px solid #FCD450; }
+    .btn.btn-primary:hover {
+      background-color: #FCD450;
+      color: #212121;
+      border: 1px solid #212121; }
 
 p.description {
   white-space: pre-wrap; }
 
-.create-event-unverified {
+.unverified {
   text-align: center; }
+
+.edit-profile.row {
+  margin-top: 30px; }
+  .edit-profile.row .form-group {
+    padding-left: 15px;
+    padding-right: 15px; }
+    .edit-profile.row .form-group.name {
+      padding-left: 0px;
+      padding-right: 0px; }
+  .edit-profile.row input.form-control {
+    border: none;
+    border-bottom: 2px dotted #AAAAAA;
+    box-shadow: none;
+    border-radius: 1px; }
 
 /*# sourceMappingURL=event.css.map */

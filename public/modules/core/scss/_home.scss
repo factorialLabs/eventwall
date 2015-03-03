@@ -4,6 +4,14 @@ $gold: #FCD450;
 $lGrey: #EEEEEE;
 $dGrey: #757575;
 
+@mixin transition($property, $time, $easing){
+    -webkit-transition: $property $time $easing;
+    -moz-transition: $property $time $easing;
+    -o-transition: $property $time $easing;
+    -ms-transition: $property $time $easing;
+    transition: $property $time $easing;
+}
+
 .jumbotron{
     height: 80vh;
     // Temporary image
@@ -93,8 +101,11 @@ $dGrey: #757575;
         box-sizing: border-box;
         box-shadow: none;
         color: white;
+        @include transition(all, 0.2s, ease-out);
         &:hover{
             color: gold;
+            box-shadow: 0px 0px 6px 6px #aaaaaa;
+
         }
 
         img.img{
