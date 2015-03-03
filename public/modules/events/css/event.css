@@ -9,13 +9,19 @@
 .btn {
   border-radius: 0; }
   .btn.btn-primary {
+    margin-top: 5px;
     background-color: #212121;
     color: #FCD450;
-    border: 1px solid #FCD450; }
+    border: 1px solid #FCD450;
+    font-size: 1.6rem; }
     .btn.btn-primary:hover {
       background-color: #FCD450;
       color: #212121;
-      border: 1px solid #212121; }
+      border: 1px solid #212121;
+      outline-color: #212121; }
+    .btn.btn-primary:focus {
+      border: 1px solid #212121;
+      outline-color: #212121; }
 
 p.description {
   white-space: pre-wrap; }
@@ -23,18 +29,34 @@ p.description {
 .unverified {
   text-align: center; }
 
-.edit-profile.row {
-  margin-top: 30px; }
-  .edit-profile.row .form-group {
+div.edit-profile.row {
+  margin-top: 20px; }
+  div.edit-profile.row .form-group {
     padding-left: 15px;
     padding-right: 15px; }
-    .edit-profile.row .form-group.name {
+    div.edit-profile.row .form-group.name {
       padding-left: 0px;
       padding-right: 0px; }
-  .edit-profile.row input.form-control {
-    border: none;
-    border-bottom: 2px dotted #AAAAAA;
-    box-shadow: none;
-    border-radius: 1px; }
+    div.edit-profile.row .form-group label {
+      margin-top: 10px;
+      font-size: 1.5rem; }
+    div.edit-profile.row .form-group input.form-control {
+      font-size: 1.6rem;
+      border: none;
+      border-bottom: 2px dotted #AAAAAA;
+      box-shadow: none;
+      border-radius: 2px;
+      -webkit-transition: all 0.2s ease-out;
+      -moz-transition: all 0.2s ease-out;
+      -o-transition: all 0.2s ease-out;
+      -ms-transition: all 0.2s ease-out;
+      transition: all 0.2s ease-out; }
+      div.edit-profile.row .form-group input.form-control:focus {
+        border-bottom: 2px dotted #FCD450; }
+
+section.social-accounts {
+  margin-bottom: 20px; }
+  section.social-accounts div.connected-accounts, section.social-accounts div.no-connected-accounts {
+    text-align: center; }
 
 /*# sourceMappingURL=event.css.map */

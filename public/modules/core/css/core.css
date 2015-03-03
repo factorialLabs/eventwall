@@ -90,7 +90,7 @@ a:hover, a:focus, a:active {
     transition: all 0.2s ease-out; }
     .upcoming.container .card:hover {
       color: gold;
-      box-shadow: 0px 0px 6px 6px #aaaaaa; }
+      box-shadow: 0 0 6px 6px #aaaaaa; }
     .upcoming.container .card img.img {
       border: 2px solid #EEEEEE;
       border-bottom: none;

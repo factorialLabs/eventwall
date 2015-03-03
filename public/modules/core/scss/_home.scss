@@ -104,7 +104,7 @@ $dGrey: #757575;
         @include transition(all, 0.2s, ease-out);
         &:hover{
             color: gold;
-            box-shadow: 0px 0px 6px 6px #aaaaaa;
+            box-shadow: 0 0 6px 6px #aaaaaa;
 
         }
 

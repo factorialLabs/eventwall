@@ -68,13 +68,10 @@
 				</a>
 				<ul class="dropdown-menu">
                     <li>
-                        <a ng-href="/#!/events/user/{{authentication.user._id}}">My Events</a>
+                        <a data-ng-href="/#!/events/user/{{authentication.user._id}}">My Events</a>
                     </li>
 					<li>
 						<a href="/#!/settings/profile">Edit Profile</a>
-					</li>
-					<li>
-						<a href="/#!/settings/accounts">Manage Social Accounts</a>
 					</li>
 					<li data-ng-show="authentication.user.provider === 'local'">
 						<a href="/#!/settings/password">Change Password</a>
