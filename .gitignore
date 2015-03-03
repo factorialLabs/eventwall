@@ -7,4 +7,4 @@ public/lib
 app/tests/coverage/
 .bower-*/
 .idea/
-/config/env/oauth.js
+/config/env/oauthSecure.js

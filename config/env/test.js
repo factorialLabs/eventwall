@@ -1,6 +1,6 @@
 'use strict';
 
-var oauth = require('./oauth');
+var oauth = require('./oauthTest');
 
 module.exports = {
 	db: 'mongodb://localhost/campuswall-test',
@@ -9,28 +9,28 @@ module.exports = {
 		title: 'CampusWall - Test Environment'
 	},
 	facebook: {
-		clientID: process.env.FACEBOOK_ID || oauth.fbDevId,
-		clientSecret: process.env.FACEBOOK_SECRET || oauth.fbDevSecret,
+		clientID: process.env.FACEBOOK_ID || oauth.fbTestId,
+		clientSecret: process.env.FACEBOOK_SECRET || oauth.fbTestSecret,
 		callbackURL: '/auth/facebook/callback'
 	},
 	twitter: {
-		clientID: process.env.TWITTER_KEY || oauth.twitterDevId,
-		clientSecret: process.env.TWITTER_SECRET || oauth.twitterDevSecret,
+		clientID: process.env.TWITTER_KEY || oauth.twitterTestId,
+		clientSecret: process.env.TWITTER_SECRET || oauth.twitterTestSecret,
 		callbackURL: '/auth/twitter/callback'
 	},
 	google: {
-		clientID: process.env.GOOGLE_ID || oauth.googleDevId,
-		clientSecret: process.env.GOOGLE_SECRET || oauth.googleDevSecret,
+		clientID: process.env.GOOGLE_ID || oauth.googleTestId,
+		clientSecret: process.env.GOOGLE_SECRET || oauth.googleTestSecret,
 		callbackURL: '/auth/google/callback'
 	},
 	linkedin: {
-		clientID: process.env.LINKEDIN_ID || oauth.linkedInDevId,
-		clientSecret: process.env.LINKEDIN_SECRET || oauth.linkedInDevSecret,
+		clientID: process.env.LINKEDIN_ID || oauth.linkedInTestId,
+		clientSecret: process.env.LINKEDIN_SECRET || oauth.linkedInTestSecret,
 		callbackURL: '/auth/linkedin/callback'
 	},
 	github: {
-		clientID: process.env.GITHUB_ID || oauth.gitDevId,
-		clientSecret: process.env.GITHUB_SECRET || oauth.gitDevSecret,
+		clientID: process.env.GITHUB_ID || oauth.gitTestId,
+		clientSecret: process.env.GITHUB_SECRET || oauth.gitTestSecret,
 		callbackURL: '/auth/github/callback'
 	},
 	mailer: {

@@ -1,5 +1,5 @@
 'use strict';
-var oauth = require('./oauth');
+var oauth = require('./oauthSecure');
 
 module.exports = {
 	db: 'mongodb://localhost/campuswall-dev',
