@@ -13,7 +13,8 @@ module.exports = {
 	assets: {
 		lib: {
 			css: [
-				'public/lib/bootstrap/dist/css/bootstrap.css'
+				'public/lib/bootstrap/dist/css/bootstrap.css',
+                'public/lib/angular-bootstrap-datetimepicker/src/css/datetimepicker.css'
 			],
 			js: [
 				'public/lib/angular/angular.js',
@@ -26,7 +27,10 @@ module.exports = {
 				'public/lib/angular-ui-utils/ui-utils.js',
 				'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
 				'public/lib/angular-deckgrid/angular-deckgrid.js',
-				'public/lib/angular-filter/dist/angular-filter.min.js'
+				'public/lib/angular-filter/dist/angular-filter.min.js',
+                'public/lib/moment/moment.js',
+				'public/lib/angular-moment/angular-moment.js',
+                'public/lib/angular-bootstrap-datetimepicker/src/js/datetimepicker.js'
 			]
 		},
 		css: [
