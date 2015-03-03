@@ -50,6 +50,39 @@ p.description{
     text-align: center;
 }
 
+/* create-event.client.view.html */
+section.create-event, section.edit-event{
+    label{
+        margin-top: 10px;
+        margin-bottom: 10px;
+        font-size: $labelFontSize;
+    }
+
+    .row .col-md-6:first-child .controls{
+        padding-right: 5px;
+    }
+    .row .col-md-6:nth-child(2) .controls{
+        padding-left: 5px;
+    }
+    input.form-control, textarea.form-control{
+        padding: 0;
+        font-size: $inputFontSize;
+        border: none;
+        border-bottom: 2px dotted #AAAAAA;
+        box-shadow: none;
+        border-radius: 2px;
+        @include transition(all, 0.2s, ease-out);
+        &:focus{
+            border-bottom: 2px dotted $gold;
+        }
+    }
+
+    .form-group.submit{
+        text-align: center;
+    }
+}
+
+/* edit-profile.client.view.html */
 div.edit-profile.row{
     margin-top: 20px;
 

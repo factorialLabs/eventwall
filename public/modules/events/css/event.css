@@ -29,6 +29,33 @@ p.description {
 .unverified {
   text-align: center; }
 
+/* create-event.client.view.html */
+section.create-event label, section.edit-event label {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 1.5rem; }
+section.create-event .row .col-md-6:first-child .controls, section.edit-event .row .col-md-6:first-child .controls {
+  padding-right: 5px; }
+section.create-event .row .col-md-6:nth-child(2) .controls, section.edit-event .row .col-md-6:nth-child(2) .controls {
+  padding-left: 5px; }
+section.create-event input.form-control, section.create-event textarea.form-control, section.edit-event input.form-control, section.edit-event textarea.form-control {
+  padding: 0;
+  font-size: 1.6rem;
+  border: none;
+  border-bottom: 2px dotted #AAAAAA;
+  box-shadow: none;
+  border-radius: 2px;
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  -o-transition: all 0.2s ease-out;
+  -ms-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out; }
+  section.create-event input.form-control:focus, section.create-event textarea.form-control:focus, section.edit-event input.form-control:focus, section.edit-event textarea.form-control:focus {
+    border-bottom: 2px dotted #FCD450; }
+section.create-event .form-group.submit, section.edit-event .form-group.submit {
+  text-align: center; }
+
+/* edit-profile.client.view.html */
 div.edit-profile.row {
   margin-top: 20px; }
   div.edit-profile.row .form-group {
