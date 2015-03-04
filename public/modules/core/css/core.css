@@ -120,10 +120,14 @@ a:hover, a:focus, a:active {
 .navbar-header .navbar-toggle .icon-bar {
   background-color: #FCD450; }
 .navbar-header .navbar-brand {
+  padding: 5px;
   color: #FFFFFF;
   font-size: 1.4em; }
   .navbar-header .navbar-brand:hover {
     color: #FCD450; }
+  .navbar-header .navbar-brand img {
+    height: 100%;
+    width: auto; }
 
 nav ul.nav {
   cursor: pointer;
