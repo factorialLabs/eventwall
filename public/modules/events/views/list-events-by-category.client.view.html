@@ -1,4 +1,4 @@
-<section data-ng-controller="EventsController" data-ng-init="find(currentPage)" class="container">
+<section data-ng-controller="EventsController" data-ng-init="find(currentPage)" class="list-events container">
     <div class="page-header">
         <h1>{{category}} Events</h1>
         <h4>Categories: <a ng-href = "#!/events/category/{{category}}" class = "label label-default category-label" ng-repeat = "category in categoriesList">{{category}}</a></h4>

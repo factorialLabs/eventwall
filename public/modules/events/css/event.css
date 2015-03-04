@@ -1,6 +1,9 @@
 .alert.no-events {
   margin-top: 60px;
-  text-align: center; }
+  text-align: center;
+  background-color: #FCD450;
+  color: #212121;
+  font-size: 1.8rem; }
 
 .category-label {
   margin-bottom: 10px;
@@ -28,6 +31,17 @@ p.description {
 
 .unverified {
   text-align: center; }
+
+/* list-events.client.view.html */
+section.list-events.container div.page-header a.category-label {
+  font-size: 80%; }
+section.list-events.container a.list-group-item h4 {
+  font-size: 1.9rem; }
+  section.list-events.container a.list-group-item h4 small {
+    color: #606060; }
+section.list-events.container a.list-group-item small.list-group-item-text {
+  font-size: 1.4rem;
+  color: #606060; }
 
 /* create-event.client.view.html */
 section.create-event label, section.edit-event label {

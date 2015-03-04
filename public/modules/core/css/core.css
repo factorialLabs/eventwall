@@ -134,7 +134,8 @@ nav ul.nav {
   /*Dropdown*/ }
   nav ul.nav li a {
     color: white;
-    background-color: #212121; }
+    background-color: #212121;
+    font-size: 1.5rem; }
     nav ul.nav li a:focus {
       color: #FCD450;
       background-color: #212121; }

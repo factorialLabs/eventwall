@@ -2,6 +2,7 @@
 
 $gold: #FCD450;
 $navbarBackground: #212121;
+$defaultFontSize: 1.5rem;
 
 .navbar{
     border-radius: 0;
@@ -40,6 +41,7 @@ nav{
         li a{
             color: white;
             background-color: $navbarBackground;
+            font-size: $defaultFontSize;
             &:focus{
                 color: $gold;
                 background-color: $navbarBackground;
