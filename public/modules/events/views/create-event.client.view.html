@@ -39,7 +39,7 @@
                     <label class="control-label" for="category">Categories</label>
                     <p class = "label label-default category-label" ng-repeat = "category in categoriesList">{{category}}</p>
                     <div class="controls">
-                        <input type="text" data-ng-model="category" id="category" class="form-control" placeholder="Uncategorized, by default." required>
+    <input type="text" ng-model="category" id="category" placeholder="Uncategorized, by default." typeahead="i for i in categoriesList | filter:$viewValue | limitTo:8" class="form-control" required>
                     </div>
                 </div>
 
