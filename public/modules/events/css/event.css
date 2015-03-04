@@ -35,9 +35,9 @@ section.create-event label, section.edit-event label {
   margin-bottom: 10px;
   font-size: 1.5rem; }
 section.create-event .row .col-md-6:first-child .controls, section.edit-event .row .col-md-6:first-child .controls {
-  padding-right: 5px; }
+  padding-right: 10px; }
 section.create-event .row .col-md-6:nth-child(2) .controls, section.edit-event .row .col-md-6:nth-child(2) .controls {
-  padding-left: 5px; }
+  padding-left: 10px; }
 section.create-event input.form-control, section.create-event textarea.form-control, section.edit-event input.form-control, section.edit-event textarea.form-control {
   padding: 0;
   font-size: 1.6rem;
