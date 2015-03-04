@@ -61,6 +61,15 @@ nav{
     .dropdown-menu{
         background-color: $navbarBackground;
         border: 0;
+
+        .active > a{
+            background-color: $gold;
+            color: $navbarBackground;
+            &:hover{
+                background-color: $gold;
+                color: $navbarBackground;
+            }
+        }
     }
 }
 

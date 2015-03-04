@@ -17,7 +17,6 @@ exports.create = function(req, res) {
 
     // Returns 401 error if the user is unverified.
     if (!req.user.verified){
-        console.log("Unverified user attempted event creation.");
         return res.status(401).send({
             message: "You need to be verified to create events!"
         });
@@ -152,8 +151,6 @@ exports.getEventsByCategory = function (req, res){
     .sort('datetime_start')
     .populate('user', 'displayName')
     .exec(function (err, events){
-        console.log(err);
-        console.log(events);
             if (err) {
                 return res.status(400).send({
                     message: errorHandler.getErrorMessage(err)

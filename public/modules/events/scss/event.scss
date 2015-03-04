@@ -1,3 +1,16 @@
+$gold: #FCD450;
+$black: #212121;
+$labelFontSize: 1.5rem;
+$inputFontSize: 1.6rem;
+
+@mixin transition($property, $time, $easing){
+    -webkit-transition: $property $time $easing;
+    -moz-transition: $property $time $easing;
+    -o-transition: $property $time $easing;
+    -ms-transition: $property $time $easing;
+    transition: $property $time $easing;
+}
+
 .alert.no-events{
     margin-top: 60px;
     text-align: center;
@@ -11,7 +24,21 @@
 .btn {
     border-radius: 0;
     &.btn-primary{
-        background-color: #212121;
+        margin-top: 5px;
+        background-color: $black;
+        color: $gold;
+        border: 1px solid $gold;
+        font-size: $inputFontSize;
+        &:hover{
+            background-color: $gold;
+            color: $black;
+            border: 1px solid $black;
+            outline-color: $black;
+        }
+        &:focus{
+            border: 1px solid $black;
+            outline-color: $black;
+        }
     }
 }
 
@@ -19,6 +46,77 @@ p.description{
     white-space:pre-wrap;
 }
 
-.create-event-unverified{
+.unverified{
     text-align: center;
+}
+
+/* create-event.client.view.html */
+section.create-event, section.edit-event{
+    label{
+        margin-top: 10px;
+        margin-bottom: 10px;
+        font-size: $labelFontSize;
+    }
+
+    .row .col-md-6:first-child .controls{
+        padding-right: 10px;
+    }
+    .row .col-md-6:nth-child(2) .controls{
+        padding-left: 10px;
+    }
+    input.form-control, textarea.form-control{
+        padding: 0;
+        font-size: $inputFontSize;
+        border: none;
+        border-bottom: 2px dotted #AAAAAA;
+        box-shadow: none;
+        border-radius: 2px;
+        @include transition(all, 0.2s, ease-out);
+        &:focus{
+            border-bottom: 2px dotted $gold;
+        }
+    }
+
+    .form-group.submit{
+        text-align: center;
+    }
+}
+
+/* edit-profile.client.view.html */
+div.edit-profile.row{
+    margin-top: 20px;
+
+    .form-group{
+        padding-left: 15px;
+        padding-right: 15px;
+        // Don't pad the First/Last name row, Bootstrap's col-md-6 does that.
+        &.name{
+            padding-left: 0px;
+            padding-right: 0px;
+        }
+
+        label{
+            margin-top: 10px;
+            font-size: $labelFontSize;
+        }
+        input.form-control{
+            font-size: $inputFontSize;
+            border: none;
+            border-bottom: 2px dotted #AAAAAA;
+            box-shadow: none;
+            border-radius: 2px;
+            @include transition(all, 0.2s, ease-out);
+            &:focus{
+                border-bottom: 2px dotted $gold;
+            }
+        }
+    }
+}
+
+section.social-accounts{
+    margin-bottom: 20px;
+
+    div.connected-accounts, div.no-connected-accounts{
+        text-align: center;
+    }
 }

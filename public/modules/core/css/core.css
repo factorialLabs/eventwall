@@ -82,9 +82,15 @@ a:hover, a:focus, a:active {
     background-color: #ffffff;
     box-sizing: border-box;
     box-shadow: none;
-    color: white; }
+    color: white;
+    -webkit-transition: all 0.2s ease-out;
+    -moz-transition: all 0.2s ease-out;
+    -o-transition: all 0.2s ease-out;
+    -ms-transition: all 0.2s ease-out;
+    transition: all 0.2s ease-out; }
     .upcoming.container .card:hover {
-      color: gold; }
+      color: gold;
+      box-shadow: 0 0 6px 6px #aaaaaa; }
     .upcoming.container .card img.img {
       border: 2px solid #EEEEEE;
       border-bottom: none;
@@ -97,6 +103,12 @@ a:hover, a:focus, a:active {
     .upcoming.container .card img {
       width: 100%;
       height: auto; }
+
+.see-more.row {
+  text-align: center;
+  margin-bottom: 20px; }
+  .see-more.row .btn.btn-primary {
+    font-size: 2.5rem; }
 
 /* Navbar Content - 'header.client.view.html' */
 .navbar {
@@ -137,5 +149,11 @@ nav ul.nav {
 nav .dropdown-menu {
   background-color: #212121;
   border: 0; }
+  nav .dropdown-menu .active > a {
+    background-color: #FCD450;
+    color: #212121; }
+    nav .dropdown-menu .active > a:hover {
+      background-color: #FCD450;
+      color: #212121; }
 
 /*# sourceMappingURL=core.css.map */
