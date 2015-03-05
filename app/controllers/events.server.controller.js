@@ -136,10 +136,11 @@ exports.getEventsByUser = function (req, res){
             });
         } else {
             Event.where('datetime_end').gt(new Date())
+                .where('user').equals(req.query.userId)
                 .count().lean().exec(function(err, count){
                 res.jsonp({
-                    maxPages:count,
-                    results:events
+                    results: events,
+                    items: count
                 });
             });
         }
@@ -157,18 +158,17 @@ exports.getEventsByCategory = function (req, res){
         .sort('datetime_start')
         .populate('user', 'displayName')
         .exec(function (err, events){
-        console.log(err);
-        console.log(events);
         if (err) {
             return res.status(400).send({
                 message: errorHandler.getErrorMessage(err)
             });
         } else {
             Event.where('datetime_end').gt(new Date())
+                .where('category').equals(req.query.category)
                 .count().lean().exec(function(err, count){
                 res.jsonp({
-                    maxPages:count,
-                    results:events
+                    results: events,
+                    items: count
                 });
             });
         }
@@ -203,8 +203,8 @@ exports.list = function(req, res) {
                 Event.where('datetime_end').gt(new Date())
                     .count().lean().exec(function(err, count){
                     res.jsonp({
-                        maxPages:count,
-                        results:events
+                        results: events,
+                        items: count
                     });
                 });
 
