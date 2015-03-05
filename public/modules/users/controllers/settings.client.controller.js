@@ -21,6 +21,14 @@ angular.module('users').controller('SettingsController', ['$scope', '$http', '$l
 			return $scope.user.provider === provider || ($scope.user.additionalProvidersData && $scope.user.additionalProvidersData[provider]);
 		};
 
+        $scope.allAccountsConnected = function(){
+            if ($scope.isConnectedSocialAccount('github') && $scope.isConnectedSocialAccount('facebook') &&
+                $scope.isConnectedSocialAccount('twitter') && $scope.isConnectedSocialAccount('google')){
+                return true;
+            }
+            return false;
+        };
+
 		// Remove a user social account
 		$scope.removeUserSocialAccount = function(provider) {
 			$scope.success = $scope.error = null;

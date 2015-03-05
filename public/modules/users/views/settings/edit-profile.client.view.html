@@ -1,42 +1,116 @@
-<section class="container-fluid row" data-ng-controller="SettingsController">
-    <h3 class="col-md-12 text-center" ng-show="user.verified">Edit your profile</h3>
-    <div class = "text-center" ng-hide="user.verified">
-        <h2>Hey there! It looks like you're unverified.</h2>
-        <p>You should add an @uwaterloo.ca email so you can create events!</p>
-    </div>
-    <div class="col-xs-offset-2 col-xs-8 col-md-offset-5 col-md-2">
+<section class="container-fluid" data-ng-controller="SettingsController">
+    <section class="edit-profile">
+        <div class="row">
+            <h3 class="col-md-12 text-center" ng-show="user.verified">Edit your profile</h3>
+            <div class = "unverified" ng-hide="user.verified">
+                <h2>Hey there! It looks like you're unverified.</h2>
+                <p>You should add an @uwaterloo.ca email so you can create events!</p>
+            </div>
+        </div>
         <form name="userForm" data-ng-submit="updateUserProfile(userForm.$valid)" class="signin form-horizontal" autocomplete="off">
             <fieldset>
-                <div class="form-group">
-                    <label for="firstName">First Name</label>
-                    <input type="text" id="firstName" name="firstName" class="form-control" data-ng-model="user.firstName" placeholder="First Name">
+                <div class="edit-profile row">
+                    <div class="col-xs-10 col-xs-offset-1 col-md-3 col-md-offset-3">
+                        <div class = "name form-group">
+                            <div class = "col-md-6">
+                                <label for="firstName">First Name</label>
+                                <input type="text" id="firstName" name="firstName" class="form-control" data-ng-model="user.firstName" placeholder="First Name">
+                            </div>
+                            <div class = "col-md-6">
+                                <label for="lastName">Last Name</label>
+                                <input type="text" id="lastName" name="lastName" class="form-control" data-ng-model="user.lastName" placeholder="Last Name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="displayName" ng-show="user.displayName">Display Name</label>
+                            <label for="displayName" ng-hide="user.displayName">Display Name (Optional)</label>
+                            <input type="text" id="displayName" name="displayName" class="form-control" data-ng-model="user.displayName" placeholder="Display Name (optional)">
+                        </div>
+                    </div>
+
+                    <div class="col-xs-10 col-xs-offset-1 col-md-3 col-md-offset-0">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" class="form-control" data-ng-model="user.email" placeholder="Email">
+                        </div>
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" id="username" name="username" class="form-control" data-ng-model="user.username" placeholder="Username">
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="lastName">Last Name</label>
-                    <input type="text" id="lastName" name="lastName" class="form-control" data-ng-model="user.lastName" placeholder="Last Name">
-                </div>
-                <div class="form-group">
-                    <label for="displayName">Display Name (optional)</label>
-                    <input type="text" id="displayName" name="displayName" class="form-control" data-ng-model="user.displayName" placeholder="Display Name (optional)">
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" class="form-control" data-ng-model="user.email" placeholder="Email">
-                </div>
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" id="username" name="username" class="form-control" data-ng-model="user.username" placeholder="Username">
-                </div>
-                <div class="text-center form-group">
-                    <button type="submit" class="btn btn-large btn-primary">Save Profile</button>
-                </div>
-                <div data-ng-show="success" class="text-center text-success">
-                    <strong>Profile Saved Successfully</strong>
-                </div>
-                <div data-ng-show="error" class="text-center text-danger">
-                    <strong data-ng-bind="error"></strong>
+                <div class = "row">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-large btn-primary">Save Profile</button>
+                    </div>
+                    <div data-ng-show="success" class="text-success">
+                        <strong>Profile Saved Successfully</strong>
+                    </div>
+                    <div data-ng-show="error" class="text-danger">
+                        <strong data-ng-bind="error"></strong>
+                    </div>
                 </div>
             </fieldset>
         </form>
-    </div>
+    </section>
+    <section class="social-accounts row col-md-6 col-md-offset-3">
+        <div class="connected-accounts row"  data-ng-show="hasConnectedAdditionalSocialAccounts() && !allAccountsConnected()">
+            <div class="col-md-6">
+                <h3>Connected social accounts</h3>
+
+                <div data-ng-repeat="(providerName, providerData) in user.additionalProvidersData" class="remove-account-container">
+                    <img ng-src="/modules/users/img/buttons/{{providerName}}.png">
+                    <a class="btn btn-danger btn-remove-account" data-ng-click="removeUserSocialAccount(providerName)">
+                        <i class="glyphicon glyphicon-trash"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h3>Connect other social accounts</h3>
+                <div>
+                    <a href="/auth/facebook" data-ng-hide="isConnectedSocialAccount('facebook')" class="undecorated-link">
+                        <img src="/modules/users/img/buttons/facebook.png">
+                    </a>
+                    <a href="/auth/twitter" data-ng-hide="isConnectedSocialAccount('twitter')" class="undecorated-link">
+                        <img src="/modules/users/img/buttons/twitter.png">
+                    </a>
+                    <a href="/auth/google" data-ng-hide="isConnectedSocialAccount('google')" class="undecorated-link">
+                        <img src="/modules/users/img/buttons/google.png">
+                    </a>
+                    <a href="/auth/github" data-ng-hide="isConnectedSocialAccount('github')" class="undecorated-link">
+                        <img src="/modules/users/img/buttons/github.png">
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="no-connected-accounts" data-ng-hide="hasConnectedAdditionalSocialAccounts()">
+            <h3 class="col-md-12">Connect other social accounts</h3>
+            <div class="col-md-12">
+                <a href="/auth/facebook" data-ng-hide="isConnectedSocialAccount('facebook')" class="undecorated-link">
+                    <img src="/modules/users/img/buttons/facebook.png">
+                </a>
+                <a href="/auth/twitter" data-ng-hide="isConnectedSocialAccount('twitter')" class="undecorated-link">
+                    <img src="/modules/users/img/buttons/twitter.png">
+                </a>
+                <a href="/auth/google" data-ng-hide="isConnectedSocialAccount('google')" class="undecorated-link">
+                    <img src="/modules/users/img/buttons/google.png">
+                </a>
+                <a href="/auth/github" data-ng-hide="isConnectedSocialAccount('github')" class="undecorated-link">
+                    <img src="/modules/users/img/buttons/github.png">
+                </a>
+            </div>
+        </div>
+        <div class="all-connected-accounts" data-ng-show="allAccountsConnected()">
+            <h3>Connected social accounts</h3>
+            <div class ="row col-md-12">
+                <div data-ng-repeat="(providerName, providerData) in user.additionalProvidersData" class="remove-account-container">
+                    <img ng-src="/modules/users/img/buttons/{{providerName}}.png">
+                    <a class="btn btn-danger btn-remove-account" data-ng-click="removeUserSocialAccount(providerName)">
+                        <i class="glyphicon glyphicon-trash"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 </section>

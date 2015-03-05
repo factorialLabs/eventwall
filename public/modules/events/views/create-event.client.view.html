@@ -1,51 +1,88 @@
-<section data-ng-controller="EventsController" class="container">
+<section data-ng-controller="EventsController" class="container create-event">
     <div class="col-md-8 col-xs-12 col-md-offset-2">
         <div class="page-header">
             <h1>Create an Event</h1>
         </div>
-        <div class = "create-event-unverified" ng-hide="authentication.user.verified">
+        <div class = "unverified" ng-hide="authentication.user.verified">
             <h2>Hey there! It looks like you're unverified.</h2>
             <p>Head over to <a href = "#!/settings/profile">your profile</a>, and put down an UW email address first!</p>
         </div>
         <form class="form-horizontal" data-ng-submit="create()" novalidate ng-show="authentication.user.verified">
             <fieldset>
+
                 <div class="form-group">
                     <label class="control-label" for="name">Name</label>
                     <div class="controls">
-                        <input type="text" data-ng-model="name" id="name" class="form-control" placeholder="Name" required>
+                        <input type="text" data-ng-model="name" id="name" class="form-control" placeholder="Your event name." required>
+                    </div>
+                </div>
+
+                <div class = "row">
+                    <div class = "col-md-6">
+                        <div class="form-group">
+                            <label class="control-label" for="organizer">Event Organizer</label>
+                            <div class="controls">
+                                <input type="text" data-ng-model="organizer" id="organizer" class="form-control" placeholder="Your display name, by default." required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class = "col-md-6">
+                        <div class="form-group">
+                            <label class="control-label" for="location">Where?</label>
+                            <div class="controls">
+                                <input type="text" data-ng-model="location" id="location" class="form-control" placeholder="Eg. M3, SLC, SCH Festival Room" required>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label" for="organizer">Event Organizer</label>
-                    <div class="controls">
-                        <input type="text" data-ng-model="organizer" id="organizer" class="form-control" placeholder="Your display name, by default." required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label" for="category">Category</label>
+                    <label class="control-label" for="category">Categories</label>
                     <p class = "label label-default category-label" ng-repeat = "category in categoriesList">{{category}}</p>
                     <div class="controls">
-                        <input type="text" data-ng-model="category" id="category" class="form-control" placeholder="Uncategorized" required>
+                        <input type="text" data-ng-model="category" id="category" class="form-control" placeholder="Uncategorized, by default." required>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label class="control-label" for="location">Where?</label>
-                    <div class="controls">
-                        <input type="text" data-ng-model="location" id="location" class="form-control" placeholder="Eg. M3, SLC, SCH Festival Room" required>
+
+
+                <div class = "row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label" for="start">Start Date and Time</label>
+                            <div class="controls">
+                                <div class="dropdown">
+                                    <a class="dropdown-toggle" id="start" role="button" data-toggle="dropdown" data-target="#" href="#">
+                                        <input type="text" class="form-control" data-ng-model="datetime_start" placeholder="Start Time and Date" required>
+                                    </a>
+                                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                        <datetimepicker data-ng-model="datetime_start"/>
+                                    </ul>
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label" for="end">End Date and Time</label>
+                            <div class="controls">
+                                <div class="dropdown">
+                                    <a class="dropdown-toggle" id="end" role="button" data-toggle="dropdown" data-target="#" href="#">
+                                        <input type="text" class="form-control" data-ng-model="datetime_end" placeholder="End Time and Date" required>
+                                    </a>
+                                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                        <datetimepicker data-ng-model="datetime_end"/>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-                
+
+
+
                 <div class="form-group">
-                    <label class="control-label" for="start">When?</label>      
-                    <div class="controls">
-                        <input type="text" data-ng-model="datetime_start" id="start" class="form-control" placeholder="Start: YYYY-MM-DD HH:MM" required>
-                    </div>
-                    <div class="controls">
-                        <input type="text" data-ng-model="datetime_end" id="end" class="form-control" placeholder="End: YYYY-MM-DD HH:MM" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label" for="description">Details</label>
+                    <label class="control-label" for="description">Description</label>
                     <div class="controls">
                         <textarea type="text" data-ng-model="description" id="description" class="form-control" placeholder="What's awesome about your event? Sell it!" required></textarea>
                     </div>
@@ -53,15 +90,15 @@
                 <div class="form-group">
                     <label class="control-label" for="thumbnail">Image</label>
                     <div class="controls">
-                        <input type="text" data-ng-model="thumbnail" id="thumbnail" class="form-control" placeholder="Purely optional!" required>
+                        <input type="text" data-ng-model="thumbnail" id="thumbnail" class="form-control" placeholder="An URL to an image - purely optional!" required>
                     </div>
                 </div>
-                <div class="form-group">
-                    <input type="submit" value="Create Event!" class="btn btn-default">
+                <div class="form-group submit">
+                    <input type="submit" value="Create Event!" class="btn btn-primary">
                 </div>
-				<div data-ng-show="error" class="text-danger">
-					<strong data-ng-bind="error"></strong>
-				</div>
+                <div data-ng-show="error" class="text-danger">
+                    <strong data-ng-bind="error"></strong>
+                </div>
             </fieldset>
         </form>
     </div>

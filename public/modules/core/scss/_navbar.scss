@@ -18,10 +18,17 @@ $navbarBackground: #212121;
         background-color: $gold;
     }
     .navbar-brand{
+        padding:5px;
         color: #FFFFFF;
         font-size: 1.4em;
         &:hover{
             color: $gold;
+        }
+
+        img{
+            //scaling the logo properly
+            height:100%;
+            width:auto;
         }
     }
 
@@ -61,6 +68,15 @@ nav{
     .dropdown-menu{
         background-color: $navbarBackground;
         border: 0;
+
+        .active > a{
+            background-color: $gold;
+            color: $navbarBackground;
+            &:hover{
+                background-color: $gold;
+                color: $navbarBackground;
+            }
+        }
     }
 }
 

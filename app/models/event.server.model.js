@@ -65,4 +65,21 @@ var EventSchema = new Schema({
     }
 });
 
+/**
+ * A validation check so event datetimes makes sense
+ */
+EventSchema.pre("validate", function(next) {
+    if(this.datetime_end<this.datetime_start ||
+      this.datetime_start<new Date()){
+            console.log("Invalid");
+            //this.invalidate("datetime_start", "Start and End time must be valid");
+            var err = new Error("Start and End time must be valid");
+            next(err);
+        } else {
+            console.log("valid");
+            next();
+        }
+    }
+);
+
 mongoose.model('Event', EventSchema);
