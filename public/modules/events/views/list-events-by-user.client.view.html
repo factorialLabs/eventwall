@@ -23,12 +23,8 @@
     </div>
 
 
-    <div class="alert alert-warning no-events" data-ng-hide="!events.$resolved || events.length || currentPage">
+    <div class="alert alert-warning no-events" data-ng-hide="!results.$resolved || events.length">
         This user hasn't made any events!
     </div>
-    <div class="pagination">
-        <button ng-click="prevPage()" data-ng-show="currentPage">Previous Page</button>
-        <span data-ng-show="currentPage || eventsNextPage.length">Page {{currentPage + 1}}</span>
-        <button ng-click="nextPage()" data-ng-show="eventsNextPage.length">Next Page</button>
-    </div>
+    <pagination total-items="totalEvents" items-per-page="20" ng-model="currentPage" class="pagination" boundary-links="true" max-size="5" data-ng-show="events.length"></pagination>
 </section>

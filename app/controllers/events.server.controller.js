@@ -4,16 +4,16 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
-	errorHandler = require('./errors.server.controller'),
-	Event = mongoose.model('Event'),
-	_ = require('lodash');
+    errorHandler = require('./errors.server.controller'),
+    Event = mongoose.model('Event'),
+    _ = require('lodash');
 
 /**
  * Create a Event
  */
 exports.create = function(req, res) {
-	var event = new Event(req.body);
-	event.user = req.user;
+    var event = new Event(req.body);
+    event.user = req.user;
 
     // Returns 401 error if the user is unverified.
     if (!req.user.verified){
@@ -38,86 +38,86 @@ exports.create = function(req, res) {
     }
 
     // And let's save the event!
-	event.save(function(err) {
-		if (err) {
-			return res.status(400).send({
-				message: errorHandler.getErrorMessage(err)
-			});
-		} else {
-			res.jsonp(event);
-		}
-	});
+    event.save(function(err) {
+        if (err) {
+            return res.status(400).send({
+                message: errorHandler.getErrorMessage(err)
+            });
+        } else {
+            res.jsonp(event);
+        }
+    });
 };
 
 /**
  * Show the current Event
  */
 exports.read = function(req, res) {
-	res.jsonp(req.event);
+    res.jsonp(req.event);
 };
 
 /**
  * Update a Event
  */
 exports.update = function(req, res) {
-	var event = req.event ;
+    var event = req.event ;
 
-	event = _.extend(event , req.body);
+    event = _.extend(event , req.body);
 
-	event.save(function(err) {
-		if (err) {
-			return res.status(400).send({
-				message: errorHandler.getErrorMessage(err)
-			});
-		} else {
-			res.jsonp(event);
-		}
-	});
+    event.save(function(err) {
+        if (err) {
+            return res.status(400).send({
+                message: errorHandler.getErrorMessage(err)
+            });
+        } else {
+            res.jsonp(event);
+        }
+    });
 };
 
 /**
  * Delete an Event
  */
 exports.delete = function(req, res) {
-	var event = req.event ;
+    var event = req.event ;
 
-	event.remove(function(err) {
-		if (err) {
-			return res.status(400).send({
-				message: errorHandler.getErrorMessage(err)
-			});
-		} else {
-			res.jsonp(event);
-		}
-	});
+    event.remove(function(err) {
+        if (err) {
+            return res.status(400).send({
+                message: errorHandler.getErrorMessage(err)
+            });
+        } else {
+            res.jsonp(event);
+        }
+    });
 };
 /**
  * Event middleware
  */
 exports.eventByID = function(req, res, next, id) { 
-	Event.findById(id).populate('user', 'displayName').exec(function(err, event) {
-		if (err) return next(err);
-		if (! event) return next(new Error('Failed to load Event ' + id));
-		req.event = event ;
-		next();
-	});
+    Event.findById(id).populate('user', 'displayName').exec(function(err, event) {
+        if (err) return next(err);
+        if (! event) return next(new Error('Failed to load Event ' + id));
+        req.event = event ;
+        next();
+    });
 };
 
 /**
  * Event authorization middleware
  */
 exports.hasAuthorization = function(req, res, next) {
-	if (req.event.user.id !== req.user.id) {
-		return res.status(403).send('User is not authorized');
-	}
-	next();
+    if (req.event.user.id !== req.user.id) {
+        return res.status(403).send('User is not authorized');
+    }
+    next();
 };
 
 /**
  * Event authorization middleware
  */
 exports.getCategories = function(req, res, next) {
-	res.json(Event.schema.path('category').enumValues);
+    res.json(Event.schema.path('category').enumValues);
 };
 
 /**
@@ -125,17 +125,24 @@ exports.getCategories = function(req, res, next) {
  */
 exports.getEventsByUser = function (req, res){
     Event.find().where('user').equals(req.query.userId)
-    .skip(req.query.page*req.query.limit) //current page
-    .limit(req.query.limit)
-    .sort('datetime_start')
-    .populate('user', 'displayName')
-    .exec(function (err, events){
+        .skip(req.query.page*req.query.limit) //current page
+        .limit(req.query.limit)
+        .sort('datetime_start')
+        .populate('user', 'displayName')
+        .exec(function (err, events){
         if (err) {
             return res.status(400).send({
                 message: errorHandler.getErrorMessage(err)
             });
         } else {
-            res.json(events);
+            Event.where('datetime_end').gt(new Date())
+                .where('user').equals(req.query.userId)
+                .count().lean().exec(function(err, count){
+                res.jsonp({
+                    results: events,
+                    items: count
+                });
+            });
         }
     });
 };
@@ -145,20 +152,27 @@ exports.getEventsByUser = function (req, res){
  */
 exports.getEventsByCategory = function (req, res){
     Event.find()
-    .where('category').equals(req.query.category)
-    .skip(req.query.page*req.query.limit) //current page
-    .limit(req.query.limit)
-    .sort('datetime_start')
-    .populate('user', 'displayName')
-    .exec(function (err, events){
-            if (err) {
-                return res.status(400).send({
-                    message: errorHandler.getErrorMessage(err)
+        .where('category').equals(req.query.category)
+        .skip(req.query.page*req.query.limit) //current page
+        .limit(req.query.limit)
+        .sort('datetime_start')
+        .populate('user', 'displayName')
+        .exec(function (err, events){
+        if (err) {
+            return res.status(400).send({
+                message: errorHandler.getErrorMessage(err)
+            });
+        } else {
+            Event.where('datetime_end').gt(new Date())
+                .where('category').equals(req.query.category)
+                .count().lean().exec(function(err, count){
+                res.jsonp({
+                    results: events,
+                    items: count
                 });
-            } else {
-                res.json(events);
-            }
-        });
+            });
+        }
+    });
 };
 
 
@@ -176,18 +190,25 @@ exports.list = function(req, res) {
     }
     //Returns list of all events.
     else{
-        Event.find().where('datetime_end')
-        .gt(new Date()).sort('datetime_start')
-        .skip(req.query.page*req.query.limit) //current page
-        .limit(req.query.limit)
-        .populate('user', 'displayName').exec(function(err, events) {
-		if (err) {
-			return res.status(400).send({
-				message: errorHandler.getErrorMessage(err)
-			});
-		} else {
-			res.jsonp(events);
-		}
-	});
+        Event.find().lean().where('datetime_end')
+            .gt(new Date()).sort('datetime_start')
+            .skip(req.query.page*req.query.limit) //current page
+            .limit(req.query.limit)
+            .populate('user', 'displayName').exec(function(err, events) {
+            if (err) {
+                return res.status(400).send({
+                    message: errorHandler.getErrorMessage(err)
+                });
+            } else {
+                Event.where('datetime_end').gt(new Date())
+                    .count().lean().exec(function(err, count){
+                    res.jsonp({
+                        results: events,
+                        items: count
+                    });
+                });
+
+            }
+        });
     }
 };

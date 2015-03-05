@@ -4,7 +4,7 @@
 angular.module('events').controller('EventsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Events', 'Users', '$filter', '$http',
 	function($scope, $stateParams, $location, Authentication, Events, Users, $filter, $http) {
 		$scope.authentication = Authentication;
-        $scope.currentPage = 0;
+        $scope.currentPage = 1;
         
         //Get list of category enums
         $http.get('/categories').
@@ -72,44 +72,28 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
 			});
 		};
 
+        // Watches $scope.currentPage for the paginator.
+        $scope.$watch(function(scope){
+            return scope.currentPage
+        },
+        function(page){
+            $scope.find(page);
+        });
 		// Find a list of Events
 		$scope.find = function(page) {
             $scope.category = $stateParams.category;
 
-            // If first page, fetch data.
-            if (page === 0){
-                $scope.events = Events.query({
-                    limit: 20,
-                    page: page,
-                    userId: $stateParams.userId,
-                    category: $stateParams.category
-                });
-            }
-            // If not first page, use prefetched data.
-            else{
-                $scope.events = $scope.eventsNextPage;
-            }
-
-            //Prefetches events on the next page, for pagination.
-            $scope.eventsNextPage = Events.query({
+            $scope.results = Events.get({
                 limit: 20,
-                page: page+1,
+                page: page-1,
                 userId: $stateParams.userId,
                 category: $stateParams.category
+            },function(event){
+                $scope.events = event.results;
+                $scope.totalEvents = event.items;
+                console.log($scope.totalEvents);
             });
 		};
-
-        //Helper methods for pagination
-        $scope.nextPage = function(){
-            $scope.find(++$scope.currentPage);
-        };
-
-        $scope.prevPage = function(){
-            if(--$scope.currentPage >= 0)
-                $scope.find($scope.currentPage);
-            else
-                $scope.currentPage = 0;
-        };
 
 		// Find existing Event
 		$scope.findOne = function() {
