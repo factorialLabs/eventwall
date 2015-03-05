@@ -27,10 +27,6 @@
     <div class="alert alert-warning no-events" data-ng-hide="!events.$resolved || events.length || currentPage">
         No events yet, why don't you <a href="/#!/events/create">create one</a>?
     </div>
-    <div class="pagination">
-        <button ng-click="prevPage()" data-ng-show="currentPage">Previous Page</button>
-        <span data-ng-show="currentPage || eventsNextPage.length">Page {{currentPage + 1}}</span>
-        <button ng-click="nextPage()" data-ng-show="eventsNextPage.length">Next Page</button>
-    </div>
+    <pagination total-items="totalEvents" items-per-page="20" ng-model="currentPage" class="pagination" boundary-links="true" max-size="5"></pagination>
 
 </section>

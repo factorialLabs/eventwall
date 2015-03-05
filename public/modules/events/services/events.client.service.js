@@ -7,7 +7,7 @@ angular.module('events').factory('Events', ['$resource',
 		}, {
 			update: {
 				method: 'PUT'
-			}
+            }
 		});
 	}
 ]);

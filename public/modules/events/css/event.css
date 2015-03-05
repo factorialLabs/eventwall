@@ -100,4 +100,18 @@ section.social-accounts {
   section.social-accounts div.connected-accounts, section.social-accounts div.no-connected-accounts {
     text-align: center; }
 
+ul.pagination li a {
+  background-color: white;
+  color: black; }
+  ul.pagination li a:hover {
+    color: black; }
+ul.pagination li.active a {
+  background-color: #FCD450;
+  color: black;
+  border-color: #FCD450; }
+  ul.pagination li.active a:hover {
+    background-color: #FCD450;
+    color: black;
+    border-color: #FCD450; }
+
 /*# sourceMappingURL=event.css.map */
