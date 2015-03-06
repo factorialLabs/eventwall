@@ -76,8 +76,8 @@ div.edit-profile.row {
     padding-left: 15px;
     padding-right: 15px; }
     div.edit-profile.row .form-group.name {
-      padding-left: 0px;
-      padding-right: 0px; }
+      padding-left: 0;
+      padding-right: 0; }
     div.edit-profile.row .form-group label {
       margin-top: 10px;
       font-size: 1.5rem; }

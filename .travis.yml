@@ -1,7 +1,10 @@
 language: node_js
 node_js:
-  - "0.10"
+- '0.10'
 env:
-  - NODE_ENV=travis
+- NODE_ENV=travis
 services:
-  - mongodb
+- mongodb
+notifications:
+  slack:
+    secure: Zv1e6o6xy4Tjp6faKKWcZQcevVS7dSJglqAanUBmZtq3QPnEN0Q5mb/HfTM7v72ATGpyftFQ6Jl8uGEJ8al/G9t//yrfrto5tKuYCrvSlnc0cRX2bjRi3/S9wzsKNNqbIL43ketN+anmNXkgzhurbfC3Jv5Zh3pRwZcdRv4pibQ=
