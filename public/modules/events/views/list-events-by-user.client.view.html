@@ -23,8 +23,12 @@
     </div>
 
 
-    <div class="alert alert-warning no-events" data-ng-hide="!results.$resolved || events.length">
+    <div class="alert alert-warning no-events" data-ng-hide="!results.$resolved || events.length || sameUser()">
         This user hasn't made any events!
     </div>
+    <div class="alert alert-warning no-events" data-ng-hide="!results.$resolved || events.length"  data-ng-show = "sameUser()">
+        You haven't made any events! Perhaps you should <a href = "/#!/events/create">make an event!</a>
+    </div>
+
     <pagination total-items="totalEvents" items-per-page="20" ng-model="currentPage" class="pagination" boundary-links="true" max-size="5" data-ng-show="events.length"></pagination>
 </section>

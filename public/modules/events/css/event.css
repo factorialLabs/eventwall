@@ -32,7 +32,7 @@ p.description {
 .unverified {
   text-align: center; }
 
-/* list-events.client.view.html */
+/* list-events.client.view.html, list-events-by-user.client.view.html, list-events-by-category.view.html */
 section.list-events.container div.page-header a.category-label {
   font-size: 80%; }
 section.list-events.container a.list-group-item h4 {

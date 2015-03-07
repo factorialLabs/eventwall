@@ -79,15 +79,17 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
         function(page){
             $scope.find(page);
         });
+
 		// Find a list of Events
 		$scope.find = function(page) {
             $scope.category = $stateParams.category;
+            $scope.userId = $stateParams.userId;
 
             $scope.results = Events.get({
                 limit: 20,
                 page: page-1,
-                userId: $stateParams.userId,
-                category: $stateParams.category
+                userId: $scope.userId,
+                category: $scope.category
             },function(event){
                 $scope.events = event.results;
                 $scope.totalEvents = event.items;
@@ -95,6 +97,10 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
             });
 		};
 
+
+        $scope.sameUser = function (){
+            return ($scope.authentication && $scope.authentication.user._id == $scope.userId);
+        }
 		// Find existing Event
 		$scope.findOne = function() {
 			$scope.event = Events.get({ 
