@@ -11,8 +11,14 @@ $dGrey: #757575;
     -ms-transition: $property $time $easing;
     transition: $property $time $easing;
 }
+.header .container{
+
+}
 
 .jumbotron{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: 80vh;
     // Temporary image
     background: url("../img/waterloo-campus.jpg") no-repeat center center;

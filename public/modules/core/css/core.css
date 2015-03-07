@@ -23,6 +23,9 @@ a:hover, a:focus, a:active {
 
 /* Homepage Content - 'home.client.view.html' */
 .jumbotron {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 80vh;
   background: url("../img/waterloo-campus.jpg") no-repeat center center;
   background-size: cover;
